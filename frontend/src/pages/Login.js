@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import styled from 'styled-components'
+import styled from "styled-components";
 import axios from "axios";
-import {Link} from 'react-router-dom'
-import LoginInput from '../components/LoginInput'
-import LoginButton from '../components/LoginButton'
-
+import { Link } from "react-router-dom";
+import LoginInput from "../components/Login/LoginInput";
+import LoginButton from "../components/Login/LoginButton";
 
 const StyledDiv = styled.div`
   color: #c62917;
@@ -20,8 +19,7 @@ const StyledSpan = styled.span`
   margin-right: 10px;
 `;
 
-
-function Login({history}) {
+function Login({ history }) {
   const [inputs, setInput] = useState({
     userId: "",
     userPw: "",
@@ -46,12 +44,14 @@ function Login({history}) {
       .then((response) => {
         if (response === 200) {
           alert("로그인완료!");
-          history.push('./board')
-        } else if(response === 404){
+          history.push("./board");
+        } else if (response === 404) {
           alert("로그인실패!");
         }
       })
-      .catch((error) => {console.log(error)})
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -71,8 +71,14 @@ function Login({history}) {
         />
         <LoginButton type="submit">로그인</LoginButton>
       </form>
-      <StyledDiv><Link to='./register'><StyledSpan>에브리타임에 처음이신가요?</StyledSpan>회원가입</Link></StyledDiv>
-      <div>{userId}({userPw})</div>
+      <StyledDiv>
+        <Link to="./register">
+          <StyledSpan>에브리타임에 처음이신가요?</StyledSpan>회원가입
+        </Link>
+      </StyledDiv>
+      <div>
+        {userId}({userPw})
+      </div>
     </div>
   );
 }
