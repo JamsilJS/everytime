@@ -59,7 +59,7 @@ function Board() {
           <Link to="/Board">
             <Logo src={logo} alt="logo" />
           </Link>
-          <HeaderTitle>안녕</HeaderTitle>
+          <HeaderTitle>자유게시판</HeaderTitle>
         </Header>
         <Profilebox>
           <UserProfile />
