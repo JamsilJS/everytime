@@ -1,14 +1,20 @@
+import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import UserProfile from '../components/Board/UserProfile';
 import BoardInput from '../components/Board/BoardInput';
+import BoardTextarea from '../components/Board/BoardTextarea';
+import BoardArticle from '../components/Board/BoardArticle';
 import logo from '../components/image/logo.jpg';
+import profile from '../components/image/profile.png';
+import writeIcon from '../components/image/write.png';
 
 const Container = styled.div`
-  background-color: #fafafa;
+  background-color: #f9f9f9;
   width: 100%;
   height: 100%;
   margin: 0 auto;
+  padding-bottom: 10px;
 `
 
 const Header = styled.div`
@@ -35,8 +41,8 @@ const HeaderTitle = styled.span`
 
 const Profilebox = styled.div`
   width: 100%;
-  height: 240px;
   text-align: center;
+  margin-bottom: 10px;
 `
 
 const Profilebtn = styled.button`
@@ -45,35 +51,101 @@ const Profilebtn = styled.button`
   height: 28px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin: 20px 3px;
-  font-size: 14px;
+  margin: 15px 3px;
+  font-size: 13px;
   line-height: 28px;
   color: #505050;
-  cursor: pointer;
+`
+
+const BoardForm = styled.form`
+  position: relative;
+  height: 165px;
+  margin: 10px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+`
+
+const InputButton = styled.button`
+  background-color: #c62917;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 38px;
+  height: 38px;
+`
+
+const InputIcon = styled.img`
+    width: 38px;
+    height: 38px;
 `
 
 function Board() {
-    return (
-      <Container>
-        <Header>
-          <Link to="/Board">
-            <Logo src={logo} alt="logo" />
-          </Link>
-          <HeaderTitle>자유게시판</HeaderTitle>
-        </Header>
-        <Profilebox>
-          <UserProfile />
-          <Link to="/MyPage">
-            <Profilebtn>내정보</Profilebtn>
-          </Link>
-          <Link to="/Login">
-            <Profilebtn>로그아웃</Profilebtn>
-          </Link>
-        </Profilebox>
-        <BoardInput />
-      </Container>
-    );
+
+  const [inputs, setInput] = useState({
+    boardTitle: "",
+    boardContent: "",
+  });
+
+  const { boardTitle, boardContent } = inputs;
+
+  const onChange = (e) => {
+    const { value, name } = e.target;
+    setInput({
+      ...inputs,
+      [name]: value,
+    })
   }
-  
-  export default Board;
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+  }
+
+  return (
+    <Container>
+      <Header>
+        <Link to="/Board">
+          <Logo src={logo} alt="logo" />
+        </Link>
+        <HeaderTitle>자유게시판</HeaderTitle>
+      </Header>
+      <Profilebox>
+        <UserProfile
+          profileImage={profile} 
+          id="nm1993"
+          name="박지연"
+          nickname="쿠크바사삭"
+        />
+        <Link to="/MyPage">
+          <Profilebtn>내정보</Profilebtn>
+        </Link>
+        <Link to="/Login">
+          <Profilebtn>로그아웃</Profilebtn>
+        </Link>
+      </Profilebox>
+      <BoardForm onSubmit={onSubmit}>
+        <BoardInput
+          name="boardTitle"
+          placeholder="제목을 작성해주세요."
+          value={boardTitle}
+          onChange={onChange}
+        />
+        <BoardTextarea
+          name="boardContent"
+          placeholder="여기를 눌러서 글을 작성할 수 있습니다."
+          value={boardContent}
+          onChange={onChange}
+        />
+        <InputButton type="submit">
+            <InputIcon src={writeIcon}/>
+        </InputButton>
+      </BoardForm>
+      <BoardArticle
+        title={boardTitle}
+        content={boardContent}
+      />
+    </Container>
+  );
+}
+
+export default Board;
   
