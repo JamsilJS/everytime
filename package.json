@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
+    "predev": "kill -9 $(lsof -i :8080 | grep -i -E -o '\\s[0-9]+\\s') || true",
+    "start": "nodemon --watch server --delay 1500 server/index.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run start\" \"npm run start --prefix frontend\""
   },

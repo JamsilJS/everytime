@@ -7,6 +7,7 @@ import BoardTextarea from '../components/Board/BoardTextarea';
 import logo from '../components/image/logo.jpg';
 import profile from '../components/image/profile.png';
 import writeIcon from '../components/image/write.png';
+import axios from 'axios';
 
 const Container = styled.div`
   background-color: #f9f9f9;
@@ -151,6 +152,18 @@ function Board() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    axios.post("/board/register", {
+      boardTitle: boardTitle,
+      boardContent: boardContent
+    })
+    .then((response) => {
+      if(response === 200) {
+        alert("성공");
+      } else if(response === 404) {
+        alert("게시글 업로드에 실패하였습니다.")
+      }
+    })
+    .catch((error) => {console.log(error)})
   }
 
   return (
