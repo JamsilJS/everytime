@@ -64,7 +64,7 @@ function Register({ history }) {
     e.preventDefault();
     axios
       .post("/register/checkId", {
-        id: { userId },
+        id: userId,
       })
       .then((response) => {
         if (response.status === 200) {
@@ -97,7 +97,8 @@ function Register({ history }) {
     setSchoolInput(e.target.textContent);
   };
 
-  const SignUp = () => {
+  const SignUp = (e) => {
+    e.preventDefault();
     if (usableId === false) {
       alert("아이디 중복확인을 해주세요");
       return;
@@ -106,14 +107,17 @@ function Register({ history }) {
       alert("필수 항목을 작성해주세요");
       return;
     }
+    alert(
+      `${userId}, ${userPw}, ${userEmail}, ${userNickname}, ${option}, ${schoolInput}`
+    );
     axios
       .post("/register", {
-        id: { userId },
-        password: { userPw },
-        email: { userEmail },
-        nickname: { userNickname },
-        entranceYear: { option },
-        school: { schoolInput },
+        id: userId,
+        password: userPw,
+        email: userEmail,
+        nickname: userNickname,
+        entranceYear: option,
+        school: schoolInput,
       })
       .then((response) => {
         if (response.status === 200) {
@@ -176,12 +180,6 @@ function Register({ history }) {
           handleSearchClick={handleSearchClick}
         />
         <RegisterButton type="submit">회원가입</RegisterButton>
-        {userId}
-        {userPw}
-        {userEmail}
-        {userNickname}
-        {option}
-        {schoolInput}
       </form>
     </div>
   );
