@@ -36,6 +36,10 @@ function Login({ history }) {
   };
 
   const onSubmit = (e) => {
+    e.preventDefault();
+    if (!userId || !userPw) {
+      alert("필수 항목을 작성하세요!");
+    }
     axios
       .post("/login", {
         id: { userId },

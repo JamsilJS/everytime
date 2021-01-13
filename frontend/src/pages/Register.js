@@ -81,7 +81,7 @@ function Register({ history }) {
   };
 
   const handleOption = (e) => {
-    setOption(e.target);
+    setOption(e.target.value);
   };
 
   const handleSearch = (e) => {
@@ -105,6 +105,10 @@ function Register({ history }) {
     }
     if (!userId || !userPw || !userEmail || !userNickname) {
       alert("필수 항목을 작성해주세요");
+      return;
+    }
+    if (!schoolArr.includes(schoolInput)) {
+      alert("학교를 선택해주세요");
       return;
     }
     alert(
