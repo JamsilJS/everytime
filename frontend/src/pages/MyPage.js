@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import logo from '../components/image/logo.jpg';
 
 const Container = styled.div`
