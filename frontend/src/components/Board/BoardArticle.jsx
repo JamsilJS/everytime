@@ -8,7 +8,7 @@ const BoardBox = styled.div`
   background-color: #fff;
   color: #353535;
   font-size: 13px;
-  margin: 0px 10px;
+  margin: 10px 10px 0px 10px;
   padding: 15px;
   border: 1px solid #ddd;
 `

@@ -61,7 +61,7 @@ const Profilebtn = styled.button`
 const BoardForm = styled.form`
   position: relative;
   height: 165px;
-  margin: 10px;
+  margin: 0px 10px;
   border: 1px solid #ddd;
   box-sizing: border-box;
 `
