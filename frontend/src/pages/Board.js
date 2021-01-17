@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import UserProfile from "../components/Board/UserProfile";
@@ -108,7 +108,7 @@ function Board({ history }) {
       })
       .then((response) => {
         if (response.status === 200) {
-          alert("성공");
+          alert("게시글이 업로드 되었습니다");
         }
       })
       .catch((error) => {
@@ -131,6 +131,29 @@ function Board({ history }) {
         console.log(e);
       });
   };
+
+  const [Show, setShow] = useState(false);
+  const [Title, setTitle] = useState("");
+  const [Content, setContent] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("/board/register")
+      .then((response) => {
+        if(response.status === 200) {
+          setTitle(response.data[0].board_title);
+          setContent(response.data[0].board_content);
+          setShow(true);
+          //console.log(Title, Content, Show);
+        } else {
+          alert("게시글을 보여줄 수 없습니다.");
+          setShow(false);
+        }
+      })
+      .catch((error) => {
+        //console.log(error);
+      });
+  });
 
   return (
     <Container>
@@ -171,7 +194,11 @@ function Board({ history }) {
           <InputIcon src={writeIcon} />
         </InputButton>
       </BoardForm>
-      <BoardArticle boardTitle={boardTitle} boardContent={boardContent} />
+      <BoardArticle 
+        show={Show}
+        title={Title}
+        content={Content}
+      />
     </Container>
   );
 }
