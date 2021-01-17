@@ -39,8 +39,8 @@ function Login({ history }) {
     e.preventDefault();
     axios
       .post("/login", {
-        id: { userId },
-        password: { userPw },
+        id: userId,
+        password: userPw,
       })
       .then((response) => {
         if (response === 200) {

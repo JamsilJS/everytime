@@ -66,26 +66,28 @@ const CommentCounted = styled.p`
   padding-left: 4px;
 `
 
-const BoardArticle = ({boardTitle, boardContent}) => {
+function BoardArticle(props) {
     return (
-        <BoardBox>
-            <BoardUser>
-                <BoardUserImg src={profile} alt="profile"/>
-                <BoardUserID>익명</BoardUserID>
-            </BoardUser>
-            <BoardTitle>{boardTitle}</BoardTitle>
-            <BoardContent>{boardContent}</BoardContent>
-            <Buttons>
-                <button>
-                  <ButtonImage src={vote} alt="vote"/>
-                  <VoteCounted>0</VoteCounted>
-                </button>
-                <button>
-                  <ButtonImage src={comment} alt="comment"/>
-                  <CommentCounted>0</CommentCounted>
-                </button>
-            </Buttons>
-      </BoardBox>
+      <>
+          <BoardBox>
+              <BoardUser>
+                  <BoardUserImg src={profile} alt="profile"/>
+                  <BoardUserID>익명</BoardUserID>
+              </BoardUser>
+              <BoardTitle>{props.title}</BoardTitle>
+              <BoardContent>{props.content}</BoardContent>
+              <Buttons>
+                  <button>
+                    <ButtonImage src={vote} alt="vote"/>
+                    <VoteCounted>0</VoteCounted>
+                  </button>
+                  <button>
+                    <ButtonImage src={comment} alt="comment"/>
+                    <CommentCounted>0</CommentCounted>
+                  </button>
+              </Buttons>
+        </BoardBox>
+      </>
     )
 }
 
