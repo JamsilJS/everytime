@@ -15,7 +15,7 @@ router.route('/register')
     db.query('SELECT * FROM everytime.board', (err, rows, fields) => {
       if (!err) {
         res.send(rows);
-        console.log(rows);
+        //console.log(rows);
       }
       else res.status(404).send();
     })
