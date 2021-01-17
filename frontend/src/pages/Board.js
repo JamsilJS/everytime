@@ -104,13 +104,10 @@ function Board() {
       boardContent: boardContent
     })
     .then((response) => {
-      if(response === 200) {
+      if(response.status === 200) {
         alert("성공");
-      } else if(response === 404) {
-        alert("게시글 업로드에 실패하였습니다.")
-      }
-    })
-    .catch((error) => {console.log(error)})
+      } 
+    }).catch((error) => {alert('게시글 업로드에 실패하였습니다.')})
   }
 
   return (
