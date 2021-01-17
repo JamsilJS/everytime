@@ -5,10 +5,13 @@ const registerRouter = require('./router/register');
 const loginRouter = require('./router/login');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const db = require('./schema/db');
+db.connect();
 app.get('/', (req, res) => {
   res.send('listening');
 });
 
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.use('/register', registerRouter);

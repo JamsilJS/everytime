@@ -62,22 +62,20 @@ function Register({ history }) {
 
   const checkId = (e) => {
     e.preventDefault();
+
     axios
-      .post("/register/checkId", {
-        id: { userId },
-      })
+      .get(`/register/checkId/${userId}`)
       .then((response) => {
+        console.log(response);
         if (response.status === 200) {
           alert("사용가능한 아이디입니다.");
           setInput({
             ...inputs,
             usableId: true,
           });
-        } else if (response.status === 404) {
-          alert("다른 아이디를 입력해주세요");
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => alert('다른 아이디를 입력해주세요'));
   };
 
   const handleOption = (e) => {
@@ -97,7 +95,8 @@ function Register({ history }) {
     setSchoolInput(e.target.textContent);
   };
 
-  const SignUp = () => {
+  const SignUp = (e) => {
+    e.preventDefault();
     if (usableId === false) {
       alert("아이디 중복확인을 해주세요");
       return;
@@ -106,29 +105,26 @@ function Register({ history }) {
       alert("필수 항목을 작성해주세요");
       return;
     }
-    axios
-      .post("/register", {
-        id: { userId },
-        password: { userPw },
-        email: { userEmail },
-        nickname: { userNickname },
-        entranceYear: { option },
-        school: { schoolInput },
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          alert("회원가입완료!");
-          history.push("./board");
-        } else if (response.status === 404) {
-          alert("회원가입실패!");
-        }
-      })
-      .catch((error) => console.log(error));
+    axios.post("/register", {
+      id: userId,
+      password: userPw ,
+      email: userEmail ,
+      nickname: userNickname,
+      entranceYear: option,
+      school: schoolInput
+    }).then((response) => {
+      console.log(response);
+      if (response.status === 200) {
+        alert("회원가입완료!");
+        history.push("./board");
+      } 
+    })
+    .catch((error) => console.error(error));
   };
 
   return (
     <div>
-      <form onSubmit={SignUp}>
+      <form onSubmit={checkId} >
         <RegisterInput
           labelName="아이디"
           name="userId"
@@ -137,6 +133,8 @@ function Register({ history }) {
           value={userId}
         />
         <CheckIdButton onClick={checkId}>중복체크</CheckIdButton>
+      </form>
+      <form onSubmit={SignUp}>
         <RegisterInput
           labelName="비밀번호"
           name="userPw"
@@ -171,17 +169,20 @@ function Register({ history }) {
           onChange={handleSearch}
           value={schoolInput}
         />
-        <SchoolSearchResult
-          datas={searchResult}
-          handleSearchClick={handleSearchClick}
-        />
+        {
+          schoolInput !== '' && 
+          <SchoolSearchResult
+            datas={searchResult}
+            handleSearchClick={handleSearchClick}
+          />
+        }
         <RegisterButton type="submit">회원가입</RegisterButton>
-        {userId}
+        {/* {userId}
         {userPw}
         {userEmail}
         {userNickname}
         {option}
-        {schoolInput}
+        {schoolInput} */}
       </form>
     </div>
   );

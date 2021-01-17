@@ -36,6 +36,7 @@ function Login({ history }) {
   };
 
   const onSubmit = (e) => {
+    e.preventDefault();
     axios
       .post("/login", {
         id: { userId },
