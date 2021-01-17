@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import CheckIdButton from "../components/Register/ChcekIdButton";
 import RegisterInput from "../components/Register/RegisterInput";
 import RegisterButton from "../components/Register/RegisterButton";
 import RegisterSelect from "../components/Register/RegisterSelect";
 import SchoolSearchResult from "../components/Register/SchoolSearchResult";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../_actions/user_actions";
+import { withRouter } from "react-router-dom";
 
 const schoolArr = [
   "서울대학교",
@@ -34,7 +37,10 @@ const schoolArr = [
   "서울여자대학교",
 ].sort();
 
+const entranceYearArray = [2014, 2013, 2012, 2011, 2010];
+
 function Register({ history }) {
+  const dispatch = useDispatch();
   const [inputs, setInput] = useState({
     userId: "",
     userPw: "",
@@ -46,8 +52,6 @@ function Register({ history }) {
   const { userId, userPw, userEmail, userNickname, usableId } = inputs;
 
   const [option, setOption] = useState("2014");
-
-  const entranceYearArray = [2014, 2013, 2012, 2011, 2010];
 
   const [schoolInput, setSchoolInput] = useState("");
   const [searchResult, setSearchResult] = useState(schoolArr);
@@ -67,15 +71,8 @@ function Register({ history }) {
         id: userId,
       })
       .then((response) => {
-        if (response.status === 200) {
-          alert("사용가능한 아이디입니다.");
-          setInput({
-            ...inputs,
-            usableId: true,
-          });
-        } else if (response.status === 404) {
-          alert("다른 아이디를 입력해주세요");
-        }
+        alert("회원가입완료!");
+        history.push("/");
       })
       .catch((error) => console.log(error));
   };
@@ -114,20 +111,20 @@ function Register({ history }) {
     alert(
       `${userId}, ${userPw}, ${userEmail}, ${userNickname}, ${option}, ${schoolInput}`
     );
-    axios
-      .post("/register", {
-        id: userId,
-        password: userPw,
-        email: userEmail,
-        nickname: userNickname,
-        entranceYear: option,
-        school: schoolInput,
-      })
+    let body = {
+      id: userId,
+      password: userPw,
+      email: userEmail,
+      nickname: userNickname,
+      entranceYear: option,
+      school: schoolInput,
+    };
+    dispatch(registerUser(body))
       .then((response) => {
-        if (response.status === 200) {
+        if (response.payload.register) {
           alert("회원가입완료!");
           history.push("./board");
-        } else if (response.status === 404) {
+        } else {
           alert("회원가입실패!");
         }
       })
@@ -189,4 +186,4 @@ function Register({ history }) {
   );
 }
 
-export default Register;
+export default withRouter(Register);
