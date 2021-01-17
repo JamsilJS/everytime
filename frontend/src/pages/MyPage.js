@@ -62,16 +62,13 @@ function MyPage() {
       <MenuBox>
         <BoxTitle>계정</BoxTitle>
         <BoxMenu>
-          <Link to="/MyPage">프로필 이미지 변경</Link>
-        </BoxMenu>
-        <BoxMenu>
           <Link to="/MyPage">닉네임 변경</Link>
         </BoxMenu>
         <BoxMenu>
           <Link to="/MyPage">이메일 변경</Link>
         </BoxMenu>
         <BoxMenu>
-          <Link to="/MyPage">비밀번호 변경</Link>
+          <Link to={`/password`}>비밀번호 변경</Link>
         </BoxMenu>
       </MenuBox>
       <MenuBox>

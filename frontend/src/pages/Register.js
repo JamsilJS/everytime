@@ -66,15 +66,20 @@ function Register({ history }) {
 
   const checkId = (e) => {
     e.preventDefault();
+
     axios
-      .post("/register/checkId", {
-        id: userId,
-      })
+      .get(`/register/checkId/${userId}`)
       .then((response) => {
-        alert("회원가입완료!");
-        history.push("/");
+        console.log(response);
+        if (response.status === 200) {
+          alert("사용가능한 아이디입니다.");
+          setInput({
+            ...inputs,
+            usableId: true,
+          });
+        }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => alert("다른 아이디를 입력해주세요"));
   };
 
   const handleOption = (e) => {
@@ -133,7 +138,7 @@ function Register({ history }) {
 
   return (
     <div>
-      <form onSubmit={SignUp}>
+      <form onSubmit={checkId}>
         <RegisterInput
           labelName="아이디"
           name="userId"
@@ -142,6 +147,8 @@ function Register({ history }) {
           value={userId}
         />
         <CheckIdButton onClick={checkId}>중복체크</CheckIdButton>
+      </form>
+      <form onSubmit={SignUp}>
         <RegisterInput
           labelName="비밀번호"
           name="userPw"
@@ -176,10 +183,12 @@ function Register({ history }) {
           onChange={handleSearch}
           value={schoolInput}
         />
-        <SchoolSearchResult
-          datas={searchResult}
-          handleSearchClick={handleSearchClick}
-        />
+        {schoolInput !== "" && (
+          <SchoolSearchResult
+            datas={searchResult}
+            handleSearchClick={handleSearchClick}
+          />
+        )}
         <RegisterButton type="submit">회원가입</RegisterButton>
       </form>
     </div>
