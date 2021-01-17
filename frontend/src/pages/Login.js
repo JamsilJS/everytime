@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import LoginInput from "../components/Login/LoginInput";
 import LoginButton from "../components/Login/LoginButton";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../_actions/user_actions";
 
 const StyledDiv = styled.div`
   color: #c62917;
@@ -19,7 +20,8 @@ const StyledSpan = styled.span`
   margin-right: 10px;
 `;
 
-function Login({ history }) {
+function Login({ props }) {
+  const dispatch = useDispatch();
   const [inputs, setInput] = useState({
     userId: "",
     userPw: "",
@@ -37,22 +39,23 @@ function Login({ history }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("/login", {
-        id: userId,
-        password: userPw,
-      })
+    if (!userId || !userPw) {
+      alert("필수 항목을 작성하세요!");
+    }
+    let body = {
+      id: { userId },
+      password: { userPw },
+    };
+    dispatch(loginUser(body))
       .then((response) => {
-        if (response === 200) {
-          alert("로그인완료!");
-          history.push("./board");
-        } else if (response === 404) {
-          alert("로그인실패!");
+        console.log(response);
+        if (response.payload.loginSuccess) {
+          props.history.push("/board");
+        } else {
+          alert(response.payload.message);
         }
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((e) => console.log(e));
   };
 
   return (
@@ -77,11 +80,8 @@ function Login({ history }) {
           <StyledSpan>에브리타임에 처음이신가요?</StyledSpan>회원가입
         </Link>
       </StyledDiv>
-      <div>
-        {userId}({userPw})
-      </div>
     </div>
   );
 }
 
-export default Login;
+export default withRouter(Login);

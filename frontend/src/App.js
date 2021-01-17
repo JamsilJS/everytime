@@ -1,9 +1,10 @@
-import styled from 'styled-components';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Board from './pages/Board';
-import MyPage from './pages/MyPage';
+import styled from "styled-components";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Board from "./pages/Board";
+import MyPage from "./pages/MyPage";
+import Auth from "./hoc/auth";
 
 const Container = styled.div`
   margin: 50px auto;
@@ -15,10 +16,10 @@ function App() {
     <Container>
       <Router>
         <Switch>
-          <Route exact path='/' component={Login}/>
-          <Route path='/register' component={Register}/>
-          <Route path='/board' component={Board}/>
-          <Route path='/mypage' component={MyPage}/>
+          <Route exact path="/" component={Auth(Login, false)}></Route>
+          <Route path="/register" component={Auth(Register, false)} />
+          <Route path="/board" component={Auth(Board, true)} />
+          <Route path="/mypage" component={Auth(MyPage, true)} />
         </Switch>
       </Router>
     </Container>
