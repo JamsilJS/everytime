@@ -6,11 +6,12 @@ const StyledButton = styled.button`
   width: 18%;
   outline: none;
   box-sizing: border-box;
+  border-radius: 5px;
   color: #fff;
   cursor: pointer;
 
   /* 색상 */
-  background: #ddd;
+  background: #bbb;
 
   /* 크기 */
   height: 25px;
@@ -18,7 +19,11 @@ const StyledButton = styled.button`
 `;
 
 const CheckIdButton = function ({ onClick, children }) {
-  return <StyledButton onClick={onClick}>{children}</StyledButton>;
+  return (
+    <div>
+      <StyledButton onClick={onClick}>{children}</StyledButton>
+    </div>
+  );
 };
 
 export default CheckIdButton;
