@@ -105,11 +105,18 @@ function Board({ history }) {
       .post("/board/register", {
         boardTitle: boardTitle,
         boardContent: boardContent,
+        writer: "익명",
+        comment: '',
+        like: '',
       })
       .then((response) => {
         if (response.status === 200) {
-          alert("게시글이 업로드 되었습니다");
-        }
+          alert("게시글이 등록되었습니다");
+        };
+        setInput({
+          boardTitle: "",
+          boardContent: "",
+        });
       })
       .catch((error) => {
         alert("게시글 업로드에 실패하였습니다.");
@@ -132,26 +139,27 @@ function Board({ history }) {
       });
   };
 
-  const [Show, setShow] = useState(false);
   const [Title, setTitle] = useState("");
   const [Content, setContent] = useState("");
+  const [Show, setShow] = useState(false);
 
   useEffect(() => {
     axios
       .get("/board/register")
       .then((response) => {
         if(response.status === 200) {
+          if(response.data.length > 0) {
+            setShow(true);
+          }
+          console.log(response.data[0]);
           setTitle(response.data[0].board_title);
           setContent(response.data[0].board_content);
-          setShow(true);
-          //console.log(Title, Content, Show);
         } else {
           alert("게시글을 보여줄 수 없습니다.");
-          setShow(false);
         }
       })
       .catch((error) => {
-        //console.log(error);
+        console.log(error);
       });
   });
 
@@ -194,11 +202,12 @@ function Board({ history }) {
           <InputIcon src={writeIcon} />
         </InputButton>
       </BoardForm>
-      <BoardArticle 
-        show={Show}
-        title={Title}
-        content={Content}
-      />
+      { Show &&
+        <BoardArticle 
+          title={Title}
+          content={Content}
+        />
+      }
     </Container>
   );
 }
