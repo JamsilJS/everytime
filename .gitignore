@@ -2,3 +2,4 @@
 *.eslintcache
 */node_modules/*
 frontend/.eslintcache
+.cache
