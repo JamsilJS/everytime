@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import UserProfile from "../components/Common/UserProfile";
 import BoardInput from "../components/Board/BoardInput";
 import BoardTextarea from "../components/Board/BoardTextarea";
 import AddBoard from "../components/Board/AddBoard";
-import logo from "../components/image/logo.jpg";
-import writeIcon from "../components/image/write.png";
+import LogoutButton from "../components/Common/LogoutButton";
+import writeIcon from "../components/Common/image/write.png";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { logoutUser } from "../_actions/user_actions";
+import Header from "../components/Common/Header";
 
 const Container = styled.div`
   background-color: #f9f9f9;
@@ -19,44 +18,10 @@ const Container = styled.div`
   padding-bottom: 10px;
 `;
 
-const Header = styled.div`
-  background-color: #fff;
-  width: 100%;
-  height: 56px;
-  padding: 0px 12px;
-  font-size: 15px;
-  text-align: left;
-  line-height: 56px;
-`;
-
-const Logo = styled.img`
-  width: 36px;
-  height: 36px;
-  vertical-align: middle;
-  cursor: pointer;
-`;
-
-const HeaderTitle = styled.span`
-  color: #454545;
-  font-weight: bold;
-`;
-
 const Profilebox = styled.div`
   width: 100%;
   text-align: center;
   margin-bottom: 10px;
-`;
-
-const Profilebtn = styled.button`
-  display: inline-block;
-  width: 64px;
-  height: 28px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin: 15px 3px;
-  font-size: 13px;
-  line-height: 28px;
-  color: #505050;
 `;
 
 const BoardForm = styled.form`
@@ -81,22 +46,17 @@ const InputIcon = styled.img`
   height: 38px;
 `;
 
-function Board({ history }) {
+function Board() {
 
-  const dispatch = useDispatch();
   const [Content, setContent] = useState("");
   const [inputs, setInput] = useState({
     boardTitle: "",
     boardContent: "",
   });
-  const { boardTitle, boardContent, boardWriter, boardComment, boardLike } = inputs;
-
+  const { boardTitle, boardContent } = inputs;
   let variables = {
     boardTitle: boardTitle,
     boardContent: boardContent,
-    writer: boardWriter,
-    comment: boardComment,
-    like: boardLike,
   }
 
   const onChange = (e) => {
@@ -136,38 +96,12 @@ function Board({ history }) {
     console.log('effect',...Content);
   }, []);
 
-  const handleLogout = (e) => {
-    e.preventDefault();
-    dispatch(logoutUser())
-      .then((response) => {
-        console.log(response);
-        if (response.payload.logoutSuccess) {
-          history.push("./");
-        } else {
-          alert("로그아웃에 실패했습니다");
-        }
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
-
   return (
     <Container>
-      <Header>
-        <Link to="/Board">
-          <Logo src={logo} alt="logo" />
-        </Link>
-        <HeaderTitle>자유게시판</HeaderTitle>
-      </Header>
+      <Header title="자유게시판"/>
       <Profilebox>
-        <UserProfile />
-        <Link to="/MyPage">
-          <Profilebtn>내정보</Profilebtn>
-        </Link>
-        <Link to="/">
-          <Profilebtn onClick={handleLogout}>로그아웃</Profilebtn>
-        </Link>
+        <UserProfile boardPage={true} />
+        <LogoutButton boardPage={true}/>
       </Profilebox>
       <BoardForm onSubmit={onSubmit}>
         <BoardInput

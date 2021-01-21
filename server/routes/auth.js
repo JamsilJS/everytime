@@ -9,7 +9,6 @@ const { auth } = require("../middleware/auth");
 router.get('/', auth , (req, res) => {
     res.status(200).json({   
         _id: req.user._id,
-        isAdmin: req.user.role === 0 ? false : true,
         isAuth: true,
         id: req.user.id,
         password: req.user.password,
@@ -17,7 +16,6 @@ router.get('/', auth , (req, res) => {
         nickname: req.user.nickname,
         entranceYear: req.user.entranceYear,
         school: req.user.school,
-        role: req.user.role
     })
 })
 

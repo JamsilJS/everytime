@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import profile from '../image/profile.png';
-import comment from '../image/comment.png';
-import vote from '../image/vote.png';
+import profile from '../Common/image/profile.png';
+import comment from '../Common/image/comment.png';
+import vote from '../Common/image/vote.png';
 
 const BoardBox = styled.div`
   background-color: #fff;
@@ -52,7 +52,7 @@ const ButtonImage = styled.img`
   margin-left: 10px;
 `
 
-const VoteCounted = styled.p`
+const LikeCounted = styled.p`
   display: inline-block;
   color: #c62917;
   font-size: 13px;
@@ -79,7 +79,7 @@ function AddBoard(props) {
               <Buttons>
                   <button>
                     <ButtonImage src={vote} alt="vote"/>
-                    <VoteCounted>0</VoteCounted>
+                    <LikeCounted>0</LikeCounted>
                   </button>
                   <button>
                     <ButtonImage src={comment} alt="comment"/>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import profile from "../image/profile.png";
-import {Link} from 'react-router-dom';
+import profile from "./image/profile.png";
+import {Link, withRouter} from 'react-router-dom';
+import axios from 'axios';
 
 const ProfileImage = styled.img`
-  width: 68px;
-  height: 68px;
+  width: 80px;
+  height: 80px;
   margin: 36px 0px 8px 0px;
   border-radius: 6px;
   pointer: cursor;
@@ -23,20 +24,31 @@ const ProfileID = styled.div`
   line-height: 20px;
 `
 
-const UserProfile = function() {
+const UserProfile = function(props) {
 
+  const userFrom = localStorage.getItem('userId');
   const [User, setUser] = useState({
     userId: "",
-    userPassword: "",
     userEmail: "",
     userNickname: "",
     userEntranceYear: "",
     userSchool: "",
   })
+  const { userId, userEmail, userNickname, userEntranceYear, userSchool } = User;
 
-  const { userId, userPassword, userEmail, userNickname, userEntranceYear, userSchool } = User;
+  useEffect(() => {
+    axios.get('/user', {_id: userFrom})
+      .then((response) => {
+        setUser({
+          userId : response.data.id,
+          userNickname: response.data.nickname,
+          userSchool: response.data.school
+        })
+      })
+  },[])
 
-  return (
+  if (props.boardPage) {
+    return (
       <div>
         <Link to="/MyPage">
           <ProfileImage src= {profile} alt="profile"></ProfileImage>
@@ -45,8 +57,9 @@ const UserProfile = function() {
         <ProfileID>{userId}</ProfileID>
         <ProfileID>{userSchool}</ProfileID>
       </div>
-  );
+    )
+  }
 }
 
-export default UserProfile;
+export default withRouter(UserProfile);
   

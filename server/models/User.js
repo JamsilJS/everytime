@@ -14,7 +14,6 @@ const userSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        trim: true, 
     },
     nickname: {
         type: String,
@@ -24,10 +23,6 @@ const userSchema = mongoose.Schema({
     },
     school: {
         type: String,
-    },
-    role: {
-        type: Number,
-        default: 0,
     },
     image: String,
     token: {

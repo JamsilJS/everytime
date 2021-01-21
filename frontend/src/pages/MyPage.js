@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import logo from "../components/image/logo.jpg";
+import Header from "../components/Common/Header";
 
 const Container = styled.div`
   background-color: #fff;
@@ -8,27 +8,6 @@ const Container = styled.div`
   height: 100%;
   margin: 0 auto;
   padding: 0px 10px;
-`;
-
-const Header = styled.div`
-  width: 100%;
-  height: 56px;
-  padding: 0px 2px;
-  font-size: 15px;
-  text-align: left;
-  line-height: 56px;
-`;
-
-const Logo = styled.img`
-  width: 36px;
-  height: 36px;
-  vertical-align: middle;
-  cursor: pointer;
-`;
-
-const HeaderTitle = styled.span`
-  color: #454545;
-  font-weight: bold;
 `;
 
 const MenuBox = styled.ul`
@@ -53,12 +32,7 @@ const BoxMenu = styled.li`
 function MyPage() {
   return (
     <Container>
-      <Header>
-        <Link to="/Board">
-          <Logo src={logo} alt="logo" />
-        </Link>
-        <HeaderTitle>마이페이지</HeaderTitle>
-      </Header>
+      <Header title="마이페이지"/>
       <MenuBox>
         <BoxTitle>계정</BoxTitle>
         <BoxMenu>
