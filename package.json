@@ -1,24 +1,36 @@
 {
-  "name": "server",
+  "name": "boilerplate_code",
   "version": "1.0.0",
-  "description": "",
+  "description": "Create BoilerPlate Code for Web Application",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "predev": "kill -9 $(lsof -i :8080 | grep -i -E -o '\\s[0-9]+\\s') || true",
-    "start": "nodemon --watch server --delay 1500 server/index.js",
+    "start": "node server/index.js",
+    "server": "nodemon server/index.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run start\" \"npm run start --prefix frontend\""
+    "dev": "concurrently \"npm run start\" \"npm run start --prefix client\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gparkkii/BoilerPlateCode.git"
+  },
+  "author": "Ji Yeon Park",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gparkkii/BoilerPlateCode/issues"
+  },
+  "homepage": "https://github.com/gparkkii/BoilerPlateCode#readme",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "concurrently": "^5.3.0",
-    "dotenv": "^8.2.0",
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
-    "mysql": "^2.18.1",
-    "nodemon": "^2.0.7",
-    "url": "^0.11.0"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }

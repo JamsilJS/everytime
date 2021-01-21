@@ -1,6 +1,44 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-*.eslintcache
-*/node_modules/*
-frontend/.eslintcache
+# Directories 
+/build/
+/bin/
+target/
+
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Production
+/build
+
+# OS Files 
+.DS_Store
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
 .cache
-node_modules
+
+# dotenv environment variables file
+.env
+.env.test
+
+# Misc
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+#Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
