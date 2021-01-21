@@ -68,9 +68,8 @@ function Register({ history }) {
     e.preventDefault();
 
     axios
-      .get(`/register/checkId/${userId}`)
+      .post(`/register/checkId/${userId}`, {id: userId})
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           alert("사용가능한 아이디입니다.");
           setInput({
@@ -126,9 +125,10 @@ function Register({ history }) {
     };
     dispatch(registerUser(body))
       .then((response) => {
-        if (response.payload.register) {
+        console.log(response);
+        if (response.payload.success) {
           alert("회원가입완료!");
-          history.push("./board");
+          history.push("./");
         } else {
           alert("회원가입실패!");
         }
