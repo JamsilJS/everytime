@@ -3,3 +3,4 @@
 */node_modules/*
 frontend/.eslintcache
 .cache
+node_modules
