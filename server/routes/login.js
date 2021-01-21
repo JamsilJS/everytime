@@ -6,7 +6,6 @@ const { User } = require("../models/User");
 //             Login
 //=================================
 
-// Login Route 
 router.post('/', (req, res) => {
     User.findOne({ id: req.body.id }, (err, user) => {
         console.log(req.body);

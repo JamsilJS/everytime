@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
-import UserProfile from "../components/Board/UserProfile";
+import UserProfile from "../components/Common/UserProfile";
 import BoardInput from "../components/Board/BoardInput";
 import BoardTextarea from "../components/Board/BoardTextarea";
 import AddBoard from "../components/Board/AddBoard";
-import profile from "../components/image/profile.png";
 import logo from "../components/image/logo.jpg";
 import writeIcon from "../components/image/write.png";
 import axios from "axios";
@@ -162,12 +161,7 @@ function Board({ history }) {
         <HeaderTitle>자유게시판</HeaderTitle>
       </Header>
       <Profilebox>
-        <UserProfile
-          profileImage={profile}
-          id="nm1993"
-          name="박지연"
-          nickname="쿠크바사삭"
-        />
+        <UserProfile />
         <Link to="/MyPage">
           <Profilebtn>내정보</Profilebtn>
         </Link>

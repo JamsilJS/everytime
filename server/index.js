@@ -7,6 +7,7 @@ const registerRouter = require('./routes/register');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
 const boardRouter = require('./routes/board');
+const userRouter = require('./routes/user');
 const authRouter = require('./routes/auth');
 const mongoose = require("mongoose");
 const { auth } = require("./middleware/auth");
@@ -28,8 +29,9 @@ app.use(cookieParser());
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
-app.use('/board', boardRouter);
 app.use('/auth', authRouter);
+app.use('/board', boardRouter);
+app.use('/user', userRouter);
 
 const port = 8080;
 app.listen(port, () => {

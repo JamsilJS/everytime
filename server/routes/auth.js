@@ -11,11 +11,13 @@ router.get('/', auth , (req, res) => {
         _id: req.user._id,
         isAdmin: req.user.role === 0 ? false : true,
         isAuth: true,
+        id: req.user.id,
+        password: req.user.password,
         email: req.user.email,
-        name: req.user.name,
-        lastname: req.user.lastname,
-        role: req.user.role,
-        image: req.user.image
+        nickname: req.user.nickname,
+        entranceYear: req.user.entranceYear,
+        school: req.user.school,
+        role: req.user.role
     })
 })
 
