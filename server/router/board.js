@@ -21,10 +21,11 @@ router.route('/register')
       })
   })
 
-  .get((req, res) => {
+  .post((req, res) => {
     db.query('SELECT * FROM everytime.board', (err, rows, fields) => {
       if (!err) {
         res.send(rows);
+        console.log(rows);
       }
       else res.status(404).send();
     })

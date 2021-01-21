@@ -66,7 +66,7 @@ const CommentCounted = styled.p`
   padding-left: 4px;
 `
 
-function BoardArticle(props) {
+function AddBoard(props) {
     return (
       <>
           <BoardBox>
@@ -91,4 +91,4 @@ function BoardArticle(props) {
     )
 }
 
-export default BoardArticle
+export default AddBoard;
