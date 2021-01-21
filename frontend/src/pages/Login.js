@@ -20,7 +20,7 @@ const StyledSpan = styled.span`
   margin-right: 10px;
 `;
 
-function Login({ props }) {
+function Login({ history }) {
   const dispatch = useDispatch();
   const [inputs, setInput] = useState({
     userId: "",
@@ -39,23 +39,24 @@ function Login({ props }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    let body = {
+      id: userId,
+      password: userPw,
+    };
     if (!userId || !userPw) {
       alert("필수 항목을 작성하세요!");
+    } else {
+      dispatch(loginUser(body))
+        .then((response) => {
+          console.log(response);
+          if (response.payload.loginSuccess) {
+            history.push("/board");
+          } else {
+            alert(response.payload.message);
+          }
+        })
+        .catch((err) => console.log(err));
     }
-    let body = {
-      id: { userId },
-      password: { userPw },
-    };
-    dispatch(loginUser(body))
-      .then((response) => {
-        console.log(response);
-        if (response.payload.loginSuccess) {
-          props.history.push("/board");
-        } else {
-          alert(response.payload.message);
-        }
-      })
-      .catch((e) => console.log(e));
   };
 
   return (

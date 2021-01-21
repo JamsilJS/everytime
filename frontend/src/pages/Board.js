@@ -11,7 +11,6 @@ import writeIcon from "../components/image/write.png";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../_actions/user_actions";
-import { json } from "body-parser";
 
 const Container = styled.div`
   background-color: #f9f9f9;
@@ -86,13 +85,20 @@ const InputIcon = styled.img`
 function Board({ history }) {
 
   const dispatch = useDispatch();
-
   const [Content, setContent] = useState("");
   const [inputs, setInput] = useState({
     boardTitle: "",
     boardContent: "",
   });
   const { boardTitle, boardContent, boardWriter, boardComment, boardLike } = inputs;
+
+  let variables = {
+    boardTitle: boardTitle,
+    boardContent: boardContent,
+    writer: boardWriter,
+    comment: boardComment,
+    like: boardLike,
+  }
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -105,21 +111,10 @@ function Board({ history }) {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    let variables = {
-      boardTitle: boardTitle,
-      boardContent: boardContent,
-      writer: boardWriter,
-      comment: boardComment,
-      like: boardLike,
-    }
-
     axios.post("/board/register", variables)
       .then((response) => {
         if (response.status === 200) {
           alert("게시글이 등록되었습니다");
-          console.log(response);
-          setContent(response.data.config);
-          console.log(Content);
         };
       })
       .catch((error) => {
@@ -127,20 +122,20 @@ function Board({ history }) {
       });
   };
 
-  // useEffect(() => {
-  //   axios.post("/board/upload", variables)
-  //       .then((response) => {
-  //         if(response.status === 200) {
-  //           setContent([...Content, ...response.data]);
-  //         } else {
-  //           alert("게시글을 보여줄 수 없습니다.");
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   console.log('effect',...Content);
-  // }, []);
+  useEffect(() => {
+    axios.post("/board/upload", variables)
+        .then((response) => {
+          if(response.status === 200) {
+            setContent([...Content, ...response.data]);
+          } else {
+            alert("게시글을 보여줄 수 없습니다.");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    console.log('effect',...Content);
+  }, []);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -197,18 +192,17 @@ function Board({ history }) {
           <InputIcon src={writeIcon} />
         </InputButton>
       </BoardForm>
-      {/* { Content && Content.map((board, index) => {
+      { Content && Content.map((board, index) => {
         return(
             <React.Fragment key={index}>
               <AddBoard
-                stateRefresh={stateRefresh}
                 key={board.board_id}
                 title={board.board_title}
                 content={board.board_content}
               />
             </React.Fragment>
         )})
-      } */}
+      }
     </Container>
   );
 }
