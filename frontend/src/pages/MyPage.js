@@ -1,70 +1,27 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import Header from "../components/Common/Header";
+import React from "react";
+import { Route, withRouter } from "react-router-dom";
+import BoardList from "../components/MyPage/BoardList";
+import Comment from "../components/MyPage/Comment";
+import Email from "../components/MyPage/Email";
+import Favorite from "../components/MyPage/Favorite";
+import Nickname from "../components/MyPage/Nickname";
+import PageList from "../components/MyPage/PageList";
+import Password from "../components/MyPage/Password";
+import WithDrawal from "../components/MyPage/WithDrawal";
 
-const Container = styled.div`
-  background-color: #fff;
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  padding: 0px 10px;
-`;
-
-const MenuBox = styled.ul`
-  color: #212121;
-  width: 100%;
-  margin: 8px 0px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: 1px solid #eee;
-  box-sizing: border-box;
-  line-height: 40px;
-`;
-const BoxTitle = styled.li`
-  font-size: 16px;
-  font-weight: bold;
-`;
-
-const BoxMenu = styled.li`
-  font-size: 14px;
-`;
-
-function MyPage() {
+function MyPage({ match }) {
   return (
-    <Container>
-      <Header title="마이페이지"/>
-      <MenuBox>
-        <BoxTitle>계정</BoxTitle>
-        <BoxMenu>
-          <Link to="/MyPage">닉네임 변경</Link>
-        </BoxMenu>
-        <BoxMenu>
-          <Link to="/MyPage">이메일 변경</Link>
-        </BoxMenu>
-        <BoxMenu>
-          <Link to={`/password`}>비밀번호 변경</Link>
-        </BoxMenu>
-      </MenuBox>
-      <MenuBox>
-        <BoxTitle>커뮤니티</BoxTitle>
-        <BoxMenu>
-          <Link to="/MyPage">내가 쓴 글</Link>
-        </BoxMenu>
-        <BoxMenu>
-          <Link to="/MyPage">내가 댓글 단 글</Link>
-        </BoxMenu>
-        <BoxMenu>
-          <Link to="/MyPage">스크랩</Link>
-        </BoxMenu>
-      </MenuBox>
-      <MenuBox>
-        <BoxTitle>기타</BoxTitle>
-        <BoxMenu>
-          <Link to="/MyPage">회원탈퇴</Link>
-        </BoxMenu>
-      </MenuBox>
-    </Container>
+    <>
+      <Route exact path={match.path} component={PageList} />
+      <Route path={`${match.path}/nickname`} component={Nickname} />
+      <Route path={`${match.path}/email`} component={Email} />
+      <Route path={`${match.path}/password`} component={Password} />
+      <Route path={`${match.path}/boardlist`} component={BoardList} />
+      <Route path={`${match.path}/comment`} component={Comment} />
+      <Route path={`${match.path}/favorite`} component={Favorite} />
+      <Route path={`${match.path}/withdrawal`} component={WithDrawal} />
+    </>
   );
 }
 
-export default MyPage;
+export default withRouter(MyPage);

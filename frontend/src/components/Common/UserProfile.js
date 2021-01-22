@@ -26,18 +26,16 @@ const ProfileID = styled.div`
 
 const UserProfile = function(props) {
 
-  const userFrom = localStorage.getItem('userId');
   const [User, setUser] = useState({
     userId: "",
-    userEmail: "",
     userNickname: "",
-    userEntranceYear: "",
     userSchool: "",
   })
-  const { userId, userEmail, userNickname, userEntranceYear, userSchool } = User;
+  const { userId, userNickname, userSchool } = User;
 
   useEffect(() => {
-    axios.get('/user', {_id: userFrom})
+    const userFrom = localStorage.getItem('userId');
+    axios.get('/user/profile', {_id: userFrom})
       .then((response) => {
         setUser({
           userId : response.data.id,

@@ -81,20 +81,20 @@ function Board() {
       });
   };
 
-  useEffect(() => {
-    axios.post("/board/upload", variables)
-        .then((response) => {
-          if(response.status === 200) {
-            setContent([...Content, ...response.data]);
-          } else {
-            alert("게시글을 보여줄 수 없습니다.");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    console.log('effect',...Content);
-  }, []);
+  // useEffect(() => {
+  //   axios.post("/board/upload", variables)
+  //       .then((response) => {
+  //         if(response.status === 200) {
+  //           setContent([...Content, ...response.data]);
+  //         } else {
+  //           alert("게시글을 보여줄 수 없습니다.");
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   console.log('effect',...Content);
+  // }, []);
 
   return (
     <Container>

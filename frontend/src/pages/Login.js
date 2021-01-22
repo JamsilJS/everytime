@@ -56,7 +56,6 @@ function Login({ history }) {
             alert(response.payload.message);
           }
         })
-        .catch((err) => console.log(err));
     }
   };
 

@@ -32,7 +32,7 @@ function LogoutButton(props) {
 
     return (
         <>
-        <Link to="/MyPage">
+        <Link to="/mypage">
           <Profilebtn>내정보</Profilebtn>
         </Link>
         <Profilebtn onClick={handleLogout}>로그아웃</Profilebtn>
