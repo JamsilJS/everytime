@@ -26,7 +26,9 @@ export function loginUser(dataToSubmit) {
 }
 
 export function logoutUser() {
-  const request = axios.get("/logout").then((response) => response.data);
+  const request = axios
+    .get("/logout")
+    .then((response) => response.data);
   return {
     type: LOGOUT_USER,
     payload: request,
@@ -34,7 +36,9 @@ export function logoutUser() {
 }
 
 export function auth() {
-  const request = axios.get("/auth").then((response) => response.data);
+  const request = axios
+    .get("/auth")
+    .then((response) => response.data);
   return {
     type: AUTH_USER,
     payload: request,
