@@ -50,10 +50,6 @@ const Input = styled.input`
     box-sizing: border-box;
 `;
 
-const Textbox = styled.div`
-    margin-top: 12px;
-`;
-
 const Warning = styled.strong`
     color: #c62917;
     margin-left: 4px;
@@ -62,9 +58,9 @@ const Warning = styled.strong`
 
 const Alert = styled.p`
     color: #999;
-    font-size: 10px;
-    line-height: 16px;
-    margin-top: 16px;
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: 20px;
 `;
 
 const Button = styled.button`
@@ -151,7 +147,7 @@ function Password({history}) {
                         value={currentPassword} 
                         onChange={onChangeHandler}
                     />
-                    <Textbox>
+                    <div>
                         <Alert>
                             <strong>※ 혹시 타인에게 계정을 양도하려고 하시나요?</strong>
                             <br/>에브리타임 이용약관에서는 타인에게 계정 판매, 양도 및 대여 등을 엄격하게 금지하고 있습니다.
@@ -163,7 +159,7 @@ function Password({history}) {
                             <br/>개인정보를 위해 비밀번호를 변경해주세요. 비밀번호를 변경하면 
                             <Warning>모든 디바이스에서 즉시 로그아웃 처리됩니다.</Warning>
                         </Alert>
-                    </Textbox>
+                    </div>
                     <Button>비밀번호 변경</Button>
                 </MenuBox>
             </form>

@@ -4,7 +4,7 @@ import Header from '../Common/Header'
 function Favorite() {
     return (
         <div>
-            <Header title="스크랩"/>
+            <Header title="스크랩" backbutton={true}/>
         </div>
     )
 }

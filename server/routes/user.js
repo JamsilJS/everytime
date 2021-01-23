@@ -69,16 +69,29 @@ router.post('/update/password', auth, (req, res) => {
     User.findOne({ _id: req.body._id }, (err, user) => {
         user.comparePassword(req.body.oldPassword , (err, isMatch ) => {
             if (!isMatch) return res.json({ changeSuccess: false, message: "비밀번호가 틀렸습니다." })
-            else User.findOneAndUpdate(
-                {_id: req.body._id},
-                {$set:{password: req.body.newPassword}},
-                {new: true},
-                (err, user) => {
-                    console.log(user);
-                    if(!user) return res.status(404).send();
-                    else return res.json({ changeSuccess: true });
-                }
-            )
+            // else User.findOneAndUpdate(
+            //     {_id: req.body._id},
+            //     {$set:{password: req.body.newPassword}},
+            //     {new: true},
+            //     (err, user) => {
+            //         console.log(user);
+            //         if(!user) return res.status(404).send();
+            //         else return res.json({ changeSuccess: true });
+            //     }
+            // )
+        })
+    })
+})
+
+router.post('/withdrawal', auth, (req, res) => {
+    console.log(req.body);
+    User.findOne({ _id: req.body._id }, (err, user) => {
+        user.comparePassword(req.body.password , (err, isMatch ) => {
+            if (!isMatch) return res.json({ changeSuccess: false, message: "비밀번호가 틀렸습니다." })
+            else User.deleteOne({_id: req.body._id}, (err, user) => {
+                if(err) return res.status(404).send();
+                else return res.json({ changeSuccess: true });
+            });
         })
     })
 })

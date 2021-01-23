@@ -4,7 +4,7 @@ import Header from '../Common/Header'
 function BoardList() {
     return (
         <>
-            <Header title="내가 쓴 글" />
+            <Header title="내가 쓴 글" backbutton={true} />
         </>
     )
 }
