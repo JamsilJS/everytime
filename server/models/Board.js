@@ -15,9 +15,6 @@ const boardSchema = mongoose.Schema({
     boardContent: {
         type: String
     },
-    boardLike: {
-        type: String
-    },
     boardWriter: {
         type: String
     },

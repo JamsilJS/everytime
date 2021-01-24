@@ -54,10 +54,6 @@ function Board() {
     boardContent: "",
   });
   const { boardTitle, boardContent } = inputs;
-  let variables = {
-    boardTitle: boardTitle,
-    boardContent: boardContent,
-  }
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -69,16 +65,24 @@ function Board() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    
+    // let variables = {
+    //   userFrom: "",
+    //   boardId: "",
+    //   boardTitle: boardTitle,
+    //   boardContent: boardContent,
+    //   boardWriter: "",
+    // }
 
-    axios.post("/board/register", variables)
-      .then((response) => {
-        if (response.status === 200) {
-          alert("게시글이 등록되었습니다");
-        };
-      })
-      .catch((error) => {
-        alert("게시글 업로드에 실패하였습니다.");
-      });
+    // axios.post("/board/register", variables)
+    //   .then((response) => {
+    //     if (response.status === 200) {
+    //       alert("게시글이 등록되었습니다");
+    //     };
+    //   })
+    //   .catch((error) => {
+    //     alert("게시글 업로드에 실패하였습니다.");
+    //   });
   };
 
   // useEffect(() => {
