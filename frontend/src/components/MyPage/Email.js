@@ -82,7 +82,7 @@ function Email({history}) {
             currentPassword: "",
         });
         })
-    },[])
+    },[userFrom])
 
     const onChangeHandler = (e) => {
         const { value, name } = e.currentTarget;

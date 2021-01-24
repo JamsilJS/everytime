@@ -10,7 +10,6 @@ const boardRouter = require('./routes/board');
 const userRouter = require('./routes/user');
 const authRouter = require('./routes/auth');
 const mongoose = require("mongoose");
-const { auth } = require("./middleware/auth");
 
 const connect = mongoose.connect( config.mongoURI, 
     {
