@@ -35,9 +35,45 @@ const schoolArr = [
   "숭실대학교",
   "덕성여자대학교",
   "서울여자대학교",
+  "홍익대학교",
+  "가천대학교",
+  "경기대학교",
+  "단국대학교",
+  "동국대학교",
+  "명지대학교",
+  "신한대학교",
+  "한국항공대학교",
+  "서울과학기술대학교",
+  "서울교육대학교",
+  "가톨릭대학교",
+  "한국예술종합학교",
+  "한성대학교",
+  "한국체육대학교",
+  "상명대학교",
+  "육군사관학교",
+  "숭의여자대학교",
+  "총신대학교",
+  "서경대학교",
+  "서울사이버대학교",
+  "대진대학교",
+  "한국산업기술대학교",
+  "한세대학교",
+  "용인대학교",
+  "안양대학교",
+  "연성대학교",
+  "인하공업전문대학교",
+  "동아방송예술대학교",
+  "여주대학교",
+  "동남보건대학교",
+  "계원예술대학교",
+  "성결대학교",
 ].sort();
 
-const entranceYearArray = [2014, 2013, 2012, 2011, 2010];
+const entranceYearArray = [];
+
+for (let i = 2000; i < 2022; i++) {
+  entranceYearArray.push(i);
+}
 
 function Register({ history }) {
   const dispatch = useDispatch();
@@ -68,7 +104,7 @@ function Register({ history }) {
     e.preventDefault();
 
     axios
-      .post(`/register/checkId/${userId}`, {id: userId})
+      .post(`/register/checkId/${userId}`, { id: userId })
       .then((response) => {
         if (response.status === 200) {
           alert("사용가능한 아이디입니다.");
@@ -78,7 +114,10 @@ function Register({ history }) {
           });
         }
       })
-      .catch((error) => alert("다른 아이디를 입력해주세요"));
+      .catch((error) => {
+        console.log(error);
+        alert("다른 아이디를 입력해주세요");
+      });
   };
 
   const handleOption = (e) => {
@@ -183,12 +222,10 @@ function Register({ history }) {
           onChange={handleSearch}
           value={schoolInput}
         />
-        {schoolInput !== "" && (
-          <SchoolSearchResult
-            datas={searchResult}
-            handleSearchClick={handleSearchClick}
-          />
-        )}
+        <SchoolSearchResult
+          datas={searchResult}
+          handleSearchClick={handleSearchClick}
+        />
         <RegisterButton type="submit">회원가입</RegisterButton>
       </form>
     </div>
