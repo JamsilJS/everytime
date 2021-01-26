@@ -2,12 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const boardSchema = mongoose.Schema({
-    userFrom: {
+    boardFrom: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    },
-    boardId: {
-        type: String
     },
     boardTitle: {
         type: String
@@ -15,13 +12,7 @@ const boardSchema = mongoose.Schema({
     boardContent: {
         type: String
     },
-    boardLike: {
-        type: String
-    },
     boardWriter: {
-        type: String
-    },
-    boardUpdated: {
         type: String
     }
 },{ timestamps: true });

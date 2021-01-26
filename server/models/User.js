@@ -24,7 +24,6 @@ const userSchema = mongoose.Schema({
     school: {
         type: String,
     },
-    image: String,
     token: {
         type: String,
     },
