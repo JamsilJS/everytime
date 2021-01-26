@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 function BoardDetail(props) {
     console.log(props);
-    const BoardId = props.match.params.boardId;
+    const BoardId = props.match.params.id;
     const variable = { boardId : BoardId };
 
     const [BoardDetail, setBoardDetail] = useState([])
     
     useEffect(() => {
-        axios.post('board/detail', variable)
+        axios.post(`${props.match.path}`, variable)
             .then(response => {
                 console.log(response);
                 if(response.data.success) {

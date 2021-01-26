@@ -41,10 +41,10 @@ router.post('/deleteBoard', (req, res) => {
         })
 })
 
-router.post('/detail', (req, res) => {
+router.post('/:id', (req, res) => {
     console.log(req.body);
-    User.findOne({ "_id" : req.body.boardId }, (err, user) => {
-        if(!user) return res.status(200).send();
+    Board.findOne({ _id : req.body.boardId }, (err, board) => {
+        if(board) return res.json({success: true, board});
         else return res.status(404).json({
             success: false
         })
