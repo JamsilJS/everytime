@@ -182,9 +182,14 @@ function BoardView({ match }) {
       userFrom: userFrom,
       likeCnt: like,
     };
-    axios.post("/board/like", variables).then((response) => {
-      console.log(response);
-    });
+    axios
+      .post("/board/like", variables)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   const onDeleteBoard = (boardFrom, board_id) => {

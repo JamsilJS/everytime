@@ -222,10 +222,13 @@ function Register({ history }) {
           onChange={handleSearch}
           value={schoolInput}
         />
-        <SchoolSearchResult
-          datas={searchResult}
-          handleSearchClick={handleSearchClick}
-        />
+
+        {schoolInput && (
+          <SchoolSearchResult
+            datas={searchResult}
+            handleSearchClick={handleSearchClick}
+          />
+        )}
         <RegisterButton type="submit">회원가입</RegisterButton>
       </form>
     </div>
