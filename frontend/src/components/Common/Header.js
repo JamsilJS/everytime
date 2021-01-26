@@ -48,7 +48,7 @@ function Header(props) {
         <StyledHeader>
             <li>
                 <Link to="/board">
-                <Logo src={logo} alt="logo" />
+                    <Logo src={logo} alt="logo" />
                 </Link>
                 <HeaderTitle>{props.title}</HeaderTitle>
             </li>

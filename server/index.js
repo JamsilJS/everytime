@@ -11,7 +11,7 @@ const userRouter = require('./routes/user');
 const authRouter = require('./routes/auth');
 const mongoose = require("mongoose");
 
-const connect = mongoose.connect( config.mongoURI, 
+const connect = mongoose.connect(config.mongoURI, 
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
