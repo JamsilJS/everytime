@@ -1,6 +1,6 @@
 
 *.eslintcache
-*/node_modules/*
+*/node_modules
 frontend/.eslintcache
 .cache
 node_modules
