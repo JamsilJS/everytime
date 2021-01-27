@@ -42,6 +42,7 @@ const UserProfile = function(props) {
           userNickname: response.data.nickname,
           userSchool: response.data.school
         })
+        window.localStorage.setItem('userNickname', response.data.nickname);
       })
   },[])
 

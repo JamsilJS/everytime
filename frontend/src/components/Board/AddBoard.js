@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import styled from 'styled-components';
 import profile from '../Common/image/profile.png';
 import comment from '../Common/image/comment.png';
 import vote from '../Common/image/vote.png';
-import back from '../Common/image/cancel.png';
+import { withRouter } from 'react-router-dom';
 
 const BoardBox = styled.div`
   background-color: #fff;
@@ -18,7 +17,7 @@ const BoardBox = styled.div`
 const BoardUser = styled.div`
   display: flex;
   height: 20px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   justify-content: space-between;
 `
 
@@ -29,15 +28,11 @@ const BoardUserImg = styled.img`
   margin-right: 4px;
 `
 const BoardUserID = styled.p`
-  color: #353535;
+  color: #757575;
   font-size: 11px;
   font-weight: bold;
   line-height: 20px;
 `
-
-const Back = styled.img`
-    width: 10px;
-`;
 
 const BoardTitle = styled.div`
   font-weight: bold;
@@ -46,7 +41,9 @@ const BoardTitle = styled.div`
 
 const BoardContent = styled.div`
   font-weight: normal;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 `
 
 const Buttons = styled.div`
@@ -73,81 +70,31 @@ const CommentCounted = styled.p`
   padding-left: 4px;
 `
 
-function AddBoard() {
-
-  const [Content, setContent] = useState([]);
-  useEffect(() => {
-      FetchBoard();
-  }, [])
-
-  const FetchBoard = () => {
-    axios.get("/board/getboard")
-      .then((response) => {
-        console.log(response);
-        if(response.data.success) {
-          setContent([...Content, ...response.data.boards]);
-        } else {
-          alert("게시글을 보여줄 수 없습니다.");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-const onClickHandler = (boardFrom, board_id) => {
-  const variables = {
-    boardFrom: boardFrom,
-    _id: board_id,
-  }
-
-  axios.post("/board/deleteBoard", variables)
-    .then(response => {
-      console.log(response);
-      console.log(variables);
-      if(response.data.success) {
-        FetchBoard();
-      } else {
-        alert("게시글 삭제에 실패했습니다.")
-      }
-    })
-}
-
+function AddBoard({title, content, writer}) {
   return (
     <>
-      { Content && Content.map((board, index) => {
-        return(
-            <React.Fragment key={index}>
-              <BoardBox>
-                <BoardUser>
-                    <span style={{display: 'flex'}}>
-                      <BoardUserImg src={profile} alt="profile"/>
-                      <BoardUserID>익명</BoardUserID>
-                    </span>
-                    <span>
-                      <button onClick={() => onClickHandler(board.boardFrom, board._id)}>
-                        <Back src={back} alt="back" />
-                      </button>
-                    </span>
-                </BoardUser>
-                <BoardTitle>{board.boardTitle}</BoardTitle>
-                <BoardContent>{board.boardContent}</BoardContent>
-                <Buttons>
-                    <button>
-                      <ButtonImage src={vote} alt="vote"/>
-                      <LikeCounted>0</LikeCounted>
-                    </button>
-                    <button>
-                      <ButtonImage src={comment} alt="comment"/>
-                      <CommentCounted>0</CommentCounted>
-                    </button>
-                </Buttons>
-              </BoardBox>
-            </React.Fragment>
-        )})
-      }
+        <BoardBox>
+          <BoardUser>
+              <span style={{display: 'flex'}}>
+                <BoardUserImg src={profile} alt="profile"/>
+                <BoardUserID>{writer}</BoardUserID>
+              </span>
+          </BoardUser>
+          <BoardTitle>{title}</BoardTitle>
+          <BoardContent>{content}</BoardContent>
+          <Buttons>
+              <button>
+                <ButtonImage src={vote} alt="vote"/>
+                <LikeCounted>0</LikeCounted>
+              </button>
+              <button>
+                <ButtonImage src={comment} alt="comment"/>
+                <CommentCounted>0</CommentCounted>
+              </button>
+          </Buttons>
+        </BoardBox>
     </>
   )
 }
 
-export default AddBoard;
+export default withRouter(AddBoard);
