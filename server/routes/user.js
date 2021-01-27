@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require("../models/User");
+const { Board } = require("../models/Board");
 const { auth } = require("../middleware/auth");
 
 //=================================
@@ -81,6 +82,15 @@ router.post('/update/password', auth, (req, res) => {
             // )
         })
     })
+})
+
+router.post("/get/myBoard", (req, res) => {
+    console.log(req.body);
+    Board.find({ boardFrom : req.body.boardFrom })
+        .exec((err, boards) => {
+            if(err) return res.status(400).send(err);
+            return res.status(200).json({ success: true, boards })
+        })
 })
 
 router.post('/withdrawal', auth, (req, res) => {

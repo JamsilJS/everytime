@@ -59,17 +59,17 @@ const Button = styled.button`
     border-radius: 10px;
 `;
 
-function Nickname({history}) {
-    const [CurrentNickname, setCurrentNickname] = useState("");
+function Nickname({ history }) {
     const userFrom = localStorage.getItem('userId');
+    const [CurrentNickname, setCurrentNickname] = useState("");
     
-      useEffect(() => {
-        axios.get('/user', {_id: userFrom})
-          .then((response) => {
-            console.log(response);
-            setCurrentNickname(response.data.nickname);
-          })
-      },[userFrom])
+    useEffect(() => {
+    axios.get('/user', {_id: userFrom})
+        .then((response) => {
+        console.log(response);
+        setCurrentNickname(response.data.nickname);
+        })
+    },[userFrom])
 
     const onChangeHandler = (e) => {
         setCurrentNickname(e.currentTarget.value);

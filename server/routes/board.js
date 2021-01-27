@@ -22,7 +22,7 @@ router.post('/upload', (req, res) => {
     })
 })
 
-router.get('/getboard', (req, res) => {
+router.get('/getBoard', (req, res) => {
     Board.find()
         .populate("boardFrom")
         .exec((err, boards) => {

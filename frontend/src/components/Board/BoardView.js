@@ -7,8 +7,8 @@ import BoardTextarea from "./BoardTextarea";
 import UserProfile from "../Common/UserProfile";
 import Header from "../Common/Header";
 import LogoutButton from "../Common/LogoutButton";
-import AddBoard from './AddBoard';
 import BoardButtons from './BoardButtons';
+import AddBoard from './AddBoard';
 
 const Container = styled.div`
   background-color: #f9f9f9;
@@ -49,7 +49,7 @@ function BoardView({ match }) {
   }, [])
 
   const FetchBoard = () => {
-    axios.get("/board/getboard")
+    axios.get("/board/getBoard")
       .then((response) => {
         //console.log("Get Board : ",response);
         if(response.data.success) {

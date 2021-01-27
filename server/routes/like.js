@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { Favorite } = require("../models/Favorite");
+const { Like } = require("../models/Like");
 
 //=================================
-//            Favorite
+//              Like
 //=================================
 
-router.post('/like', (req, res) => {
+router.post('/', (req, res) => {
     
 })
 
