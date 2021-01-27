@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter, Link } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../Common/Header";
+import Footer from '../Common/Footer';
 
 const MenuBox = styled.ul`
   color: #212121;

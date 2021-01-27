@@ -10,7 +10,7 @@ const Project = styled.span`
     color: #999;
     font-size: 12px;
     font-weight: normal;
-    margin-right: 4px;
+    padding-right: 4px;
 `
 
 const Copyright = styled.span`

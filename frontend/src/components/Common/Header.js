@@ -43,7 +43,6 @@ const Back = styled.img`
 `;
 
 function Header(props) {
-    
     return (
         <StyledHeader>
             <li>
@@ -53,7 +52,7 @@ function Header(props) {
                 <HeaderTitle>{props.title}</HeaderTitle>
             </li>
             { props.backbutton &&
-                <Link to="/mypage">
+                <Link to="./">
                     <Border>
                         <Back src={back} alt="back" />
                     </Border>
