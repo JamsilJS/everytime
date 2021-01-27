@@ -28,7 +28,7 @@ function LikeButton({boardId}) {
     };
 
     const handleLike = () => {
-      axios.post("/", variables).then((response) => {
+      axios.post("/like", variables).then((response) => {
         console.log(response);
       });
     };
