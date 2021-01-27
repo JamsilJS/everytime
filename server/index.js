@@ -6,9 +6,10 @@ const config = require('./config/key');
 const registerRouter = require('./routes/register');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
+const authRouter = require('./routes/auth');
 const boardRouter = require('./routes/board');
 const userRouter = require('./routes/user');
-const authRouter = require('./routes/auth');
+const favoriteRouter = require('./routes/favorite');
 const mongoose = require("mongoose");
 
 const connect = mongoose.connect(config.mongoURI, 
@@ -31,6 +32,7 @@ app.use('/logout', logoutRouter);
 app.use('/auth', authRouter);
 app.use('/board', boardRouter);
 app.use('/user', userRouter);
+app.use('/favorite', favoriteRouter);
 
 const port = 8080;
 app.listen(port, () => {

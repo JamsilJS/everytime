@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import profile from '../Common/image/profile.png';
 import comment from '../Common/image/comment.png';
@@ -71,6 +72,23 @@ const CommentCounted = styled.p`
 `
 
 function AddBoard({title, content, writer}) {
+  const userFrom = localStorage.getItem('userId');
+  const { Like, setLike } = useState(0);
+  const handleLike = ({ userFrom, likeCnt }) => {
+    let variables = {
+      userFrom: userFrom,
+      likeCnt: Like,
+    };
+    axios
+      .post("/board/like", variables)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
   return (
     <>
         <BoardBox>
@@ -83,12 +101,12 @@ function AddBoard({title, content, writer}) {
           <BoardTitle>{title}</BoardTitle>
           <BoardContent>{content}</BoardContent>
           <Buttons>
-              <button>
-                <ButtonImage src={vote} alt="vote"/>
-                <LikeCounted>0</LikeCounted>
+              <button onClick={handleLike}>
+                <ButtonImage src={vote} alt="vote" />
+                <LikeCounted>{Like}</LikeCounted>
               </button>
               <button>
-                <ButtonImage src={comment} alt="comment"/>
+                <ButtonImage src={comment} alt="comment" />
                 <CommentCounted>0</CommentCounted>
               </button>
           </Buttons>
