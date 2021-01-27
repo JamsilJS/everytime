@@ -27,7 +27,7 @@ const InputIcon = styled.img`
 `;
 
 function BoardButtons({icon, click, submit}) {
-    console.log('icon',icon);
+    // console.log('icon',icon);
     return (
         <>
             <CheckButton onClick={click}>

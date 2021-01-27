@@ -48,7 +48,7 @@ function PageList() {
                 <Link to="/mypage/comment">내가 댓글 단 글</Link>
                 </BoxMenu>
                 <BoxMenu>
-                <Link to="/mypage/favorite">스크랩</Link>
+                <Link to="/mypage/favorite">내가 좋아한 글</Link>
                 </BoxMenu>
             </MenuBox>
             <MenuBox>

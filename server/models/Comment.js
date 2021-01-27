@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const boardSchema = mongoose.Schema({
-    userFrom: {
+    boardFrom: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },

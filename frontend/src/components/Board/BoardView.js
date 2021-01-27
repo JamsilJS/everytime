@@ -81,7 +81,7 @@ function BoardView({ match }) {
   const onSubmit = (e) => {
     e.preventDefault();
     let variables = {
-      boardFrom: userFrom,
+      userFrom: userFrom,
       boardTitle: boardTitle,
       boardContent: boardContent,
       boardWriter: BoardWriter,
@@ -135,6 +135,7 @@ function BoardView({ match }) {
             <React.Fragment key={index}>
               <Link to={`${match.url}/${board._id}`}>
                 <AddBoard
+                  id={board._id}
                   writer={board.boardWriter}
                   title={board.boardTitle}
                   content={board.boardContent}

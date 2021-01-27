@@ -6,15 +6,19 @@ const LikeSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    boardFrom: {
+        type: Schema.Types.ObjectId,
+        ref: 'Board'
+    },
     boardTitle: {
-        type: String
+        type: String,
     },
     boardContent: {
-        type: String
+        type: String,
     },
     boardWriter: {
-        type: String
-    }
+        type: String,
+    },
 },{ timestamps: true });
 
 const Like = mongoose.model('Like', LikeSchema);

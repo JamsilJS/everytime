@@ -15,7 +15,6 @@ function BoardDetail(props) {
                 console.log(response.data);
                 if(response.data.success) {
                     setBoardDetail([response.data.board]);
-                    console.log(BoardDetail);
                 } else {
                     alert("게시글 가져오기에 실패했습니다.")
                 }
@@ -46,6 +45,7 @@ function BoardDetail(props) {
               return(
                   <React.Fragment key={index}>
                     <AddBoard
+                      id={board._id}
                       writer={board.boardWriter}
                       title={board.boardTitle}
                       content={board.boardContent}

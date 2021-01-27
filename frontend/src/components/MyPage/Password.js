@@ -94,29 +94,29 @@ function Password({history}) {
     const onSubmitHandler = (e) => {
         e.preventDefault();
         console.log(newPassword, checkPassword);
-        let body = {
-            _id: userFrom,
-            oldPassword: currentPassword,
-            newPassword: newPassword
-        }
-        if(newPassword !== checkPassword) {
-            alert("새 비밀번호를 확인해주세요.")
-        } else {
-            axios.post('/user/update/password', body)
-            .then((response) => {
-                if(!response.data.changeSuccess) {
-                    alert(response.data.message);
-                } else {
-                    if(response.data.changeSuccess) {
-                        history.push("/mypage");
-                        console.log(response);
-                        alert("비밀번호가 변경되었습니다.")
-                    } else {
-                        alert("비밀번호 변경에 실패했습니다.")
-                    }
-                }
-            })
-        }
+        // let body = {
+        //     _id: userFrom,
+        //     oldPassword: currentPassword,
+        //     newPassword: newPassword
+        // }
+        // if(newPassword !== checkPassword) {
+        //     alert("새 비밀번호를 확인해주세요.")
+        // } else {
+        //     axios.post('/user/update/password', body)
+        //     .then((response) => {
+        //         if(!response.data.changeSuccess) {
+        //             alert(response.data.message);
+        //         } else {
+        //             if(response.data.changeSuccess) {
+        //                 history.push("/mypage");
+        //                 console.log(response);
+        //                 alert("비밀번호가 변경되었습니다.")
+        //             } else {
+        //                 alert("비밀번호 변경에 실패했습니다.")
+        //             }
+        //         }
+        //     })
+        // }
     }
 
     return (

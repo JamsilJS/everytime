@@ -10,13 +10,13 @@ function MyBoardList({ match }) {
 
     useEffect(() => {
         console.log(match);
-        axios.post('/user/get/myBoard', {'boardFrom': userFrom})
+        axios.post('/user/get/myBoard', {'userFrom': userFrom})
             .then(response => {
                 console.log(response.data);
                 if(response.data.success) {
                     setMyBoard(response.data.boards);
                 } else {
-                    alert("즐겨찾기 정보를 가져오는데 실패했습니다.")
+                    alert("게시글 정보를 가져오는데 실패했습니다.")
                 }
             })
     }, [])

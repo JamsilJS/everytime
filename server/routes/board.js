@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { Board } = require("../models/Board");
+const { Like } = require('../models/Like');
+// const { Like } = require("../models/Like");
 
 //=================================
 //             Board
@@ -24,7 +26,7 @@ router.post('/upload', (req, res) => {
 
 router.get('/getBoard', (req, res) => {
     Board.find()
-        .populate("boardFrom")
+        .populate("userFrom")
         .exec((err, boards) => {
             //console.log(err);
             //console.log(boards);
@@ -35,7 +37,7 @@ router.get('/getBoard', (req, res) => {
 
 router.post('/deleteBoard', (req, res) => {
     console.log(req.body);
-    Board.findOneAndDelete({ boardFrom: req.body.boardFrom, _id: req.body._id})
+    Board.findOneAndDelete({ userFrom: req.body.userFrom, _id: req.body._id})
         .exec((err, result) => {
             if(err) return res.status(400).send(err);
             return res.status(200).json({ success: true })

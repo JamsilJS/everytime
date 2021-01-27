@@ -7,8 +7,8 @@ const registerRouter = require('./routes/register');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
 const boardRouter = require('./routes/board');
-const userRouter = require('./routes/user');
 const likeRouter = require('./routes/like');
+const userRouter = require('./routes/user');
 const authRouter = require('./routes/auth');
 const mongoose = require("mongoose");
 
@@ -22,7 +22,7 @@ const connect = mongoose.connect(config.mongoURI,
 ).then(() => console.log("MongoDB connected..."))
 .catch(err => console.log(err));
 
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
