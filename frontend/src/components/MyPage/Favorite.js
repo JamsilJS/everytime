@@ -16,7 +16,7 @@ function Favorite() {
 
   useEffect(() => {
     getMyLike();
-  }, [myLikes]);
+  }, []);
 
   return <></>;
 }

@@ -62,7 +62,7 @@ function LikeButton({ boardId }) {
           alert("좋아요 삭제를 실패했습니다.");
           return;
         }
-        setLikeCounts({ likeCounts } - 1);
+        setLikeCounts(likeCounts - 1);
       })
       .catch((e) => console.log(e));
   };
@@ -75,7 +75,7 @@ function LikeButton({ boardId }) {
           alert("좋아요 등록을 실패했습니다.");
           return;
         }
-        setLikeCounts({ likeCounts } + 1);
+        setLikeCounts(likeCounts + 1);
       })
       .catch((e) => console.log(e));
   };
@@ -88,10 +88,9 @@ function LikeButton({ boardId }) {
   };
 
   useEffect(() => {
-    console.log(userFrom, boardId);
     getLikeInfo();
     ifUserHasLiked();
-  });
+  }, [likeCounts, userLiked]);
 
   return (
     <>
