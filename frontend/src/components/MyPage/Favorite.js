@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link, withRouter } from "react-router-dom";
+import AddBoard from "../Board/AddBoard";
 import Header from "../Common/Header";
 
 function Favorite() {
@@ -7,7 +9,7 @@ function Favorite() {
   const getMyLike = () => {
     let userId = window.localStorage.getItem("userId");
     axios
-      .get(`/like/likes`, { userFrom: userId })
+      .post(`/like/likes`, { userFrom: userId })
       .then((response) => {
         setMyLikes(response.data.likes);
       })
@@ -16,9 +18,27 @@ function Favorite() {
 
   useEffect(() => {
     getMyLike();
-  }, [myLikes]);
+  }, []);
 
-  return <></>;
+  return (
+    <>
+        <Header title="내가 좋아요한 글" backbutton={true} />
+        { myLikes && myLikes.map((board, index) => {
+            console.log('board',board)
+            return(
+                <React.Fragment key={index}>
+                    <Link to={`../board/${board._id}`}>
+                        <AddBoard
+                        writer={board.boardWriter}
+                        title={board.boardTitle}
+                        content={board.boardContent}
+                        />
+                    </Link>
+                </React.Fragment>
+            )})
+        }
+    </>
+)
 }
 
-export default Favorite;
+export default withRouter(Favorite);

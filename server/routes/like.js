@@ -8,7 +8,7 @@ const { Like } = require("../models/Like");
 
 // 데이터베이스에서 좋아요 숫자 가져오기
 router.post('/likeCounts', (req, res) => {
-    console.log('LCreq', req.body);
+    // console.log('LCreq', req.body);
     Like.find({boardFrom: req.body.boardFrom})
         .exec((err, likes) => {
             console.log('likec',likes);
@@ -19,7 +19,7 @@ router.post('/likeCounts', (req, res) => {
 
 // 데이터베이스에서 내가 이 게시글을 좋아요 했는지 정보 가져오기
 router.post("/liked", (req, res) => {
-    console.log('likedreq', req.body);
+    // console.log('likedreq', req.body);
     Like.find({ userFrom : req.body.userFrom , boardFrom : req.body.boardFrom})
         .exec((err, likes) => {
             console.log('liked',likes);
@@ -53,8 +53,8 @@ router.post('/dislike', (req, res) => {
 })
 
 //마이페이지 좋아요한 게시글 클라이언트에 보내기
-router.get('/likes', (req, res) => {
-    console.log(req.body);
+router.post('/likes', (req, res) => {
+    console.log('likes',req.body);
     Like.find({userFrom: req.body.userFrom})
         .exec((err, likes) => {
             console.log(likes);
