@@ -4,9 +4,8 @@ import axios from 'axios';
 import styled from "styled-components";
 import AddBoard from './AddBoard';
 import Header from '../Common/Header';
-import StyledBox from '../Common/style/styledBox';
 import CommentInput from './CommentInput';
-import CommentButtons from './CommentButtons';
+import CheckNickname from './CheckNickname';
 
 const CommentForm = styled.form`
     position: relative;
@@ -113,37 +112,48 @@ function BoardDetail(props) {
     return (
         <div>
             <Header title="자유게시판" link="/board"/>
-            <StyledBox backColor="#fafafa" padding="10px" lineHeight="auto">
-                { BoardDetail && BoardDetail.map((board, index) => {
-                // console.log('board',board)
-                return(
-                    <React.Fragment key={index}>
-                        <AddBoard
-                            id={board._id}
-                            writer={board.boardWriter}
-                            title={board.boardTitle}
-                            content={board.boardContent}
-                        />
-                    </React.Fragment>
-                )})
-                }
-                <CommentForm onSubmit={onSubmit}>
-                    <CommentInput
-                        name="Comment"
-                        placeholder="댓글을 작성해주세요."
-                        value={Value}
-                        onChange={onChange}
+            { BoardDetail && BoardDetail.map((board, index) => {
+            // console.log('board',board)
+            return(
+                <React.Fragment key={index}>
+                    <AddBoard
+                        id={board._id}
+                        writer={board.boardWriter}
+                        title={board.boardTitle}
+                        content={board.boardContent}
                     />
-                    <CommentButtons 
-                        icon={WriterIcon}
-                        click={onIconClick} 
-                        submit={onSubmit}
+                </React.Fragment>
+            )})
+            }
+            <CommentForm onSubmit={onSubmit}>
+                <CommentInput
+                    name="Comment"
+                    placeholder="댓글을 작성해주세요."
+                    value={Value}
+                    onChange={onChange}
+                />
+                <CheckNickname 
+                    left="284px"
+                    icon={WriterIcon}
+                    click={onIconClick} 
+                    submit={onSubmit}
+                />
+            </CommentForm>
+            { Comments && Comments.map((comment, index) => {
+            // console.log('board',board)
+            return(
+                <React.Fragment key={index}>
+                    <AddBoard
+                        id={comment._id}
+                        writer={comment.commentWriter}
+                        content={comment.commentContent}
                     />
-                </CommentForm>
-                <Link to="/board">
-                    <BackButton> 글 목록으로 돌아가기 </BackButton>
-                </Link>
-            </StyledBox>
+                </React.Fragment>
+            )})
+            }
+            <Link to="/board">
+                <BackButton> 글 목록으로 돌아가기 </BackButton>
+            </Link>
         </div>
     )
 }

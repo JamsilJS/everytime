@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
-import StyledBox from '../Common/style/styledBox';
+import StyledBox from '../Style/styledBox';
 import AddBoard from './AddBoard';
 import BoardInput from "./BoardInput";
-import BoardButtons from './BoardButtons';
+import CheckNickname from './CheckNickname';
 import BoardTextarea from "./BoardTextarea";
-import UserProfile from "../Common/UserProfile";
-import LogoutButton from "../Common/LogoutButton";
+import UserProfile from "./UserProfile";
+import LogoutButton from "./LogoutButton";
 import Header from "../Common/Header";
 import Footer from "../Common/Footer";
 
@@ -118,7 +118,7 @@ function BoardView({ match }) {
             value={boardContent}
             onChange={onChange}
           />
-          <BoardButtons 
+          <CheckNickname 
             icon={WriterIcon}
             click={onIconClick} 
             submit={onSubmit}

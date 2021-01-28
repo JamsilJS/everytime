@@ -4,10 +4,10 @@ import styled from "styled-components";
 import Header from '../Common/Header';
 import Footer from '../Common/Footer';
 import { withRouter } from 'react-router-dom';
-import StyledBox from '../Common/style/styledBox';
-import MyPageButton from './style/MyPageButton';
-import MyPageInput from './style/MyPageInput';
-import MyPageTitle from './style/MyPageTitle';
+import StyledBox from '../Style/styledBox';
+import MyPageButton from '../Style/MyPageButton';
+import MyPageInput from '../Style/MyPageInput';
+import MyPageTitle from '../Style/MyPageTitle';
 
 const Alert = styled.p`
     color: #757575;

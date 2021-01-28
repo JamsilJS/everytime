@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Header from "../components/Common/Header";
-import StyledBox from "../components/Common/style/styledBox";
+import StyledBox from "../components/Style/styledBox";
+import StyledContainer from "../components/Style/styledContainer";
 import CheckIdButton from "../components/Register/ChcekIdButton";
 import RegisterInput from "../components/Register/RegisterInput";
 import RegisterButton from "../components/Register/RegisterButton";
 import RegisterSelect from "../components/Register/RegisterSelect";
 import SchoolSearchResult from "../components/Register/SchoolSearchResult";
-import StyledContainer from "../components/Common/style/styledContainer";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../_actions/user_actions";
 import { withRouter } from "react-router-dom";

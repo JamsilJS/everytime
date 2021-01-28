@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { Link, withRouter } from "react-router-dom";
-import LoginInput from "../components/Login/LoginInput";
-import LoginButton from "../components/Login/LoginButton";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../_actions/user_actions";
+import { Link, withRouter } from "react-router-dom";
+import styled from "styled-components";
 import logo from "../assets/logo.png";
-import StyledContainer from "../components/Common/style/styledContainer";
+import LoginInput from "../components/Login/LoginInput";
+import LoginButton from "../components/Login/LoginButton";
+import StyledContainer from "../components/Style/styledContainer";
 
 const FlexBox = styled.div`
   display: flex;

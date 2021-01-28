@@ -11,7 +11,6 @@ router.post('/likeCounts', (req, res) => {
     // console.log('LCreq', req.body);
     Like.find({boardFrom: req.body.boardFrom})
         .exec((err, likes) => {
-            console.log('likec',likes);
             if(err) return res.status(400).send(err);
             return res.status(200).json({ success: true, likes, likeCounts: likes.length });
         })
@@ -22,7 +21,6 @@ router.post("/liked", (req, res) => {
     // console.log('likedreq', req.body);
     Like.find({ userFrom : req.body.userFrom , boardFrom : req.body.boardFrom})
         .exec((err, likes) => {
-            console.log('liked',likes);
             if(err) return res.status(400).send(err);
             let result = false;
             if(likes.length !== 0) {

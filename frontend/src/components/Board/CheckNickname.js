@@ -5,32 +5,32 @@ import uncheckWriter from "../../assets/writer.png";
 import checkWriter from "../../assets/writeractive.png";
 
 const CheckButton = styled.li`
-    position: absolute;
-    bottom: 0px;
-    right: 48px;
-    width: 38px;
-    height: 38px;
+  position: absolute;
+  bottom: 0px;
+  width: 38px;
+  height: 38px;
+  left: ${(props) => props.left || "10px"};
 `;
 
 const SubmitButton = styled.li`
-    background-color: #c62917;
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    width: 38px;
-    height: 38px;
+  background-color: #c62917;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 38px;
+  height: 38px;
 `;
 
 const InputIcon = styled.img`
-    width: 38px;
-    height: 38px;
+  width: 38px;
+  height: 38px;
 `;
 
-function CommentButtons({icon, click, submit}) {
+function CheckNickname({icon, left, click, submit}) {
     // console.log('icon',icon);
     return (
         <>
-            <CheckButton onClick={click}>
+            <CheckButton left={left} onClick={click}>
                 {icon &&
                     <InputIcon src={checkWriter} />
                 }
@@ -45,4 +45,4 @@ function CommentButtons({icon, click, submit}) {
     )
 }
 
-export default CommentButtons;
+export default CheckNickname;

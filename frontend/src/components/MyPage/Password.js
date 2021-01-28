@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 import styled from "styled-components";
 import Header from '../Common/Header';
 import Footer from '../Common/Footer';
-import StyledBox from '../Common/style/styledBox';
-import MyPageTitle from './style/MyPageTitle';
-import MyPageInput from './style/MyPageInput';
-import MyPageButton from './style/MyPageButton';
-import axios from 'axios';
+import StyledBox from '../Style/styledBox';
+import MyPageTitle from '../Style/MyPageTitle';
+import MyPageInput from '../Style/MyPageInput';
+import MyPageButton from '../Style/MyPageButton';
 
 const Titlebox = styled.div`
     display: flex;

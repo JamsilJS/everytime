@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter, Link } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../Common/Header";
-import StyledBox from '../Common/style/styledBox';
+import StyledBox from '../Style/styledBox';
 
 const BoxTitle = styled.li`
   font-size: 16px;
