@@ -22,7 +22,7 @@ function LogoutButton(props) {
     dispatch(logoutUser()).then((response) => {
       console.log(response);
       if (response.payload.logoutSuccess) {
-        window.localStorage.removeItem("userId");
+        // window.localStorage.removeItem("userId");
         props.history.push("./");
       } else {
         alert("로그아웃에 실패했습니다");

@@ -1,12 +1,24 @@
-import React from 'react'
-import Header from '../Common/Header'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import Header from "../Common/Header";
 
 function Favorite() {
-    return (
-        <div>
-            <Header title="내가 좋아한 글" backbutton={true}/>
-        </div>
-    )
+  const [myLikes, setMyLikes] = useState([]);
+  const getMyLike = () => {
+    let userId = window.localStorage.getItem("userId");
+    axios
+      .get(`/like/likes`, { userFrom: userId })
+      .then((response) => {
+        setMyLikes(response.data.likes);
+      })
+      .catch((e) => alert(`좋아요한 게시글을 불러오는데 실패했습니다.`));
+  };
+
+  useEffect(() => {
+    getMyLike();
+  }, [myLikes]);
+
+  return <></>;
 }
 
-export default Favorite
+export default Favorite;
