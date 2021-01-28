@@ -9,7 +9,6 @@ function MyBoardList({ match }) {
     const [MyBoard, setMyBoard] = useState([]);
 
     useEffect(() => {
-        console.log(match);
         axios.post('/user/get/myBoard', {'userFrom': userFrom})
             .then(response => {
                 console.log(response.data);
