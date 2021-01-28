@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -17,27 +17,27 @@ const Profilebtn = styled.button`
 `;
 
 function LogoutButton(props) {
-    const dispatch = useDispatch();
-    const handleLogout = () => {
-        dispatch(logoutUser())
-          .then((response) => {
-            console.log(response);
-            if (response.payload.logoutSuccess) {
-              props.history.push("./");
-            } else {
-              alert("로그아웃에 실패했습니다");
-            }
-          })
-      };
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logoutUser()).then((response) => {
+      console.log(response);
+      if (response.payload.logoutSuccess) {
+        window.localStorage.removeItem("userId");
+        props.history.push("./");
+      } else {
+        alert("로그아웃에 실패했습니다");
+      }
+    });
+  };
 
-    return (
-        <>
-        <Link to="/mypage">
-          <Profilebtn>내정보</Profilebtn>
-        </Link>
-        <Profilebtn onClick={handleLogout}>로그아웃</Profilebtn>
-        </>
-    )
+  return (
+    <>
+      <Link to="/mypage">
+        <Profilebtn>내정보</Profilebtn>
+      </Link>
+      <Profilebtn onClick={handleLogout}>로그아웃</Profilebtn>
+    </>
+  );
 }
 
 export default withRouter(LogoutButton);
