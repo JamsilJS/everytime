@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import vote from "../Common/image/vote.png";
+import vote from "../../assets/vote.png";
 
 const ButtonImage = styled.img`
   width: 12px;

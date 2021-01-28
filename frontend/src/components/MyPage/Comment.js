@@ -4,7 +4,7 @@ import Header from '../Common/Header'
 function Comment() {
     return (
         <>
-            <Header title="비밀번호 변경" link="/board" backbutton={true} />   
+            <Header title="내가 댓글 단 글" link="/board" backbutton={true} />   
         </>
     )
 }

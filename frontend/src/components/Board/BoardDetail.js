@@ -113,7 +113,7 @@ function BoardDetail(props) {
     return (
         <div>
             <Header title="자유게시판" link="/board"/>
-            <div>
+            <StyledBox backColor="#fafafa" padding="10px" lineHeight="auto">
                 { BoardDetail && BoardDetail.map((board, index) => {
                 // console.log('board',board)
                 return(
@@ -143,7 +143,7 @@ function BoardDetail(props) {
                 <Link to="/board">
                     <BackButton> 글 목록으로 돌아가기 </BackButton>
                 </Link>
-            </div>
+            </StyledBox>
         </div>
     )
 }
