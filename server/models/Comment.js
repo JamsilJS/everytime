@@ -1,22 +1,22 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const boardSchema = mongoose.Schema({
-    boardFrom: {
+const commentSchema = mongoose.Schema({
+    userFrom: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    boardTitle: {
+    boardFrom: {
+        type: Schema.Types.ObjectId,
+        ref: 'Board'
+    },
+    commentContent: {
         type: String
     },
-    boardContent: {
-        type: String
-    },
-    boardWriter: {
+    commentWriter: {
         type: String
     }
 },{ timestamps: true });
 
-const Board = mongoose.model('board', boardSchema);
-
-module.exports = { Board }
+const Comment = mongoose.model('Comment', commentSchema);
+module.exports = { Comment }
