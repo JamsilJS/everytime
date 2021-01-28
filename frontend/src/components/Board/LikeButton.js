@@ -27,46 +27,57 @@ function LikeButton({ boardId }) {
   };
 
   const getLikeInfo = () => {
-    axios.post("/like/likeCounts", variables).then((response) => {
-      if (!response.data.success) {
-        alert("좋아요 정보를 가져오는데 실패했습니다.");
-        return;
-      }
-      let responsedData = response.data.likeCounts;
-      console.log(responsedData);
-      setLikeCounts(responsedData);
-    });
+    axios
+      .post("/like/likeCounts", variables)
+      .then((response) => {
+        if (!response.data.success) {
+          alert("좋아요 정보를 가져오는데 실패했습니다.");
+          return;
+        }
+        let responsedData = response.data.likeCounts;
+        setLikeCounts(responsedData);
+      })
+      .catch((e) => console.log(e));
   };
 
   const ifUserHasLiked = () => {
-    axios.post("/like/liked", variables).then((response) => {
-      if (!response.data.success) {
-        alert("좋아요 정보를 가져오는데 실패했습니다.");
-        return;
-      }
-      let responsedData = response.data.liked;
-      console.log(responsedData);
-      setUserLiked(responsedData);
-    });
+    axios
+      .post("/like/liked", variables)
+      .then((response) => {
+        if (!response.data.success) {
+          alert("좋아요 정보를 가져오는데 실패했습니다.");
+          return;
+        }
+        let responsedData = response.data.liked;
+        setUserLiked(responsedData);
+      })
+      .catch((e) => console.log(e));
   };
 
   const changeToDislike = () => {
-    axios.post(`/like/dislike`, variables).then((response) => {
-      if (!response.data.success) {
-        alert("좋아요 삭제를 실패했습니다.");
-        return;
-      }
-      setLikeCounts({ likeCounts } - 1);
-    });
+    axios
+      .post(`/like/dislike`, variables)
+      .then((response) => {
+        if (!response.data.success) {
+          alert("좋아요 삭제를 실패했습니다.");
+          return;
+        }
+        setLikeCounts({ likeCounts } - 1);
+      })
+      .catch((e) => console.log(e));
   };
 
   const changeToLike = () => {
     axios
       .post(`/like`, variables)
-      .then(() => {
+      .then((response) => {
+        if (!response.data.success) {
+          alert("좋아요 등록을 실패했습니다.");
+          return;
+        }
         setLikeCounts({ likeCounts } + 1);
       })
-      .catch((error) => alert(`${error} 좋아요 등록에 실패했습니다.`));
+      .catch((e) => console.log(e));
   };
 
   const handleLike = (event) => {
