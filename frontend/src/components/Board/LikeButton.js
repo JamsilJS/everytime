@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import vote from '../Common/image/vote.png';
+import vote from '../../assets/vote.png';
 
 const ButtonImage = styled.img`
   width: 12px;
@@ -26,14 +26,13 @@ function LikeButton({boardId}) {
         userFrom: userFrom,
         boardFrom: boardId,
     };
-
+    
     const handleLike = () => {
       axios.post("/", variables).then((response) => {
         console.log(response);
       });
     };
     
-
     return (
         <>
             <button onClick={handleLike}>

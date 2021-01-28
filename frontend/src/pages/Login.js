@@ -5,19 +5,42 @@ import LoginInput from "../components/Login/LoginInput";
 import LoginButton from "../components/Login/LoginButton";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../_actions/user_actions";
+import logo from "../assets/logo.png";
+import StyledContainer from "../components/Common/style/styledContainer";
+
+const FlexBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0px 12px 0px;
+`
+
+const Logo = styled.img`
+    display: inline-block;
+    width: 48px;
+    height: 52px;
+`;
+
+const LogoTitle = styled.h2`
+  color: #757575;
+  font-size: 16px;
+  font-weight: normal;
+  padding: 28px 8px 0px 0px;
+  letter-spacing: -0.045rem;
+`;
 
 const StyledDiv = styled.div`
   color: #c62917;
   text-align: center;
   margin-top: 20px;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
 `;
 
 const StyledSpan = styled.span`
-  color: #a6a6a6;
+  color: #909090;
   font-weight: 300;
   margin-right: 10px;
+  letter-spacing: -0.05rem;
 `;
 
 function Login({ history }) {
@@ -60,28 +83,37 @@ function Login({ history }) {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <LoginInput
-          name="userId"
-          placeholder="아이디"
-          onChange={onChange}
-          value={userId}
-        />
-        <LoginInput
-          name="userPw"
-          placeholder="비밀번호"
-          onChange={onChange}
-          value={userPw}
-        />
-        <LoginButton type="submit">로그인</LoginButton>
-      </form>
-      <StyledDiv>
-        <Link to="./register">
-          <StyledSpan>에브리타임에 처음이신가요?</StyledSpan>회원가입
-        </Link>
-      </StyledDiv>
-    </div>
+    <StyledContainer>
+      <div>
+        <FlexBox>
+          <Logo src={logo} alt="logo" />
+          <LogoTitle>지금 
+            <strong> 에브리타임</strong>
+            을 시작하세요!
+          </LogoTitle>
+        </FlexBox>
+        <form onSubmit={onSubmit}>
+          <LoginInput
+            name="userId"
+            placeholder="아이디"
+            onChange={onChange}
+            value={userId}
+          />
+          <LoginInput
+            name="userPw"
+            placeholder="비밀번호"
+            onChange={onChange}
+            value={userPw}
+          />
+          <LoginButton type="submit">로그인</LoginButton>
+        </form>
+        <StyledDiv>
+          <Link to="./register">
+            <StyledSpan>에브리타임에 처음이신가요?</StyledSpan>회원가입
+          </Link>
+        </StyledDiv>
+      </div>
+    </StyledContainer>
   );
 }
 

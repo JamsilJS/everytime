@@ -1,33 +1,17 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 import styled from "styled-components";
 import Header from '../Common/Header';
 import Footer from '../Common/Footer';
-import { withRouter } from 'react-router-dom';
-
-const MenuBox = styled.ul`
-  color: #212121;
-  width: 100%;
-  margin: 8px 0px 16px 0px;
-  padding: 20px 24px;
-  border-radius: 10px;
-  border: 1px solid #eee;
-  box-sizing: border-box;
-  line-height: 40px;
-`;
+import StyledBox from '../Common/style/styledBox';
+import MyPageTitle from './style/MyPageTitle';
+import MyPageInput from './style/MyPageInput';
+import MyPageButton from './style/MyPageButton';
+import axios from 'axios';
 
 const Titlebox = styled.div`
     display: flex;
     justify-content: space-between;
-`;
-
-const Title = styled.h2`
-    color: #757575;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 24px;
-    padding-left: 4px;
-    margin-top: 10px;
 `;
 
 const Subtitle = styled.p`
@@ -37,17 +21,6 @@ const Subtitle = styled.p`
     line-height: 24px;
     padding-right: 4px;
     margin-top: 10px;
-`;
-
-const Input = styled.input`
-    background-color: #f9f9f9;
-    width: 100%;
-    height: 40px;
-    padding: 0 10px;
-    margin: 4px 0px;
-    border: 1px solid #efefef;
-    border-radius: 10px;
-    box-sizing: border-box;
 `;
 
 const Warning = styled.strong`
@@ -61,17 +34,6 @@ const Alert = styled.p`
     font-size: 12px;
     line-height: 18px;
     margin-top: 20px;
-`;
-
-const Button = styled.button`
-    background-color: #c62917;
-    color: #fff;
-    width: 100%;
-    height: 40px;
-    margin: 30px 0px 20px 0px;
-    font-size: 15px;
-    text-align: center;
-    border-radius: 10px;
 `;
 
 function Password({history}) {
@@ -94,54 +56,54 @@ function Password({history}) {
     const onSubmitHandler = (e) => {
         e.preventDefault();
         console.log(newPassword, checkPassword);
-        // let body = {
-        //     _id: userFrom,
-        //     oldPassword: currentPassword,
-        //     newPassword: newPassword
-        // }
-        // if(newPassword !== checkPassword) {
-        //     alert("새 비밀번호를 확인해주세요.")
-        // } else {
-        //     axios.post('/user/update/password', body)
-        //     .then((response) => {
-        //         if(!response.data.changeSuccess) {
-        //             alert(response.data.message);
-        //         } else {
-        //             if(response.data.changeSuccess) {
-        //                 history.push("/mypage");
-        //                 console.log(response);
-        //                 alert("비밀번호가 변경되었습니다.")
-        //             } else {
-        //                 alert("비밀번호 변경에 실패했습니다.")
-        //             }
-        //         }
-        //     })
-        // }
+        let body = {
+            _id: userFrom,
+            oldPassword: currentPassword,
+            newPassword: newPassword
+        }
+        if(newPassword !== checkPassword) {
+            alert("새 비밀번호를 확인해주세요.")
+        } else {
+            axios.post('/user/update/password', body)
+            .then((response) => {
+                if(!response.data.changeSuccess) {
+                    alert(response.data.message);
+                } else {
+                    if(response.data.changeSuccess) {
+                        history.push("/mypage");
+                        console.log(response);
+                        alert("비밀번호가 변경되었습니다.")
+                    } else {
+                        alert("비밀번호 변경에 실패했습니다.")
+                    }
+                }
+            })
+        }
     }
 
     return (
         <>
-            <Header title="비밀번호 변경" backbutton={true} />
+            <Header title="비밀번호 변경" link="/board" backbutton={true} />
             <form onSubmit={onSubmitHandler}>
-                <MenuBox>
+                <StyledBox>
                     <Titlebox>
-                        <Title>새 비밀번호</Title>
+                        <MyPageTitle>새 비밀번호</MyPageTitle>
                         <Subtitle>4~20자</Subtitle>
                     </Titlebox>
-                    <Input 
+                    <MyPageInput 
                         name="newPassword"
                         placeholder="새 비밀번호" 
                         value={newPassword} 
                         onChange={onChangeHandler}
                     />
-                    <Input 
+                    <MyPageInput 
                         name="checkPassword"
                         placeholder="새 비밀번호 확인" 
                         value={checkPassword} 
                         onChange={onChangeHandler}
                     />
-                    <Title>계정 비밀번호</Title>
-                    <Input 
+                    <MyPageTitle>계정 비밀번호</MyPageTitle>
+                    <MyPageInput 
                         name="currentPassword"
                         placeholder="현재 비밀번호" 
                         value={currentPassword} 
@@ -160,8 +122,8 @@ function Password({history}) {
                             <Warning>모든 디바이스에서 즉시 로그아웃 처리됩니다.</Warning>
                         </Alert>
                     </div>
-                    <Button>비밀번호 변경</Button>
-                </MenuBox>
+                    <MyPageButton>비밀번호 변경</MyPageButton>
+                </StyledBox> 
             </form>
             <Footer/>
         </>

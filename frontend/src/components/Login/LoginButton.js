@@ -10,7 +10,7 @@ const StyledButton = styled.button`
 
   /* 크기 */
   height: 40px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 200;
 
   /* 색상 */

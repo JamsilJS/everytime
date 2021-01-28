@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import comment from '../Common/image/comment.png';
+import comment from '../../assets/comment.png';
 
 const ButtonImage = styled.img`
   width: 12px;

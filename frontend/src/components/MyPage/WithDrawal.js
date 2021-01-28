@@ -4,37 +4,10 @@ import styled from "styled-components";
 import Header from '../Common/Header';
 import Footer from '../Common/Footer';
 import { withRouter } from 'react-router-dom';
-
-const MenuBox = styled.ul`
-    color: #212121;
-    width: 100%;
-    margin: 8px 0px 16px 0px;
-    padding: 20px 24px;
-    border-radius: 10px;
-    border: 1px solid #eee;
-    box-sizing: border-box;
-    line-height: 40px;
-`;
-
-const Title = styled.h2`
-    color: #757575;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 24px;
-    padding-left: 4px;
-    margin-top: 10px;
-`;
-
-const Input = styled.input`
-    background-color: #f9f9f9;
-    width: 100%;
-    height: 40px;
-    padding: 0 10px;
-    margin: 4px 0px;
-    border: 1px solid #efefef;
-    border-radius: 10px;
-    box-sizing: border-box;
-`;
+import StyledBox from '../Common/style/styledBox';
+import MyPageButton from './style/MyPageButton';
+import MyPageInput from './style/MyPageInput';
+import MyPageTitle from './style/MyPageTitle';
 
 const Alert = styled.p`
     color: #757575;
@@ -44,27 +17,13 @@ const Alert = styled.p`
     margin-top: 16px;
 `;
 
-const Button = styled.button`
-    background-color: #c62917;
-    color: #fff;
-    width: 100%;
-    height: 40px;
-    margin: 30px 0px 20px 0px;
-    font-size: 15px;
-    text-align: center;
-    border-radius: 10px;
-`;
-
-
 function WithDrawal({history}) {
-    
+
     const [CurrentPassword, setCurrentPassword] = useState("");
     const userFrom = localStorage.getItem('userId');
-
     const onChangeHandler = (e) => {
         setCurrentPassword(e.currentTarget.value);
     }
-
     const onSubmitHandler = (e) => {
         e.preventDefault();
         let body = {
@@ -86,14 +45,14 @@ function WithDrawal({history}) {
                 }
             })
     }
-
+    
     return (
         <>
-            <Header title = '회원탈퇴' backbutton={true}/>
-            <MenuBox>
+            <Header title='회원탈퇴' link="/board" backbutton={true}/>
+            <StyledBox>
                 <form onSubmit={onSubmitHandler}>
-                    <Title>계정 비밀번호</Title>
-                    <Input 
+                    <MyPageTitle>계정 비밀번호</MyPageTitle>
+                    <MyPageInput 
                         placeholder="계정 비밀번호" 
                         value={CurrentPassword} 
                         onChange={onChangeHandler} 
@@ -103,9 +62,9 @@ function WithDrawal({history}) {
                         <br/> ※ 작성한 게시물은 삭제되지 않으며, 알수없음으로 닉네임이 표시됩니다.
                         <br/> ※ 자세한 내용은 개인정보 처리방침을 확인해주세요.
                     </Alert>
-                    <Button type="submit">회원탈퇴</Button>
+                    <MyPageButton type="submit">회원탈퇴</MyPageButton>
                 </form>
-            </MenuBox>
+            </StyledBox>
             <Footer/>
         </>
     )

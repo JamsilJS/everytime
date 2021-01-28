@@ -16,8 +16,8 @@ const StyledButton = styled.button`
 
   /* 색상 */
   background: #c62917;
-
-  margin-top: 6px;
+  margin-top: 24px;
+  margin-bottom: 8px;
 `;
 
 const RegisterButton = function ({ type, children }) {

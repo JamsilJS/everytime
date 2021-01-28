@@ -1,40 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import styled from "styled-components";
 import Header from '../Common/Header';
 import Footer from '../Common/Footer';
-import { withRouter } from 'react-router-dom';
-
-const MenuBox = styled.ul`
-  color: #212121;
-  width: 100%;
-  margin: 8px 0px 16px 0px;
-  padding: 20px 24px;
-  border-radius: 10px;
-  border: 1px solid #eee;
-  box-sizing: border-box;
-  line-height: 40px;
-`;
-
-const Title = styled.h2`
-    color: #757575;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 24px;
-    padding-left: 4px;
-    margin-top: 10px;
-`;
-
-const Input = styled.input`
-    background-color: #f9f9f9;
-    width: 100%;
-    height: 40px;
-    padding: 0 10px;
-    margin: 4px 0px;
-    border: 1px solid #efefef;
-    border-radius: 10px;
-    box-sizing: border-box;
-`;
+import StyledBox from '../Common/style/styledBox';
+import MyPageTitle from './style/MyPageTitle';
+import MyPageInput from './style/MyPageInput';
+import MyPageButton from './style/MyPageButton';
 
 const Textbox = styled.div`
     margin-top: 12px;
@@ -52,17 +25,6 @@ const Alert = styled.p`
     font-size: 12px;
     line-height: 18px;
     margin-top: 8px;
-`;
-
-const Button = styled.button`
-    background-color: #c62917;
-    color: #fff;
-    width: 100%;
-    height: 40px;
-    margin: 20px 0px 20px 0px;
-    font-size: 15px;
-    text-align: center;
-    border-radius: 10px;
 `;
 
 function Email({history}) {
@@ -117,18 +79,18 @@ function Email({history}) {
 
     return (
         <>
-            <Header title="이메일 변경" backbutton={true} />
+            <Header title="이메일 변경" link="/board" backbutton={true}/>
             <form onSubmit={onSubmitHandler}>
-                <MenuBox>
-                    <Title>이메일</Title>
-                    <Input 
+                <StyledBox>
+                    <MyPageTitle>이메일</MyPageTitle>
+                    <MyPageInput 
                         name="currentEmail"
                         placeholder="이메일" 
                         value={currentEmail} 
                         onChange={onChangeHandler}
                     />
-                    <Title>계정 비밀번호</Title>
-                    <Input 
+                    <MyPageTitle>계정 비밀번호</MyPageTitle>
+                    <MyPageInput 
                         name="currentPassword"
                         placeholder="계정 비밀번호" 
                         value={currentPassword} 
@@ -138,8 +100,8 @@ function Email({history}) {
                         <Warning>※ 반드시 본인의 이메일을 입력해주세요.</Warning>
                         <Alert>※ 계정 분실 시 아이디/비밀번호 찾기, 개인정보 관련 주요 고지사항 안내 등에 사용됩니다.</Alert>
                     </Textbox>
-                    <Button>이메일 변경</Button>
-                </MenuBox>
+                    <MyPageButton margin="20px 0px 20px 0px">이메일 변경</MyPageButton>
+                </StyledBox>
             </form>
             <Footer/>
         </>

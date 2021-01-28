@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import profile from "./image/profile.png";
+import profile from "../../assets/profile.png";
 import {Link, withRouter} from 'react-router-dom';
 import axios from 'axios';
 
 const ProfileImage = styled.img`
-  width: 80px;
-  height: 80px;
-  margin: 36px 0px 8px 0px;
+  width: 76px;
+  height: 76px;
+  margin: 24px 0px 4px 0px;
   border-radius: 6px;
   pointer: cursor;
 `

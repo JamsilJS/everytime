@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import AddBoard from './AddBoard';
 import Header from '../Common/Header';
+import StyledBox from '../Common/style/styledBox';
 
 function BoardDetail(props) {
     const BoardId = props.match.params.id;
@@ -39,20 +40,22 @@ function BoardDetail(props) {
     
     return (
         <div>
-            <Header title="자유게시판"/>
+            <Header title="자유게시판" link="/board"/>
+            <StyledBox backColor="#fafafa" padding="10px" lineHeight="auto">
             { BoardDetail && BoardDetail.map((board, index) => {
               console.log('board',board)
               return(
                   <React.Fragment key={index}>
                     <AddBoard
-                      id={board._id}
-                      writer={board.boardWriter}
-                      title={board.boardTitle}
-                      content={board.boardContent}
+                    id={board._id}
+                    writer={board.boardWriter}
+                    title={board.boardTitle}
+                    content={board.boardContent}
                     />
                   </React.Fragment>
               )})
             }
+            </StyledBox>
         </div>
     )
 }

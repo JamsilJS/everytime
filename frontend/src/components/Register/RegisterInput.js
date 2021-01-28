@@ -25,7 +25,8 @@ const StyledInput = styled.input`
 
   /* 크기 */
   height: 40px;
-  margin-top: 5px;
+  margin-top: 4px;
+  margin-bottom: 8px;
 `;
 
 const RegisterInput = function ({

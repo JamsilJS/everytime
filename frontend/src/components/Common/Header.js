@@ -1,35 +1,43 @@
 import React from 'react';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import logo from "./image/logo.jpg";
-import back from "./image/cancel.png";
+import logo from "../../assets/logo.png";
+import back from "../../assets/cancel.png";
 
 const StyledHeader = styled.ul`
     display: flex;
+    color: #353535;
     background-color: #fff;
     width: 100%;
     height: 56px;
-    padding: 0px 4px;
-    font-size: 15px;
-    text-align: left;
-    line-height: 56px;
+    padding: 0px 8px;
+    margin-bottom: 8px;
     justify-content: space-between;
 `;
 
 const Logo = styled.img`
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 32px;
     vertical-align: middle;
-    cursor: pointer;\
+    cursor: pointer;
 `;
 
 const HeaderTitle = styled.span`
-    color: #454545;
+    color: #454545
+    font-size: 16px;
     font-weight: bold;
+    text-align: left;
+    line-height: 56px;
+    padding-left: 8px;
+`;
+
+const BackButton = styled.div`
+    line-height: 56px;
+    margin-right: 4px;
 `;
 
 const Border = styled.button`
-    border: 1px solid #f7b9b4;
+    border: 1px solid #f8e1e0;
     width: 24px;
     height: 24px;
     margin-right: 12px;
@@ -46,16 +54,18 @@ function Header(props) {
     return (
         <StyledHeader>
             <li>
-                <Link to="/board">
-                    <Logo src={logo} alt="logo" />
+                <Link to={props.link}>
+                    <Logo src={logo} alt="logo"/>
                 </Link>
                 <HeaderTitle>{props.title}</HeaderTitle>
             </li>
             { props.backbutton &&
                 <Link to="./">
-                    <Border>
-                        <Back src={back} alt="back" />
-                    </Border>
+                    <BackButton style={{lineHeight:'56px'}}>
+                        <Border>
+                            <Back src={back} alt="back" />
+                        </Border>
+                    </BackButton>
                 </Link>
             }
         </StyledHeader>

@@ -15,7 +15,9 @@ const StyledButton = styled.button`
 
   /* 크기 */
   height: 25px;
-  margin-top: 5px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  line-height: 25px;
 `;
 
 const CheckIdButton = function ({ onClick, children }) {

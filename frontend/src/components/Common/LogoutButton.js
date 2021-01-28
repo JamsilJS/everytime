@@ -10,7 +10,7 @@ const Profilebtn = styled.button`
   height: 28px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin: 15px 3px;
+  margin: 12px 4px;
   font-size: 13px;
   line-height: 28px;
   color: #505050;

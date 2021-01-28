@@ -22,7 +22,7 @@ function MyBoardList({ match }) {
 
     return (
         <>
-            <Header title="내가 쓴 글" backbutton={true} />
+            <Header title="내가 쓴 글" link="/board" backbutton={true} />
             { MyBoard && MyBoard.map((board, index) => {
                 // console.log('board',board)
                 return(

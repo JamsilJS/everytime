@@ -2,22 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import LikeButton from './LikeButton';
 import CommentButton from './CommentButton';
-import profile from '../Common/image/profile.png';
+import profile from '../../assets/profile.png';
 import { withRouter } from 'react-router-dom';
 
 const BoardBox = styled.div`
   background-color: #fff;
   color: #353535;
   font-size: 13px;
-  margin: 10px 10px 0px 10px;
-  padding: 15px;
+  padding: 14px 12px;
   border: 1px solid #ddd;
+  margin: 0px -1px -1px -1px;
 `
 
 const BoardUser = styled.div`
   display: flex;
   height: 20px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   justify-content: space-between;
 `
 
@@ -41,7 +41,7 @@ const BoardTitle = styled.div`
 
 const BoardContent = styled.div`
   font-weight: normal;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   white-space: pre-wrap;
   overflow-wrap: break-word;
 `

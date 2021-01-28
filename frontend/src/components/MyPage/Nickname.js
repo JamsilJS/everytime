@@ -1,40 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import styled from "styled-components";
 import Header from '../Common/Header';
 import Footer from '../Common/Footer';
-import { withRouter } from 'react-router-dom';
-
-const MenuBox = styled.ul`
-    color: #212121;
-    width: 100%;
-    margin: 8px 0px 16px 0px;
-    padding: 20px 24px;
-    border-radius: 10px;
-    border: 1px solid #eee;
-    box-sizing: border-box;
-    line-height: 40px;
-`;
-
-const Title = styled.h2`
-    color: #757575;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 24px;
-    padding-left: 4px;
-    margin-top: 10px;
-`;
-
-const Input = styled.input`
-    background-color: #f9f9f9;
-    width: 100%;
-    height: 40px;
-    padding: 0 10px;
-    margin: 4px 0px;
-    border: 1px solid #efefef;
-    border-radius: 10px;
-    box-sizing: border-box;
-`;
+import StyledBox from '../Common/style/styledBox';
+import MyPageTitle from './style/MyPageTitle';
+import MyPageInput from './style/MyPageInput';
+import MyPageButton from './style/MyPageButton';
 
 const Alert = styled.p`
     color: #757575;
@@ -46,17 +19,6 @@ const Warning = styled.strong`
     color: #c62917;
     margin-left: 4px;
     font-weight: normal;
-`;
-
-const Button = styled.button`
-    background-color: #c62917;
-    color: #fff;
-    width: 100%;
-    height: 40px;
-    margin: 10px 0px 20px 0px;
-    font-size: 15px;
-    text-align: center;
-    border-radius: 10px;
 `;
 
 function Nickname({ history }) {
@@ -94,11 +56,11 @@ function Nickname({ history }) {
 
     return (
         <>
-            <Header title="닉네임 설정" backbutton={true}/>
-            <MenuBox>
+            <Header title="닉네임 설정" link="/board" backbutton={true}/>
+            <StyledBox lineHeight="40px">
                 <form onSubmit={onSubmitHandler}>
-                    <Title>닉네임</Title>
-                    <Input 
+                    <MyPageTitle>닉네임</MyPageTitle>
+                    <MyPageInput 
                         placeholder="닉네임" 
                         value={CurrentNickname} 
                         onChange={onChangeHandler} 
@@ -106,9 +68,9 @@ function Nickname({ history }) {
                     <Alert>※ 닉네임을 설정하면 
                         <Warning>30일간 변경 할 수 없습니다.</Warning>
                     </Alert>
-                    <Button type="submit">닉네임 변경</Button>
+                    <MyPageButton margin="10px 0px 20px 0px">닉네임 변경</MyPageButton>
                 </form>
-            </MenuBox>
+            </StyledBox>
             <Footer/>
         </>
     )

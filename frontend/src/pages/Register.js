@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Header from "../components/Common/Header";
+import StyledBox from "../components/Common/style/styledBox";
 import CheckIdButton from "../components/Register/ChcekIdButton";
 import RegisterInput from "../components/Register/RegisterInput";
 import RegisterButton from "../components/Register/RegisterButton";
 import RegisterSelect from "../components/Register/RegisterSelect";
 import SchoolSearchResult from "../components/Register/SchoolSearchResult";
+import StyledContainer from "../components/Common/style/styledContainer";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../_actions/user_actions";
 import { withRouter } from "react-router-dom";
+
 
 const schoolArr = [
   "서울대학교",
@@ -176,62 +180,67 @@ function Register({ history }) {
   };
 
   return (
-    <div>
-      <form onSubmit={checkId}>
-        <RegisterInput
-          labelName="아이디"
-          name="userId"
-          placeholder="아이디"
-          onChange={onChange}
-          value={userId}
-        />
-        <CheckIdButton onClick={checkId}>중복체크</CheckIdButton>
-      </form>
-      <form onSubmit={SignUp}>
-        <RegisterInput
-          labelName="비밀번호"
-          name="userPw"
-          placeholder="비밀번호"
-          onChange={onChange}
-          value={userPw}
-        />
-        <RegisterInput
-          labelName="이메일"
-          name="userEmail"
-          placeholder="이메일"
-          onChange={onChange}
-          value={userEmail}
-        />
-        <RegisterInput
-          labelName="닉네임"
-          name="userNickname"
-          placeholder="닉네임"
-          onChange={onChange}
-          value={userNickname}
-        />
-        <RegisterSelect
-          labelName="입학년도"
-          handleOption={handleOption}
-          option={option}
-          dataArr={entranceYearArray}
-        />
-        <RegisterInput
-          labelName="학교선택"
-          name="userSchool"
-          placeholder="학교를 검색하세요"
-          onChange={handleSearch}
-          value={schoolInput}
-        />
+    <StyledContainer>
+      <div>
+        <Header link={"./"} title="회원가입" backbutton={true}/>
+        <StyledBox padding="18px 16px" lineHeight="20px">
+          <form onSubmit={checkId}>
+            <RegisterInput
+              labelName="아이디"
+              name="userId"
+              placeholder="아이디"
+              onChange={onChange}
+              value={userId}
+            />
+            <CheckIdButton onClick={checkId}>중복체크</CheckIdButton>
+          </form>
+          <form onSubmit={SignUp}>
+            <RegisterInput
+              labelName="비밀번호"
+              name="userPw"
+              placeholder="비밀번호"
+              onChange={onChange}
+              value={userPw}
+            />
+            <RegisterInput
+              labelName="이메일"
+              name="userEmail"
+              placeholder="이메일"
+              onChange={onChange}
+              value={userEmail}
+            />
+            <RegisterInput
+              labelName="닉네임"
+              name="userNickname"
+              placeholder="닉네임"
+              onChange={onChange}
+              value={userNickname}
+            />
+            <RegisterSelect
+              labelName="입학년도"
+              handleOption={handleOption}
+              option={option}
+              dataArr={entranceYearArray}
+            />
+            <RegisterInput
+              labelName="학교선택"
+              name="userSchool"
+              placeholder="학교를 검색하세요"
+              onChange={handleSearch}
+              value={schoolInput}
+            />
 
-        {schoolInput && (
-          <SchoolSearchResult
-            datas={searchResult}
-            handleSearchClick={handleSearchClick}
-          />
-        )}
-        <RegisterButton type="submit">회원가입</RegisterButton>
-      </form>
-    </div>
+            {schoolInput && (
+              <SchoolSearchResult
+                datas={searchResult}
+                handleSearchClick={handleSearchClick}
+              />
+            )}
+            <RegisterButton type="submit">회원가입</RegisterButton>
+          </form>
+        </StyledBox>
+      </div>
+    </StyledContainer>
   );
 }
 

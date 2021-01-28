@@ -8,7 +8,7 @@ import MyPage from "./pages/MyPage";
 import Auth from "./hoc/auth";
 
 const Container = styled.div`
-  margin: 50px auto;
+  margin: 10px auto;
   width: 370px;
 `;
 
