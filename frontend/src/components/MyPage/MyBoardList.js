@@ -29,9 +29,9 @@ function MyBoardList() {
                     <React.Fragment key={index}>
                         <Link to={`../board/${board._id}`}>
                             <AddBoard
-                            writer={board.boardWriter}
-                            title={board.boardTitle}
-                            content={board.boardContent}
+                                writer={board.boardWriter}
+                                title={board.boardTitle}
+                                content={board.boardContent}
                             />
                         </Link>
                     </React.Fragment>

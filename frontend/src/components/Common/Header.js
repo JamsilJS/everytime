@@ -51,6 +51,7 @@ const Back = styled.img`
 `;
 
 function Header(props) {
+    console.log(props);
     return (
         <StyledHeader>
             <li>

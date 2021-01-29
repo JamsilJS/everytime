@@ -23,7 +23,7 @@ function Favorite() {
 
   return (
     <>
-        <Header title="내가 좋아요한 글" backbutton={true} />
+        <Header title="내가 좋아한 글" backbutton={true} />
         { myLikes && myLikes.map((likes, index) => {
             console.log('likes',likes)
             return(
