@@ -23,16 +23,17 @@ function Favorite() {
 
   return (
     <>
-        <Header title="내가 좋아한 글" backbutton={true} />
+        <Header title="내가 좋아한 글" link="/board" backbutton={true} />
         { myLikes && myLikes.map((likes, index) => {
             console.log('likes',likes)
             return(
                 <React.Fragment key={index}>
                     <Link to={`../board/${likes.boardFrom}`}>
                         <AddBoard
-                        writer={likes.boardWriter}
-                        title={likes.boardTitle}
-                        content={likes.boardContent}
+                          id={likes.boardFrom}
+                          writer={likes.boardWriter}
+                          title={likes.boardTitle}
+                          content={likes.boardContent}
                         />
                     </Link>
                 </React.Fragment>
