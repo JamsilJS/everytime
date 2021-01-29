@@ -12,6 +12,7 @@ function Favorite() {
       .post(`/like/likes`, { userFrom: userId })
       .then((response) => {
         setMyLikes(response.data.likes);
+        console.log(myLikes)
       })
       .catch((e) => alert(`좋아요한 게시글을 불러오는데 실패했습니다.`));
   };
@@ -23,15 +24,15 @@ function Favorite() {
   return (
     <>
         <Header title="내가 좋아요한 글" backbutton={true} />
-        { myLikes && myLikes.map((board, index) => {
-            console.log('board',board)
+        { myLikes && myLikes.map((likes, index) => {
+            console.log('likes',likes)
             return(
                 <React.Fragment key={index}>
-                    <Link to={`../board/${board._id}`}>
+                    <Link to={`../board/${likes.boardFrom}`}>
                         <AddBoard
-                        writer={board.boardWriter}
-                        title={board.boardTitle}
-                        content={board.boardContent}
+                        writer={likes.boardWriter}
+                        title={likes.boardTitle}
+                        content={likes.boardContent}
                         />
                     </Link>
                 </React.Fragment>

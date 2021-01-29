@@ -16,7 +16,7 @@ const LikeCounted = styled.p`
   padding-left: 4px;
 `;
 
-function LikeButton({ boardId }) {
+function LikeButton({boardId, boardTitle, boardContent, boardWriter}) {
   const userFrom = localStorage.getItem("userId");
   const [likeCounts, setLikeCounts] = useState(0);
   const [userLiked, setUserLiked] = useState(false);
@@ -24,6 +24,9 @@ function LikeButton({ boardId }) {
   let variables = {
     userFrom: userFrom,
     boardFrom: boardId,
+    boardWriter: boardWriter,
+    boardTitle: boardTitle,
+    boardContent: boardContent,
   };
 
   const getLikeInfo = () => {

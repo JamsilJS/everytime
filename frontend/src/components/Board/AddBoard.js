@@ -63,7 +63,12 @@ function AddBoard({id, title, content, writer}) {
           <BoardTitle>{title}</BoardTitle>
           <BoardContent>{content}</BoardContent>
           <Buttons>
-              <LikeButton boardId={id}/>
+              <LikeButton 
+                boardId={id} 
+                boardWriter={writer} 
+                boardTitle={title} 
+                boardContent={content}
+              />
               <CommentButton/>
           </Buttons>
         </BoardBox>
