@@ -4,7 +4,7 @@ import axios from "axios";
 import Header from '../Common/Header';
 import AddBoard from '../Board/AddBoard';
 
-function MyBoardList({ match }) {
+function MyBoardList() {
     const userFrom = localStorage.getItem('userId');
     const [MyBoard, setMyBoard] = useState([]);
 

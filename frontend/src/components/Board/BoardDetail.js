@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import styled from "styled-components";
-import AddBoard from './AddBoard';
 import Header from '../Common/Header';
+import AddBoard from './AddBoard';
+import AddComment from './AddComment';
 import CommentInput from './CommentInput';
 import CheckNickname from './CheckNickname';
 
@@ -37,7 +38,7 @@ function BoardDetail(props) {
 
     let variables = {
         userFrom: userFrom,
-        boardFrom: BoardDetail._id,
+        boardFrom: BoardId,
         commentContent: Value,
         commentWriter: BoardWriter,
     }
@@ -143,7 +144,7 @@ function BoardDetail(props) {
             // console.log('board',board)
             return(
                 <React.Fragment key={index}>
-                    <AddBoard
+                    <AddComment
                         id={comment._id}
                         writer={comment.commentWriter}
                         content={comment.commentContent}

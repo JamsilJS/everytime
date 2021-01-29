@@ -93,24 +93,6 @@ router.post("/get/myBoard", (req, res) => {
         })
 })
 
-router.post("/get/myComment", (req, res) => {
-    console.log(req.body);
-    // Board.find({ userFrom : req.body.userFrom })
-    //     .exec((err, boards) => {
-    //         if(err) return res.status(400).send(err);
-    //         return res.status(200).json({ success: true, boards })
-    //     })
-})
-
-router.post("/get/myLike", (req, res) => {
-    console.log(req.body);
-    // Board.find({ userFrom : req.body.userFrom })
-    //     .exec((err, boards) => {
-    //         if(err) return res.status(400).send(err);
-    //         return res.status(200).json({ success: true, boards })
-    //     })
-})
-
 router.post('/withdrawal', auth, (req, res) => {
     console.log(req.body);
     User.findOne({ _id: req.body._id }, (err, user) => {
