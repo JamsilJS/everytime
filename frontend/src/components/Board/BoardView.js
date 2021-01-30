@@ -18,7 +18,7 @@ const Profilebox = styled.div`
   margin-bottom: 8px;
 `;
 
-const Profilebtn = styled.button`
+const Profilebtn = styled.div`
   display: inline-block;
   width: 64px;
   height: 28px;
@@ -28,6 +28,7 @@ const Profilebtn = styled.button`
   font-size: 13px;
   line-height: 28px;
   color: #505050;
+  cursor: pointer;
 `;
 
 const BoardForm = styled.form`
@@ -142,7 +143,7 @@ function BoardView({ match }) {
           />
         </BoardForm>
         { Content && Content.map((board, index) => {
-          console.log('board',board)
+          // console.log('board',board)
           return(
               <React.Fragment key={index}>
                 <Link to={`${match.url}/${board._id}`}>

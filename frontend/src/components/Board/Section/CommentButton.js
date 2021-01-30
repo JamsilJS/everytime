@@ -30,7 +30,7 @@ function CommentButton({boardId}) {
     axios
       .post("/comment/getComment", variables)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if(response.data.success) {
           setCommentCounts(response.data.commentCounts);
         } else {
