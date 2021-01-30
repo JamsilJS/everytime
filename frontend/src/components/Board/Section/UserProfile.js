@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import profile from "../../assets/profile.png";
+import profile from "../../../assets/profile.png";
 import {Link, withRouter} from 'react-router-dom';
 import axios from 'axios';
 

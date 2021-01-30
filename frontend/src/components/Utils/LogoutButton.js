@@ -1,20 +1,7 @@
 import React from "react";
-import styled from "styled-components";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../_actions/user_actions";
-
-const Profilebtn = styled.button`
-  display: inline-block;
-  width: 64px;
-  height: 28px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin: 12px 4px;
-  font-size: 13px;
-  line-height: 28px;
-  color: #505050;
-`;
 
 function LogoutButton(props) {
   const dispatch = useDispatch();
@@ -32,10 +19,7 @@ function LogoutButton(props) {
 
   return (
     <>
-      <Link to="/mypage">
-        <Profilebtn>내정보</Profilebtn>
-      </Link>
-      <Profilebtn onClick={handleLogout}>로그아웃</Profilebtn>
+      <button onClick={handleLogout} style={{color:'inherit', fontSize:'inherit'}}>로그아웃</button>
     </>
   );
 }

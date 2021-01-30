@@ -1,9 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
-// import LikeButton from './LikeButton';
-// import CommentButton from './CommentButton';
-import profile from '../../assets/profile.png';
 import { withRouter } from 'react-router-dom';
+import styled from 'styled-components';
+import LikeButton from './LikeButton';
+import CommentButton from './CommentButton';
+import profile from '../../../assets/profile.png';
+import UpdateTime from '../../Utils/UpdateTime';
 
 const BoardBox = styled.div`
   background-color: #fff;
@@ -17,21 +18,30 @@ const BoardBox = styled.div`
 const BoardUser = styled.div`
   display: flex;
   height: 20px;
-  margin-bottom: 10px;
+  margin-top: 2px;
+  margin-bottom: 12px;
   justify-content: space-between;
 `
 
 const BoardUserImg = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 3px;
-  margin-right: 4px;
+  margin-right: 6px;
 `
 const BoardUserID = styled.p`
   color: #757575;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: bold;
-  line-height: 20px;
+  line-height: 22px;
+`
+
+const BoardTime = styled.div`
+  color: #aaa;
+  font-size: 12px;
+  line-height: 22px;
+  padding-left: 8px;
+  text-align: left;
 `
 
 const BoardTitle = styled.div`
@@ -41,16 +51,12 @@ const BoardTitle = styled.div`
 
 const BoardContent = styled.div`
   font-weight: normal;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   white-space: pre-wrap;
   overflow-wrap: break-word;
 `
 
-// const Buttons = styled.div`
-//   text-align: right;
-// `
-
-function AddComment({id, title, content, writer}) {
+function AddBoard({id, time, title, content, writer}) {
   return (
     <>
         <BoardBox key={id}>
@@ -58,17 +64,25 @@ function AddComment({id, title, content, writer}) {
               <span style={{display: 'flex'}}>
                 <BoardUserImg src={profile} alt="profile"/>
                 <BoardUserID>{writer}</BoardUserID>
+                <BoardTime>
+                  <UpdateTime time={time}/>
+                </BoardTime>
               </span>
           </BoardUser>
           <BoardTitle>{title}</BoardTitle>
           <BoardContent>{content}</BoardContent>
-          {/* <Buttons>
-              <LikeButton boardId={id}/>
-              <CommentButton/>
-          </Buttons> */}
+          <div style={{textAlign: "right"}}>
+              <LikeButton 
+                boardId={id} 
+                boardWriter={writer} 
+                boardTitle={title} 
+                boardContent={content}
+              />
+              <CommentButton boardId={id} />
+          </div>
         </BoardBox>
     </>
   )
 }
 
-export default withRouter(AddComment);
+export default withRouter(AddBoard);

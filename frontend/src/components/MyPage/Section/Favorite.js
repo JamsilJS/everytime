@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
-import AddBoard from "../Board/AddBoard";
-import Header from "../Common/Header";
+import axios from "axios";
+import Header from "../../Common/Header";
+import AddBoard from "../../Board/Section/AddBoard";
 
 function Favorite() {
   const [myLikes, setMyLikes] = useState([]);
@@ -31,6 +31,7 @@ function Favorite() {
                     <Link to={`../board/${likes.boardFrom}`}>
                         <AddBoard
                           id={likes.boardFrom}
+                          time={likes.createdAt}
                           writer={likes.boardWriter}
                           title={likes.boardTitle}
                           content={likes.boardContent}

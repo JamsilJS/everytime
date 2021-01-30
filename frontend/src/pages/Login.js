@@ -94,12 +94,14 @@ function Login({ history }) {
         </FlexBox>
         <form onSubmit={onSubmit}>
           <LoginInput
+            type="text"
             name="userId"
             placeholder="아이디"
             onChange={onChange}
             value={userId}
           />
           <LoginInput
+            type="password"
             name="userPw"
             placeholder="비밀번호"
             onChange={onChange}

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import styled from "styled-components";
-import Header from '../Common/Header';
-import Footer from '../Common/Footer';
-import StyledBox from '../Style/styledBox';
-import MyPageTitle from '../Style/MyPageTitle';
-import MyPageInput from '../Style/MyPageInput';
-import MyPageButton from '../Style/MyPageButton';
+import Header from '../../Common/Header';
+import Footer from '../../Common/Footer';
+import StyledBox from '../../Style/styledBox';
+import MyPageTitle from '../../Style/MyPageTitle';
+import MyPageInput from '../../Style/MyPageInput';
+import MyPageButton from '../../Style/MyPageButton';
 
 const Alert = styled.p`
     color: #757575;

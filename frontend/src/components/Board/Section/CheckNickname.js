@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import writeIcon from "../../assets/write.png";
-import uncheckWriter from "../../assets/writer.png";
-import checkWriter from "../../assets/writeractive.png";
+import writeIcon from "../../../assets/write.png";
+import uncheckWriter from "../../../assets/writer.png";
+import checkWriter from "../../../assets/writeractive.png";
 
 const CheckButton = styled.li`
   position: absolute;

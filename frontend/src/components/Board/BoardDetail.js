@@ -3,10 +3,10 @@ import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import styled from "styled-components";
 import Header from '../Common/Header';
-import AddBoard from './AddBoard';
-import AddComment from './AddComment';
-import CommentInput from './CommentInput';
-import CheckNickname from './CheckNickname';
+import AddBoard from './Section/AddBoard';
+import AddComment from './Section/AddComment';
+import CommentInput from './Section/CommentInput';
+import CheckNickname from './Section/CheckNickname';
 
 const CommentForm = styled.form`
     position: relative;
@@ -114,11 +114,12 @@ function BoardDetail(props) {
         <div>
             <Header title="자유게시판" link="/board"/>
             { BoardDetail && BoardDetail.map((board, index) => {
-            // console.log('board',board)
+            console.log('board',board)
             return(
                 <React.Fragment key={index}>
                     <AddBoard
                         id={board._id}
+                        time={board.createdAt}
                         writer={board.boardWriter}
                         title={board.boardTitle}
                         content={board.boardContent}
@@ -141,11 +142,12 @@ function BoardDetail(props) {
                 />
             </CommentForm>
             { Comments && Comments.map((comment, index) => {
-            // console.log('board',board)
+            console.log('comment',comment)
             return(
                 <React.Fragment key={index}>
                     <AddComment
                         id={comment._id}
+                        time={comment.createdAt}
                         writer={comment.commentWriter}
                         content={comment.commentContent}
                     />

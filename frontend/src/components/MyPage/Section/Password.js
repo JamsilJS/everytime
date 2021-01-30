@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import styled from "styled-components";
-import Header from '../Common/Header';
-import Footer from '../Common/Footer';
-import StyledBox from '../Style/styledBox';
-import MyPageTitle from '../Style/MyPageTitle';
-import MyPageInput from '../Style/MyPageInput';
-import MyPageButton from '../Style/MyPageButton';
+import Header from '../../Common/Header';
+import Footer from '../../Common/Footer';
+import StyledBox from '../../Style/styledBox';
+import MyPageTitle from '../../Style/MyPageTitle';
+import MyPageInput from '../../Style/MyPageInput';
+import MyPageButton from '../../Style/MyPageButton';
 
 const Titlebox = styled.div`
     display: flex;
@@ -51,6 +51,7 @@ function Password({history}) {
             ...inputs,
             [name]: value,
         });
+        console.log(value);
     }
 
     const onSubmitHandler = (e) => {
@@ -91,19 +92,22 @@ function Password({history}) {
                         <Subtitle>4~20자</Subtitle>
                     </Titlebox>
                     <MyPageInput 
+                        type="password"
                         name="newPassword"
                         placeholder="새 비밀번호" 
                         value={newPassword} 
                         onChange={onChangeHandler}
                     />
                     <MyPageInput 
+                        type="password"
                         name="checkPassword"
                         placeholder="새 비밀번호 확인" 
                         value={checkPassword} 
                         onChange={onChangeHandler}
                     />
                     <MyPageTitle>계정 비밀번호</MyPageTitle>
-                    <MyPageInput 
+                    <MyPageInput
+                        type="password"
                         name="currentPassword"
                         placeholder="현재 비밀번호" 
                         value={currentPassword} 

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import styled from "styled-components";
-import Header from '../Common/Header';
-import Footer from '../Common/Footer';
-import { withRouter } from 'react-router-dom';
-import StyledBox from '../Style/styledBox';
-import MyPageButton from '../Style/MyPageButton';
-import MyPageInput from '../Style/MyPageInput';
-import MyPageTitle from '../Style/MyPageTitle';
+import Header from '../../Common/Header';
+import Footer from '../../Common/Footer';
+import StyledBox from '../../Style/styledBox';
+import MyPageButton from '../../Style/MyPageButton';
+import MyPageInput from '../../Style/MyPageInput';
+import MyPageTitle from '../../Style/MyPageTitle';
 
 const Alert = styled.p`
     color: #757575;
@@ -53,6 +53,7 @@ function WithDrawal({history}) {
                 <form onSubmit={onSubmitHandler}>
                     <MyPageTitle>계정 비밀번호</MyPageTitle>
                     <MyPageInput 
+                        type="password"
                         placeholder="계정 비밀번호" 
                         value={CurrentPassword} 
                         onChange={onChangeHandler} 

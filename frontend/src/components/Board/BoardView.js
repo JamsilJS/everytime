@@ -3,12 +3,12 @@ import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import StyledBox from '../Style/styledBox';
-import AddBoard from './AddBoard';
-import BoardInput from "./BoardInput";
-import CheckNickname from './CheckNickname';
-import BoardTextarea from "./BoardTextarea";
-import UserProfile from "./UserProfile";
-import LogoutButton from "./LogoutButton";
+import AddBoard from './Section/AddBoard';
+import BoardInput from "./Section/BoardInput";
+import CheckNickname from './Section/CheckNickname';
+import BoardTextarea from "./Section/BoardTextarea";
+import UserProfile from "./Section/UserProfile";
+import LogoutButton from "../Utils/LogoutButton";
 import Header from "../Common/Header";
 import Footer from "../Common/Footer";
 
@@ -16,6 +16,18 @@ const Profilebox = styled.div`
   width: 100%;
   text-align: center;
   margin-bottom: 8px;
+`;
+
+const Profilebtn = styled.button`
+  display: inline-block;
+  width: 64px;
+  height: 28px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 12px 4px;
+  font-size: 13px;
+  line-height: 28px;
+  color: #505050;
 `;
 
 const BoardForm = styled.form`
@@ -103,7 +115,12 @@ function BoardView({ match }) {
       <StyledBox backColor="#fafafa" padding="10px 0px" lineHeight="auto">
         <Profilebox>
           <UserProfile boardPage={true} />
-          <LogoutButton boardPage={true}/>
+          <Link to="/mypage">
+            <Profilebtn>내정보</Profilebtn>
+          </Link>
+          <Profilebtn>
+            <LogoutButton/>
+          </Profilebtn>
         </Profilebox>
         <BoardForm onSubmit={onSubmit}>
           <BoardInput
@@ -125,12 +142,13 @@ function BoardView({ match }) {
           />
         </BoardForm>
         { Content && Content.map((board, index) => {
-          // console.log('board',board)
+          console.log('board',board)
           return(
               <React.Fragment key={index}>
                 <Link to={`${match.url}/${board._id}`}>
                   <AddBoard
                     id={board._id}
+                    time={board.createdAt}
                     writer={board.boardWriter}
                     title={board.boardTitle}
                     content={board.boardContent}

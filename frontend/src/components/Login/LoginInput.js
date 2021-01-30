@@ -19,9 +19,10 @@ const StyledInput = styled.input`
   margin-top: 5px;
 `;
 
-const LoginInput = function ({ name, placeholder, onChange, value }) {
+const LoginInput = function ({ type, name, placeholder, onChange, value }) {
   return (
     <StyledInput
+      type={type}
       name={name}
       placeholder={placeholder}
       onChange={onChange}

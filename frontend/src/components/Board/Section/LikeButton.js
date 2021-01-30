@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import vote from "../../assets/vote.png";
+import vote from "../../../assets/vote.png";
 
 const ButtonImage = styled.img`
   width: 12px;
@@ -91,7 +91,7 @@ function LikeButton({boardId, boardTitle, boardContent, boardWriter}) {
   };
 
   useEffect(() => {
-    console.log(userFrom, boardId);
+    // console.log(userFrom, boardId);
     getLikeInfo();
     ifUserHasLiked();
   },[likeCounts, userLiked]);

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import styled from "styled-components";
-import Header from '../Common/Header';
-import Footer from '../Common/Footer';
-import StyledBox from '../Style/styledBox';
-import MyPageTitle from '../Style/MyPageTitle';
-import MyPageInput from '../Style/MyPageInput';
-import MyPageButton from '../Style/MyPageButton';
+import Header from '../../Common/Header';
+import Footer from '../../Common/Footer';
+import StyledBox from '../../Style/styledBox';
+import MyPageTitle from '../../Style/MyPageTitle';
+import MyPageInput from '../../Style/MyPageInput';
+import MyPageButton from '../../Style/MyPageButton';
 
 const Textbox = styled.div`
     margin-top: 12px;
@@ -91,6 +91,7 @@ function Email({history}) {
                     />
                     <MyPageTitle>계정 비밀번호</MyPageTitle>
                     <MyPageInput 
+                        type="password"
                         name="currentPassword"
                         placeholder="계정 비밀번호" 
                         value={currentPassword} 
