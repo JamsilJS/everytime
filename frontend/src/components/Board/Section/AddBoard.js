@@ -1,10 +1,11 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import LikeButton from './LikeButton';
 import CommentButton from './CommentButton';
-import profile from '../../../assets/profile.png';
 import UpdateTime from '../../Utils/UpdateTime';
+import profile from '../../../assets/profile.png';
+import DeleteButton from '../../Utils/DeleteButton';
 
 const BoardBox = styled.div`
   background-color: #fff;
@@ -14,7 +15,6 @@ const BoardBox = styled.div`
   border: 1px solid #ddd;
   margin: 0px -1px -1px -1px;
 `
-
 const BoardUser = styled.div`
   display: flex;
   height: 20px;
@@ -22,7 +22,6 @@ const BoardUser = styled.div`
   margin-bottom: 12px;
   justify-content: space-between;
 `
-
 const BoardUserImg = styled.img`
   width: 22px;
   height: 22px;
@@ -35,7 +34,6 @@ const BoardUserID = styled.p`
   font-weight: bold;
   line-height: 22px;
 `
-
 const BoardTime = styled.div`
   color: #aaa;
   font-size: 12px;
@@ -43,12 +41,14 @@ const BoardTime = styled.div`
   padding-left: 8px;
   text-align: left;
 `
-
+const MenuImg = styled.img`
+  width: 14px;
+  height: 20px;
+`
 const BoardTitle = styled.div`
   font-weight: bold;
   margin-bottom: 4px;
 `
-
 const BoardContent = styled.div`
   font-weight: normal;
   margin-bottom: 8px;
@@ -56,7 +56,8 @@ const BoardContent = styled.div`
   overflow-wrap: break-word;
 `
 
-function AddBoard({id, time, title, content, writer}) {
+function AddBoard({id, user, time, title, content, writer, match, history}) {
+  const currentUser = window.localStorage.getItem('userId');
   return (
     <>
         <BoardBox key={id}>
@@ -68,9 +69,14 @@ function AddBoard({id, time, title, content, writer}) {
                   <UpdateTime time={time}/>
                 </BoardTime>
               </span>
+              { user === currentUser 
+                ? <DeleteButton board={id} user={user} history={history}/> 
+                : null }
           </BoardUser>
-          <BoardTitle>{title}</BoardTitle>
-          <BoardContent>{content}</BoardContent>
+          <Link to={`${match.path}/${id}`}>
+            <BoardTitle>{title}</BoardTitle>
+            <BoardContent>{content}</BoardContent>
+          </Link>
           <div style={{textAlign: "right"}}>
               <LikeButton 
                 boardId={id} 
@@ -78,7 +84,9 @@ function AddBoard({id, time, title, content, writer}) {
                 boardTitle={title} 
                 boardContent={content}
               />
-              <CommentButton boardId={id} />
+              <Link to={`${match.path}/${id}`}>
+                <CommentButton boardId={id} />
+              </Link>
           </div>
         </BoardBox>
     </>

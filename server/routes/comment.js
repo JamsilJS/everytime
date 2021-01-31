@@ -11,7 +11,7 @@ router.post('/getComment', (req, res) => {
     // console.log('LCreq', req.body);
     Comment.find({boardFrom: req.body.boardFrom})
         .exec((err, comments) => {
-            console.log('get',comments);
+            // console.log('get',comments);
             if(err) return res.status(400).send(err);
             return res.status(200).json({ success: true, comments, commentCounts: comments.length });
         })

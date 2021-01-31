@@ -93,32 +93,17 @@ function BoardDetail(props) {
                 FetchComment();
             })
     }
-
-    // const onDeleteBoard = (boardFrom, board_id) => {
-    //     let variables = {
-    //       boardFrom: boardFrom,
-    //       _id: board_id,
-    //     }
-    //     axios.post("/board/deleteBoard", variables)
-    //       .then(response => {
-    //         console.log("Delete : ", response);
-    //         if(response.data.success) {
-    //           alert("게시글 삭제에 성공했습니다.");
-    //         } else {
-    //           alert("게시글 삭제에 실패했습니다.");
-    //         }
-    //       })
-    //   }
     
     return (
         <div>
             <Header title="자유게시판" link="/board"/>
             { BoardDetail && BoardDetail.map((board, index) => {
-            console.log('board',board)
+            // console.log('board',board)
             return(
                 <React.Fragment key={index}>
                     <AddBoard
                         id={board._id}
+                        user={board.userFrom}
                         time={board.createdAt}
                         writer={board.boardWriter}
                         title={board.boardTitle}
@@ -142,7 +127,7 @@ function BoardDetail(props) {
                 />
             </CommentForm>
             { Comments && Comments.map((comment, index) => {
-            console.log('comment',comment)
+            // console.log('comment',comment)
             return(
                 <React.Fragment key={index}>
                     <AddComment
