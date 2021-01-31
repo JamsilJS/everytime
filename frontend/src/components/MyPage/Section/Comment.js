@@ -26,7 +26,7 @@ function Comment() {
         myComments.map((comments, index) => {
           return (
             <React.Fragment key={index}>
-              <Link to={`../board/${likes.boardFrom}`}>
+              <Link to={`../board/${commments.boardFrom}`}>
                 <AddComment
                   id={comments.commentFrom}
                   time={comments.commentAt}
