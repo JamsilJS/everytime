@@ -39,7 +39,7 @@ router.post('/deleteComment', (req, res) => {
 
 //마이페이지 댓글 게시글 클라이언트에 보내기
 router.post('/comments', (req, res) => {
-    // console.log('comments',req.body);
+    console.log('comments',req.body);
     Comment.find({userFrom: req.body.userFrom})
         .exec((err, comments) => {
             console.log(comments);

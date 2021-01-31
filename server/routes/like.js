@@ -32,7 +32,7 @@ router.post("/liked", (req, res) => {
 
 //프론트에서 좋아요한 게시글 데이터베이스에 저장하기
 router.post('/', (req, res) => {
-    // console.log(req.body);
+    console.log(req.body);
     const like = new Like(req.body);
     like.save((err, likes) => {
         if(err) return res.status(400).send(err);
@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
 
 //프론트에서 좋아요 취소한 게시글 데이터베이스에서 삭제하기
 router.post('/dislike', (req, res) => {
-    // console.log(req.body);
+    console.log(req.body);
     Like.findOneAndDelete({ userFrom: req.body.userFrom, boardFrom: req.body.boardFrom})
         .exec((err, likes) => {
             if(err) return res.status(400).send(err);
@@ -52,7 +52,7 @@ router.post('/dislike', (req, res) => {
 
 //마이페이지 좋아요한 게시글 클라이언트에 보내기
 router.post('/likes', (req, res) => {
-    // console.log('likes',req.body);
+    console.log('likes',req.body);
     Like.find({userFrom: req.body.userFrom})
         .exec((err, likes) => {
             console.log(likes);
