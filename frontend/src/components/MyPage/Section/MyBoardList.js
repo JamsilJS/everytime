@@ -30,6 +30,7 @@ function MyBoardList() {
                         <Link to={`../board/${board._id}`}>
                             <AddBoard
                                 id={board._id}
+                                user={board.userFrom}
                                 time={board.createdAt}
                                 writer={board.boardWriter}
                                 title={board.boardTitle}

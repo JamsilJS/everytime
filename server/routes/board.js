@@ -37,7 +37,7 @@ router.get('/getBoard', (req, res) => {
 
 router.post('/deleteBoard', (req, res) => {
     console.log(req.body);
-    Board.findOneAndDelete({ userFrom: req.body.userFrom, _id: req.body._id})
+    Board.findOneAndDelete({ userFrom: req.body.userFrom, _id: req.body.boardFrom })
         .exec((err, result) => {
             if(err) return res.status(400).send(err);
             return res.status(200).json({ success: true })

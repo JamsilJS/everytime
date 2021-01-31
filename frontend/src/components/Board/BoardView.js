@@ -39,7 +39,7 @@ const BoardForm = styled.form`
   box-sizing: border-box;
 `;
 
-function BoardView({ match }) {
+function BoardView({ history, match }) {
   const userFrom = localStorage.getItem('userId');
   const writerFrom = localStorage.getItem('userNickname');
   const [WriterIcon, setWriterIcon] = useState(true);
@@ -145,17 +145,18 @@ function BoardView({ match }) {
         { Content && Content.map((board, index) => {
           // console.log('board',board)
           return(
-              <React.Fragment key={index}>
-                <Link to={`${match.url}/${board._id}`}>
-                  <AddBoard
-                    id={board._id}
-                    time={board.createdAt}
-                    writer={board.boardWriter}
-                    title={board.boardTitle}
-                    content={board.boardContent}
-                  />
-                </Link>
-              </React.Fragment>
+            <React.Fragment key={index}>
+                <AddBoard
+                  id={board._id}
+                  user={board.userFrom._id}
+                  time={board.createdAt}
+                  writer={board.boardWriter}
+                  title={board.boardTitle}
+                  content={board.boardContent}
+                  match={`${match}`}
+                  history={`${history}`}
+                />
+            </React.Fragment>
           )})
         }
       <Footer/>

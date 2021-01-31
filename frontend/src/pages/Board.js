@@ -3,7 +3,7 @@ import { Route, withRouter } from "react-router-dom";
 import BoardDetail from "../components/Board/BoardDetail";
 import BoardView from "../components/Board/BoardView";
 
-function MyPage({ match }) {
+function Board({ match }) {
   return (
     <>
       <Route exact path={match.path} component={BoardView} />
@@ -12,4 +12,4 @@ function MyPage({ match }) {
   );
 }
 
-export default withRouter(MyPage);
+export default withRouter(Board);
