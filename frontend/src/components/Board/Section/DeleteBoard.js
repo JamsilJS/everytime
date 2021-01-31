@@ -1,9 +1,16 @@
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components'
 import { withRouter } from 'react-router-dom';
 
-function DeleteButton(props) { 
-    console.log(props)
+const Button = styled.button`
+    color: #c62912;
+    font-size: 12px;
+    line-height: 22px;
+`
+
+function DeleteBoard(props) { 
+    // console.log(props)
     const onDelete = () => {
         let variables = {
             boardFrom: props.board,
@@ -20,13 +27,12 @@ function DeleteButton(props) {
             }
         })
     }
-
     return(
-            <button onClick={onDelete}>
+            <Button onClick={onDelete}>
                 삭제
-            </button>
+            </Button>
     )
 }
 
-export default withRouter(DeleteButton);
+export default withRouter(DeleteBoard);
 

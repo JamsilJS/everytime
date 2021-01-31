@@ -84,7 +84,7 @@ router.post('/update/password', auth, (req, res) => {
     })
 })
 
-router.post("/get/myBoard", (req, res) => {
+router.post("/myBoard", (req, res) => {
     console.log(req.body);
     Board.find({ userFrom : req.body.userFrom })
         .exec((err, boards) => {

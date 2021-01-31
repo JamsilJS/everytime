@@ -5,13 +5,12 @@ import Header from '../../Common/Header';
 import AddBoard from '../../Board/Section/AddBoard';
 
 function MyBoardList() {
-    const userFrom = localStorage.getItem('userId');
     const [MyBoard, setMyBoard] = useState([]);
-
     useEffect(() => {
-        axios.post('/user/get/myBoard', {'userFrom': userFrom})
+        const userFrom = window.localStorage.getItem('userId');
+        axios.post('/user/myBoard', {'userFrom': userFrom})
             .then(response => {
-                console.log(response.data);
+                //console.log(response.data);
                 if(response.data.success) {
                     setMyBoard(response.data.boards);
                 } else {

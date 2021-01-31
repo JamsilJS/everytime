@@ -5,7 +5,7 @@ import LikeButton from './LikeButton';
 import CommentButton from './CommentButton';
 import UpdateTime from '../../Utils/UpdateTime';
 import profile from '../../../assets/profile.png';
-import DeleteButton from '../../Utils/DeleteButton';
+import DeleteBoard from './DeleteBoard';
 
 const BoardBox = styled.div`
   background-color: #fff;
@@ -17,7 +17,7 @@ const BoardBox = styled.div`
 `
 const BoardUser = styled.div`
   display: flex;
-  height: 20px;
+  height: 22px;
   margin-top: 2px;
   margin-bottom: 12px;
   justify-content: space-between;
@@ -40,10 +40,6 @@ const BoardTime = styled.div`
   line-height: 22px;
   padding-left: 8px;
   text-align: left;
-`
-const MenuImg = styled.img`
-  width: 14px;
-  height: 20px;
 `
 const BoardTitle = styled.div`
   font-weight: bold;
@@ -70,7 +66,7 @@ function AddBoard({id, user, time, title, content, writer, match, history}) {
                 </BoardTime>
               </span>
               { user === currentUser 
-                ? <DeleteButton board={id} user={user} history={history}/> 
+                ? <DeleteBoard board={id} user={user} history={history}/> 
                 : null }
           </BoardUser>
           <Link to={`${match.path}/${id}`}>

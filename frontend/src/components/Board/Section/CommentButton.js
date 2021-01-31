@@ -8,7 +8,6 @@ const ButtonImage = styled.img`
   height: 12px;
   margin-left: 10px;
 `
-
 const CommentCounted = styled.p`
   display: inline-block;
   color: #0ca5af;
@@ -17,20 +16,17 @@ const CommentCounted = styled.p`
 `
 
 function CommentButton({boardId}) {
-
   const userFrom = localStorage.getItem("userId");
   const [CommentCounts, setCommentCounts] = useState(0);
-
   let variables = {
     userFrom: userFrom,
     boardFrom: boardId,
   };
-
   useEffect(() => {
     axios
       .post("/comment/getComment", variables)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if(response.data.success) {
           setCommentCounts(response.data.commentCounts);
         } else {
@@ -38,7 +34,6 @@ function CommentButton({boardId}) {
         }
       })
   })
-
   return (
       <button>
           <ButtonImage src={comment} alt="comment" />

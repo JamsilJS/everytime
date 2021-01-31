@@ -29,11 +29,11 @@ router.post('/upload', (req, res) => {
 
 //프론트에서 댓글 삭제한 게시글 데이터베이스에서 삭제하기
 router.post('/deleteComment', (req, res) => {
-    // console.log(req.body);
-    Comment.findOneAndDelete({ userFrom: req.body.userFrom, boardFrom: req.body.boardFrom})
-        .exec((err, likes) => {
+    console.log(req.body);
+    Comment.findOneAndDelete({ userFrom: req.body.userFrom, _id: req.body.id})
+        .exec((err, result) => {
             if(err) return res.status(400).send(err);
-            return res.status(200).json({ success: true, likes })
+            return res.status(200).json({ success: true })
         })
 })
 

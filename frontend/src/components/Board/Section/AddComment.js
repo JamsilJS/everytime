@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import profile from '../../../assets/profile.png';
 import { withRouter } from 'react-router-dom';
 import UpdateTime from '../../Utils/UpdateTime';
+import DeleteComment from './DeleteComment';
 
 const CommentBox = styled.div`
   background-color: #fff;
@@ -12,14 +13,12 @@ const CommentBox = styled.div`
   border: 1px solid #ddd;
   margin: 0px -1px -1px -1px;
 `
-
 const CommentUser = styled.div`
   display: flex;
   height: 20px;
   margin-bottom: 8px;
   justify-content: space-between;
 `
-
 const CommentUserImg = styled.img`
   width: 22px;
   height: 22px;
@@ -32,14 +31,12 @@ const CommentUserID = styled.p`
   font-weight: bold;
   line-height: 22px;
 `
-
 const CommentContent = styled.div`
   font-weight: normal;
   margin-bottom: 6px;
   white-space: pre-wrap;
   overflow-wrap: break-word;
 `
-
 const CommentTime = styled.p`
   color: #aaa;
   font-size: 11px;
@@ -47,7 +44,8 @@ const CommentTime = styled.p`
   text-align: left;
 `
 
-function AddComment({id, time, content, writer}) {
+function AddComment({id, user, time, content, writer, stateRefresh}) {
+  const currentUser = window.localStorage.getItem('userId');
   return (
     <>
         <CommentBox key={id}>
@@ -56,6 +54,9 @@ function AddComment({id, time, content, writer}) {
                 <CommentUserImg src={profile} alt="profile"/>
                 <CommentUserID>{writer}</CommentUserID>
               </span>
+              { user === currentUser 
+                ? <DeleteComment id={id} user={user}/> 
+                : null }
           </CommentUser>
           <CommentContent>{content}</CommentContent>
           <CommentTime>

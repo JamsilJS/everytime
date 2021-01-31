@@ -17,8 +17,7 @@ const Profilebox = styled.div`
   text-align: center;
   margin-bottom: 8px;
 `;
-
-const Profilebtn = styled.button`
+const Profilebtn = styled.div`
   display: inline-block;
   width: 64px;
   height: 28px;
@@ -28,8 +27,8 @@ const Profilebtn = styled.button`
   font-size: 13px;
   line-height: 28px;
   color: #505050;
+  pointer: cursor;
 `;
-
 const BoardForm = styled.form`
   position: relative;
   height: 165px;
@@ -142,7 +141,7 @@ function BoardView({ history, match }) {
           />
         </BoardForm>
         { Content && Content.map((board, index) => {
-          console.log('board',board)
+          // console.log('board',board)
           return(
             <React.Fragment key={index}>
                 <AddBoard

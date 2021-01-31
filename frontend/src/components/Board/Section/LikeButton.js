@@ -85,9 +85,7 @@ function LikeButton({boardId, boardTitle, boardContent, boardWriter}) {
 
   const handleLike = (event) => {
     event.preventDefault();
-    {
-      userLiked ? changeToDislike() : changeToLike();
-    }
+    userLiked ? changeToDislike() : changeToLike();
   };
 
   useEffect(() => {

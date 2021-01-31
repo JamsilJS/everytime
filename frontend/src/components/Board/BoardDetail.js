@@ -47,7 +47,7 @@ function BoardDetail(props) {
         const variable = { boardId : BoardId };
         axios.post(`${props.match.path}`, variable)
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 if(response.data.success) {
                     setBoardDetail([response.data.board]);
                 } else {
@@ -60,7 +60,7 @@ function BoardDetail(props) {
     const FetchComment = () => {
         axios.post("/comment/getComment", variables)
           .then((response) => {
-            console.log("Get Comment : ",response);
+            // console.log("Get Comment : ",response);
             if(response.data.success) {
               setComments(response.data.comments);
             } else {
@@ -127,11 +127,12 @@ function BoardDetail(props) {
                 />
             </CommentForm>
             { Comments && Comments.map((comment, index) => {
-            // console.log('comment',comment)
+            console.log('comment',comment)
             return(
                 <React.Fragment key={index}>
                     <AddComment
                         id={comment._id}
+                        user={comment.userFrom}
                         time={comment.createdAt}
                         writer={comment.commentWriter}
                         content={comment.commentContent}
