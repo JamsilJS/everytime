@@ -5,12 +5,40 @@ import Header from "../../Common/Header";
 import AddComment from "../../Board/Section/AddComment";
 
 function Comment() {
-   
-    return (
-        <>
-            <Header title="내가 댓글 단 글" link="/board" backbutton={true} />
-        </>
-    )
+  const [myComments, setMyComments] = useState();
+  const getMyComments = () => {
+    let userId = window.localStorage.getItem("userId");
+    axios
+      .post(`/comment/comments`, { userFrom: userId })
+      .then((response) => {
+        setMyComments(response.data.comments);
+      })
+      .catch((e) => alert(`댓글을 불러오는데 실패했습니다.`));
+  };
+
+  useEffect(() => {
+    getMyComments();
+  }, []);
+  return (
+    <>
+      <Header title="내가 댓글 단 글" link="/board" backbutton={true} />
+      {myComments &&
+        myComments.map((comments, index) => {
+          return (
+            <React.Fragment key={index}>
+              <Link to={`../board/${likes.boardFrom}`}>
+                <AddComment
+                  id={comments.commentFrom}
+                  time={comments.commentAt}
+                  writer={comments.commentWriter}
+                  content={comments.commentContent}
+                />
+              </Link>
+            </React.Fragment>
+          );
+        })}
+    </>
+  );
 }
 
 export default withRouter(Comment);
