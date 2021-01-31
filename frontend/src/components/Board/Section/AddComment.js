@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import profile from '../../../assets/profile.png';
 import { withRouter } from 'react-router-dom';
@@ -44,7 +44,7 @@ const CommentTime = styled.p`
   text-align: left;
 `
 
-function AddComment({id, user, time, content, writer, stateRefresh}) {
+function AddComment({id, user, time, content, writer}) {
   const currentUser = window.localStorage.getItem('userId');
   return (
     <>

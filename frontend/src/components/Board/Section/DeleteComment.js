@@ -28,9 +28,9 @@ function DeleteComment(props) {
         })
     }
     return(
-            <Button onClick={onDelete}>
-                삭제
-            </Button>
+        <Button onClick={onDelete}>
+            삭제
+        </Button>
     )
 }
 

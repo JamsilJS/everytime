@@ -98,19 +98,19 @@ function BoardDetail(props) {
         <div>
             <Header title="자유게시판" link="/board"/>
             { BoardDetail && BoardDetail.map((board, index) => {
-            // console.log('board',board)
-            return(
-                <React.Fragment key={index}>
-                    <AddBoard
-                        id={board._id}
-                        user={board.userFrom}
-                        time={board.createdAt}
-                        writer={board.boardWriter}
-                        title={board.boardTitle}
-                        content={board.boardContent}
-                    />
-                </React.Fragment>
-            )})
+                // console.log('board',board)
+                return(
+                    <React.Fragment key={index}>
+                        <AddBoard
+                            id={board._id}
+                            user={board.userFrom}
+                            time={board.createdAt}
+                            writer={board.boardWriter}
+                            title={board.boardTitle}
+                            content={board.boardContent}
+                        />
+                    </React.Fragment>
+                )})
             }
             <CommentForm onSubmit={onSubmit}>
                 <CommentInput
@@ -127,18 +127,18 @@ function BoardDetail(props) {
                 />
             </CommentForm>
             { Comments && Comments.map((comment, index) => {
-            console.log('comment',comment)
-            return(
-                <React.Fragment key={index}>
-                    <AddComment
-                        id={comment._id}
-                        user={comment.userFrom}
-                        time={comment.createdAt}
-                        writer={comment.commentWriter}
-                        content={comment.commentContent}
-                    />
-                </React.Fragment>
-            )})
+                // console.log('comment',comment)
+                return(
+                    <React.Fragment key={index}>
+                        <AddComment
+                            id={comment._id}
+                            user={comment.userFrom}
+                            time={comment.createdAt}
+                            writer={comment.commentWriter}
+                            content={comment.commentContent}
+                        />
+                    </React.Fragment>
+                )})
             }
             <Link to="/board">
                 <BackButton> 글 목록으로 돌아가기 </BackButton>

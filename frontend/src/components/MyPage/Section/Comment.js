@@ -28,7 +28,8 @@ function Comment() {
             <React.Fragment key={index}>
               <Link to={`../board/${comments.boardFrom}`}>
                 <AddComment
-                  id={comments.commentFrom}
+                  id={comments._id}
+                  user={comments.userFrom}
                   time={comments.createdAt}
                   writer={comments.commentWriter}
                   content={comments.commentContent}
