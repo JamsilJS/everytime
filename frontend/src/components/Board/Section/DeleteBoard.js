@@ -18,7 +18,7 @@ function DeleteBoard(props) {
         }
         axios.post("/board/deleteBoard", variables)
         .then(response => {
-            // console.log("Delete : ", response);
+            console.log("Delete : ", response);
             if(response.data.success) {
                 alert("게시글 삭제에 성공했습니다.");
                 props.onRemove(response.data.result._id);

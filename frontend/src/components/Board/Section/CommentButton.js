@@ -33,7 +33,7 @@ function CommentButton({boardId}) {
           alert("댓글을 보여줄 수 없습니다.");
         }
       })
-  })
+  },[])
   return (
       <button>
           <ButtonImage src={comment} alt="comment" />

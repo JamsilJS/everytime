@@ -29,6 +29,10 @@ function Comment() {
     setCommentsFrom([...new Set(commentsList.map(JSON.stringify))].map(JSON.parse));
   }
 
+  const onRemove = (id) => {
+    setCommentsFrom(CommentsFrom.filter(CommentsFrom => CommentsFrom._id !== id))
+  }
+
   return (
     <>
       <Header title="내가 댓글 단 글" link="/board" backbutton={true} />
@@ -43,6 +47,7 @@ function Comment() {
                   writer={board.boardWriter}
                   title={board.boardTitle}
                   content={board.boardContent}
+                  onRemove={onRemove}
                 />
             </React.Fragment>
           );

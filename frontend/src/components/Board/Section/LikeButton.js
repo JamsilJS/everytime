@@ -92,7 +92,7 @@ function LikeButton({boardId, boardTitle, boardContent, boardWriter}) {
     // console.log(userFrom, boardId);
     getLikeInfo();
     ifUserHasLiked();
-  },[likeCounts, userLiked]);
+  },[]);
 
   return (
     <>
