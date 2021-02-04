@@ -4,7 +4,7 @@ import axios from "axios";
 import Header from '../../Common/Header';
 import AddBoard from '../../Board/Section/AddBoard';
 
-function MyBoardList() {
+function MyBoardList({history}) {
     const [MyBoard, setMyBoard] = useState([]);
     useEffect(() => {
         const userFrom = window.localStorage.getItem('userId');
@@ -18,6 +18,11 @@ function MyBoardList() {
                 }
             })
     }, [])
+
+    const onRemove = (id) => {
+        setMyBoard(MyBoard.filter(MyBoard => MyBoard._id !== id))
+        history.push("/mypage/boardlist")
+    }
 
     return (
         <>
@@ -34,6 +39,7 @@ function MyBoardList() {
                                 writer={board.boardWriter}
                                 title={board.boardTitle}
                                 content={board.boardContent}
+                                onRemove={onRemove}
                             />
                         </Link>
                     </React.Fragment>

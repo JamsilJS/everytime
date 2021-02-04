@@ -79,6 +79,15 @@ function BoardDetail(props) {
         };
     }
 
+    const onRemoveBoard = (id) => {
+        setBoardDetail(BoardDetail.filter(BoardDetail => BoardDetail._id !== id))
+        props.history.push("/")
+    } 
+
+    const onRemoveComment = (id) => {
+        setComments(Comments.filter(Comments => Comments._id !==id))
+    }
+
     const onChange = (e) => {
         setValue(e.currentTarget.value);
     }
@@ -108,6 +117,9 @@ function BoardDetail(props) {
                             writer={board.boardWriter}
                             title={board.boardTitle}
                             content={board.boardContent}
+                            match={`${props.match}`}
+                            history={`${props.history}`}
+                            onRemove={onRemoveBoard}
                         />
                     </React.Fragment>
                 )})
@@ -136,6 +148,7 @@ function BoardDetail(props) {
                             time={comment.createdAt}
                             writer={comment.commentWriter}
                             content={comment.commentContent}
+                            onRemove={onRemoveComment}
                         />
                     </React.Fragment>
                 )})

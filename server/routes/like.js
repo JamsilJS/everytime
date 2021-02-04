@@ -52,8 +52,9 @@ router.post('/dislike', (req, res) => {
 
 //마이페이지 좋아요한 게시글 클라이언트에 보내기
 router.post('/likes', (req, res) => {
-    console.log('likes',req.body);
+    // console.log('likes',req.body);
     Like.find({userFrom: req.body.userFrom})
+        .sort({createdAt: -1})
         .exec((err, likes) => {
             console.log(likes);
             if(err) return res.status(400).send(err);

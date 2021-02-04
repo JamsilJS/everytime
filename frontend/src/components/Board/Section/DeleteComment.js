@@ -10,7 +10,7 @@ const Button = styled.button`
 `
 
 function DeleteComment(props) { 
-    console.log(props);
+    // console.log(props);
     const onDelete = () => {
         let variables = {
             id: props.id,
@@ -18,10 +18,10 @@ function DeleteComment(props) {
         }
         axios.post("/comment/deleteComment", variables)
         .then(response => {
-            console.log("Delete : ", response);
+            // console.log("Delete : ", response);
             if(response.data.success) {
                 alert("댓글 삭제에 성공했습니다.");
-                window.location.reload();
+                props.onRemove(response.data.result._id);
             } else {
                 alert("댓글 삭제에 실패했습니다.");
             }

@@ -44,23 +44,27 @@ const CommentTime = styled.p`
   text-align: left;
 `
 
-function AddComment({id, user, time, content, writer}) {
+function AddComment(props) {
   const currentUser = window.localStorage.getItem('userId');
   return (
     <>
-        <CommentBox key={id}>
+        <CommentBox key={props.id}>
           <CommentUser>
               <span style={{display: 'flex'}}>
                 <CommentUserImg src={profile} alt="profile"/>
-                <CommentUserID>{writer}</CommentUserID>
+                <CommentUserID>{props.writer}</CommentUserID>
               </span>
-              { user === currentUser 
-                ? <DeleteComment id={id} user={user}/> 
+              { props.user === currentUser 
+                ? <DeleteComment 
+                    id={props.id} 
+                    user={props.user} 
+                    onRemove={props.onRemove}
+                  /> 
                 : null }
           </CommentUser>
-          <CommentContent>{content}</CommentContent>
+          <CommentContent>{props.content}</CommentContent>
           <CommentTime>
-            <UpdateTime time={time}/>
+            <UpdateTime time={props.time}/>
           </CommentTime>
         </CommentBox>
     </>

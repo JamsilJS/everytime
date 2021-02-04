@@ -87,6 +87,7 @@ router.post('/update/password', auth, (req, res) => {
 router.post("/myBoard", (req, res) => {
     console.log(req.body);
     Board.find({ userFrom : req.body.userFrom })
+        .sort({createdAt: -1})
         .exec((err, boards) => {
             if(err) return res.status(400).send(err);
             return res.status(200).json({ success: true, boards })
