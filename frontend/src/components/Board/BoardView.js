@@ -40,6 +40,7 @@ const BoardForm = styled.form`
 function BoardView({ history, match }) {
   const userFrom = localStorage.getItem('userId');
   const writerFrom = localStorage.getItem('userNickname');
+  const [Page, setPage] = useState(1);
   const [WriterIcon, setWriterIcon] = useState(true);
   const [BoardWriter, setBoardWriter] = useState("익명");
   const [Content, setContent] = useState([]);
@@ -54,7 +55,7 @@ function BoardView({ history, match }) {
   }, [])
 
   const FetchBoard = () => {
-    axios.get("/board/getBoard")
+    axios.post("/board/getBoard",{page: Page})
       .then((response) => {
         //console.log("Get Board : ",response);
         if(response.data.success) {
@@ -63,6 +64,10 @@ function BoardView({ history, match }) {
           alert("게시글을 보여줄 수 없습니다.");
         }
       })
+  }
+
+  const StateRefresh = (newState) => {
+        setContent(Content.concat(newState))
   }
 
   const onChange = (e) => {
@@ -153,6 +158,7 @@ function BoardView({ history, match }) {
                   content={board.boardContent}
                   match={`${match}`}
                   history={`${history}`}
+                  stateRefresh={StateRefresh}
                 />
             </React.Fragment>
           )})
