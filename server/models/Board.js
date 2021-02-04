@@ -24,12 +24,12 @@ boardSchema.pre('findOneAndDelete', function(next) {
     // console.log(Board);
     Comment.deleteMany({boardFrom: Board._conditions._id})
         .exec((err, result) => {
-            console.log('result', result)
+            // console.log('result', result)
             return {success : true, result}
         })
     Like.deleteMany({boardFrom: Board._conditions._id})
         .exec((err, result) => {
-            console.log('result', result)
+            // console.log('result', result)
             return {success : true, result}
         })
     next();
