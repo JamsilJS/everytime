@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const { Board } = require("../models/Board");
-const { Comment } = require('../models/Comment');
 
 //=================================
 //             Board
@@ -39,7 +38,6 @@ router.post('/getBoard', (req, res) => {
 })
 
 router.post('/deleteBoard', (req, res) => {
-    Comment.findOneAndDelete({ boardFrom: req.body.boardFrom })
     Board.findOneAndDelete({ userFrom: req.body.userFrom, _id: req.body.boardFrom })
     .exec((err, result) => {
         console.log(result);

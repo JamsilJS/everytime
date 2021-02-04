@@ -24,11 +24,8 @@ function Comment() {
   const saveOptions = (comments) => {
     const commentsList = [];
     comments.forEach( element => {
-      console.log(comments)
       commentsList.push(element.boardFrom);
     })
-    console.log({commentsList});
-    console.log([...new Set(commentsList.map(JSON.stringify))].map(JSON.parse));
     setCommentsFrom([...new Set(commentsList.map(JSON.stringify))].map(JSON.parse));
   }
 
