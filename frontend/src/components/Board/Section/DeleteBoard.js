@@ -21,7 +21,8 @@ function DeleteBoard(props) {
             console.log("Delete : ", response);
             if(response.data.success) {
                 alert("게시글 삭제에 성공했습니다.");
-                window.location.reload();
+                props.onRemove(response.data.result._id);
+                console.log(response.data.result);
             } else {
                 alert("게시글 삭제에 실패했습니다.");
             }

@@ -52,36 +52,41 @@ const BoardContent = styled.div`
   overflow-wrap: break-word;
 `
 
-function AddBoard({id, user, time, title, content, writer, match, history}) {
+function AddBoard(props) {
   const currentUser = window.localStorage.getItem('userId');
   return (
     <>
-        <BoardBox key={id}>
+        <BoardBox key={props.id}>
           <BoardUser>
               <span style={{display: 'flex'}}>
                 <BoardUserImg src={profile} alt="profile"/>
-                <BoardUserID>{writer}</BoardUserID>
+                <BoardUserID>{props.writer}</BoardUserID>
                 <BoardTime>
-                  <UpdateTime time={time}/>
+                  <UpdateTime time={props.time}/>
                 </BoardTime>
               </span>
-              { user === currentUser 
-                ? <DeleteBoard board={id} user={user} history={history}/> 
+              { props.user === currentUser 
+                ? <DeleteBoard 
+                    board={props.id} 
+                    user={props.user} 
+                    history={props.history}
+                    onRemove={props.onRemove}
+                  /> 
                 : null }
           </BoardUser>
-          <Link to={`${match.path}/${id}`}>
-            <BoardTitle>{title}</BoardTitle>
-            <BoardContent>{content}</BoardContent>
+          <Link to={`${props.match.path}/${props.id}`}>
+            <BoardTitle>{props.title}</BoardTitle>
+            <BoardContent>{props.content}</BoardContent>
           </Link>
           <div style={{textAlign: "right"}}>
               <LikeButton 
-                boardId={id} 
-                boardWriter={writer} 
-                boardTitle={title} 
-                boardContent={content}
+                boardId={props.id} 
+                boardWriter={props.writer} 
+                boardTitle={props.title} 
+                boardContent={props.content}
               />
-              <Link to={`${match.path}/${id}`}>
-                <CommentButton boardId={id} />
+              <Link to={`${props.match.path}/${props.id}`}>
+                <CommentButton boardId={props.id} />
               </Link>
           </div>
         </BoardBox>

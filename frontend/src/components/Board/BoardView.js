@@ -66,8 +66,8 @@ function BoardView({ history, match }) {
       })
   }
 
-  const StateRefresh = (newState) => {
-        setContent(Content.concat(newState))
+  const onRemove = (id) => {
+    setContent(Content.filter(Content => Content._id !== id))
   }
 
   const onChange = (e) => {
@@ -158,7 +158,7 @@ function BoardView({ history, match }) {
                   content={board.boardContent}
                   match={`${match}`}
                   history={`${history}`}
-                  stateRefresh={StateRefresh}
+                  onRemove={onRemove}
                 />
             </React.Fragment>
           )})
