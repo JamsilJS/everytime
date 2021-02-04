@@ -5,7 +5,7 @@ const MenuBox = styled.ul`
     color: #212121;
     width: 100%;
     margin: 8px 0px;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     border-radius: 10px;
     border: 1px solid #eaeaea;
     box-sizing: border-box;

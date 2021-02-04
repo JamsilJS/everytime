@@ -7,6 +7,7 @@ import AddBoard from './Section/AddBoard';
 import AddComment from './Section/AddComment';
 import CommentInput from './Section/CommentInput';
 import CheckNickname from './Section/CheckNickname';
+import menu from '../../assets/menu.png';
 
 const CommentForm = styled.form`
     position: relative;
@@ -16,15 +17,28 @@ const CommentForm = styled.form`
 `;
 
 const BackButton = styled.div`
+    display: flex;
+    justify-content: center;
     border: 1px solid #c62917;
-    color: #c62917;
-    width: 28%;
-    height: 40px;
+    border-radius: 4px;
+    width: 24%;
+    height: 36px;
     margin: 12px 0px;
-    font-size: 14px;
-    line-height: 40px;
-    text-align: center;
 `;
+
+const BackTitle = styled.span`
+    color: #c62917;
+    font-size: 13px;
+    line-height: 36px;
+    text-align: center;
+`
+
+const MenuIcon = styled.img`
+    width: 12px;
+    height: 12px;
+    padding: 12px 0px;
+    margin-right: 4px;
+`
 
 function BoardDetail(props) {
     const BoardId = props.match.params.id;
@@ -152,7 +166,10 @@ function BoardDetail(props) {
                 )})
             }
             <Link to="/board">
-                <BackButton> 글 목록 </BackButton>
+                <BackButton> 
+                    <MenuIcon src={menu} alt="menu"/>
+                    <BackTitle>글 목록</BackTitle>
+                </BackButton>
             </Link>
         </div>
     )

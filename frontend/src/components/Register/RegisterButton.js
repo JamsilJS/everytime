@@ -11,12 +11,12 @@ const StyledButton = styled.button`
 
   /* 크기 */
   height: 40px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 200;
 
   /* 색상 */
   background: #c62917;
-  margin-top: 24px;
+  margin-top: 20px;
   margin-bottom: 8px;
 `;
 
