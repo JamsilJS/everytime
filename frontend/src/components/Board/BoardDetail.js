@@ -16,14 +16,14 @@ const CommentForm = styled.form`
 `;
 
 const BackButton = styled.div`
-    background-color: #c62917;
-    color: #fff;
-    width: 100%;
+    border: 1px solid #c62917;
+    color: #c62917;
+    width: 28%;
     height: 40px;
-    font-size: 15px;
-    text-align: center;
-    line-height: 40px;
     margin: 12px 0px;
+    font-size: 14px;
+    line-height: 40px;
+    text-align: center;
 `;
 
 function BoardDetail(props) {
@@ -94,7 +94,6 @@ function BoardDetail(props) {
 
     const onSubmit = (e) => {
         e.preventDefault();
-
         axios.post('/comment/upload', variables)
             .then(response => {
                 alert("댓글이 등록되었습니다.");
@@ -117,7 +116,6 @@ function BoardDetail(props) {
                             writer={board.boardWriter}
                             title={board.boardTitle}
                             content={board.boardContent}
-                            match={`${props.match}`}
                             history={`${props.history}`}
                             onRemove={onRemoveBoard}
                         />
@@ -154,7 +152,7 @@ function BoardDetail(props) {
                 )})
             }
             <Link to="/board">
-                <BackButton> 글 목록으로 돌아가기 </BackButton>
+                <BackButton> 글 목록 </BackButton>
             </Link>
         </div>
     )

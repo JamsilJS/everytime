@@ -1,40 +1,52 @@
 import React, { useEffect, useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 import Header from "../../Common/Header";
-import AddComment from "../../Board/Section/AddComment";
+import AddBoard from "../../Board/Section/AddBoard";
 
 function Comment() {
-  const [myComments, setMyComments] = useState();
+  const [CommentsFrom, setCommentsFrom] = useState([]);
+
+  useEffect(() => {
+    getMyComments();
+  }, []);
+
   const getMyComments = () => {
     let userId = window.localStorage.getItem("userId");
     axios
       .post(`/comment/comments`, { userFrom: userId })
       .then((response) => {
-        setMyComments(response.data.comments);
+        saveOptions(response.data.comments);
       })
       .catch((e) => alert(`댓글을 불러오는데 실패했습니다.`));
   };
 
-  useEffect(() => {
-    getMyComments();
-  }, []);
+  const saveOptions = (comments) => {
+    const commentsList = [];
+    comments.forEach( element => {
+      console.log(comments)
+      commentsList.push(element.boardFrom);
+    })
+    console.log({commentsList});
+    console.log([...new Set(commentsList.map(JSON.stringify))].map(JSON.parse));
+    setCommentsFrom([...new Set(commentsList.map(JSON.stringify))].map(JSON.parse));
+  }
+
   return (
     <>
       <Header title="내가 댓글 단 글" link="/board" backbutton={true} />
-      {myComments &&
-        myComments.map((comments, index) => {
+      {CommentsFrom &&
+        CommentsFrom.map((board, index) => {
           return (
             <React.Fragment key={index}>
-              <Link to={`../board/${comments.boardFrom}`}>
-                <AddComment
-                  id={comments._id}
-                  user={comments.userFrom}
-                  time={comments.createdAt}
-                  writer={comments.commentWriter}
-                  content={comments.commentContent}
+                <AddBoard
+                  id={board._id}
+                  user={board.userFrom}
+                  time={board.createdAt}
+                  writer={board.boardWriter}
+                  title={board.boardTitle}
+                  content={board.boardContent}
                 />
-              </Link>
             </React.Fragment>
           );
         })}

@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Board } = require("../models/Board");
-const { Like } = require('../models/Like');
-// const { Like } = require("../models/Like");
+const { Comment } = require('../models/Comment');
 
 //=================================
 //             Board
@@ -24,13 +23,6 @@ router.post('/upload', (req, res) => {
     })
 })
 
-const showPage = function(page) {
-    return Board.find()
-    .sort({createdAt: -1})
-    .skip(((page-1)*10))
-    .limit(10)
-}
-
 router.post('/getBoard', (req, res) => {
     const Page = req.body.page;
     Board.find()
@@ -47,12 +39,13 @@ router.post('/getBoard', (req, res) => {
 })
 
 router.post('/deleteBoard', (req, res) => {
-    console.log(req.body);
+    Comment.findOneAndDelete({ boardFrom: req.body.boardFrom })
     Board.findOneAndDelete({ userFrom: req.body.userFrom, _id: req.body.boardFrom })
-        .exec((err, result) => {
-            if(err) return res.status(400).send(err);
-            return res.status(200).json({ success: true, result })
-        })
+    .exec((err, result) => {
+        console.log(result);
+        if(err) return res.status(400).send(err);
+        return res.status(200).json({ success: true, result })
+    })
 })
 
 router.post('/:id', (req, res) => {

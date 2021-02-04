@@ -74,7 +74,7 @@ function AddBoard(props) {
                   /> 
                 : null }
           </BoardUser>
-          <Link to={`${props.match.path}/${props.id}`}>
+          <Link to={`/board/${props.id}`}>
             <BoardTitle>{props.title}</BoardTitle>
             <BoardContent>{props.content}</BoardContent>
           </Link>
@@ -85,7 +85,7 @@ function AddBoard(props) {
                 boardTitle={props.title} 
                 boardContent={props.content}
               />
-              <Link to={`${props.match.path}/${props.id}`}>
+              <Link to={`/board/${props.id}`}>
                 <CommentButton boardId={props.id} />
               </Link>
           </div>

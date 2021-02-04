@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Comment } = require("../models/Comment");
+const { Board } = require("../models/Board");
 
 //=================================
 //            Comment
@@ -42,9 +43,11 @@ router.post('/deleteComment', (req, res) => {
 router.post('/comments', (req, res) => {
     // console.log('comments',req.body);
     Comment.find({userFrom: req.body.userFrom})
+        .populate("boardFrom")
         .sort({createdAt: -1})
         .exec((err, comments) => {
-            console.log(comments);
+            // console.log(comments);
+            // console.log(err);
             if(err) return res.status(400).send(err);
             return res.status(200).json({ success: true, comments })
         })

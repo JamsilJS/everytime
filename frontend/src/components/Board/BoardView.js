@@ -156,7 +156,6 @@ function BoardView({ history, match }) {
                   writer={board.boardWriter}
                   title={board.boardTitle}
                   content={board.boardContent}
-                  match={`${match}`}
                   history={`${history}`}
                   onRemove={onRemove}
                 />
