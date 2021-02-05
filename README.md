@@ -27,7 +27,7 @@ image
 4. input에 정보가 다 들어왔는지 확인하고 회원가입 승인
 - 게시판
 1. user profile에 설정한 닉네임과 학교 표시
-2. 게시판 글 작성 기능(100자 이내)
+2. 게시판 글 작성 기능(300자 이내)
 3. 게시판 글 작성 시 익명 기능 추가
 4. 등록된 게시글에 좋아요 및 댓글 기능 추가
 5. 내가 쓴 게시글 삭제 기능 설정
@@ -58,6 +58,7 @@ image
   - Redux
   - Styled-components
   - Axios
+  - @material-ui/lab
 
 - Backend
   - Mongoose
