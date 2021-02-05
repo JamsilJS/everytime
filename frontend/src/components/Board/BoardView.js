@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
-import StyledBox from '../Style/styledBox';
-import AddBoard from './Section/AddBoard';
+import StyledBox from "../Style/styledBox";
+import AddBoard from "./Section/AddBoard";
 import BoardInput from "./Section/BoardInput";
-import CheckNickname from './Section/CheckNickname';
+import CheckNickname from "./Section/CheckNickname";
 import BoardTextarea from "./Section/BoardTextarea";
 import UserProfile from "./Section/UserProfile";
 import LogoutButton from "../Utils/LogoutButton";
 import Header from "../Common/Header";
 import Footer from "../Common/Footer";
+import Pagination from "@material-ui/lab/Pagination";
 
 const Profilebox = styled.div`
   width: 100%;
@@ -37,10 +38,21 @@ const BoardForm = styled.form`
   box-sizing: border-box;
 `;
 
+const PaginationBox = styled.div`
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: center;
+`;
+
 function BoardView({ history, match }) {
-  const userFrom = localStorage.getItem('userId');
-  const writerFrom = localStorage.getItem('userNickname');
-  const [Page, setPage] = useState(1);
+  const userFrom = localStorage.getItem("userId");
+  const writerFrom = localStorage.getItem("userNickname");
+  const [page, setPage] = useState({
+    currentPage: 1,
+    totalPage: 5,
+  });
   const [WriterIcon, setWriterIcon] = useState(true);
   const [BoardWriter, setBoardWriter] = useState("익명");
   const [Content, setContent] = useState([]);
@@ -52,23 +64,23 @@ function BoardView({ history, match }) {
 
   useEffect(() => {
     FetchBoard();
-  }, [])
+  }, [page]);
 
   const FetchBoard = () => {
-    axios.post("/board/getBoard",{page: Page})
+    axios
+      .post("/board/getBoard", { page: page.currentPage })
       .then((response) => {
-        //console.log("Get Board : ",response);
-        if(response.data.success) {
+        if (response.data.success) {
           setContent(response.data.boards);
         } else {
           alert("게시글을 보여줄 수 없습니다.");
         }
-      })
-  }
+      });
+  };
 
   const onRemove = (id) => {
-    setContent(Content.filter(Content => Content._id !== id))
-  }
+    setContent(Content.filter((Content) => Content._id !== id));
+  };
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -79,14 +91,14 @@ function BoardView({ history, match }) {
   };
 
   const onIconClick = () => {
-    if(WriterIcon){
+    if (WriterIcon) {
       setWriterIcon(false);
       setBoardWriter(writerFrom);
     } else {
       setWriterIcon(true);
       setBoardWriter("익명");
-    };
-  }
+    }
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -95,27 +107,30 @@ function BoardView({ history, match }) {
       boardTitle: boardTitle,
       boardContent: boardContent,
       boardWriter: BoardWriter,
-    }
-    axios.post("/board/upload", variables)
-      .then((response) => {
-        if (response.status === 200) {
-          // console.log("Upload : ",response);
-          // console.log("variables : ",variables);
-          alert("게시글이 등록되었습니다");
-          setInput({
-            boardTitle: "",
-            boardContent: "",
-          })
-          FetchBoard();
-        } else {
-          alert("게시글 업로드에 실패하였습니다.");
-        }
-      })
+    };
+    axios.post("/board/upload", variables).then((response) => {
+      if (response.status === 200) {
+        // console.log("Upload : ",response);
+        // console.log("variables : ",variables);
+        alert("게시글이 등록되었습니다");
+        setInput({
+          boardTitle: "",
+          boardContent: "",
+        });
+        FetchBoard();
+      } else {
+        alert("게시글 업로드에 실패하였습니다.");
+      }
+    });
   };
 
+  const handlePageChange = (e) => {
+    const currentPage = parseInt(e.target.textContent);
+    setPage({ ...page, currentPage: currentPage });
+  };
   return (
     <>
-      <Header title="자유게시판" link="/board"/>
+      <Header title="자유게시판" link="/board" />
       <StyledBox backColor="#fafafa" padding="10px 0px" lineHeight="auto">
         <Profilebox>
           <UserProfile boardPage={true} />
@@ -123,7 +138,7 @@ function BoardView({ history, match }) {
             <Profilebtn>내정보</Profilebtn>
           </Link>
           <Profilebtn>
-            <LogoutButton/>
+            <LogoutButton />
           </Profilebtn>
         </Profilebox>
         <BoardForm onSubmit={onSubmit}>
@@ -139,16 +154,17 @@ function BoardView({ history, match }) {
             value={boardContent}
             onChange={onChange}
           />
-          <CheckNickname 
+          <CheckNickname
             icon={WriterIcon}
-            click={onIconClick} 
+            click={onIconClick}
             submit={onSubmit}
           />
         </BoardForm>
-        { Content && Content.map((board, index) => {
-          // console.log('board',board)
-          return(
-            <React.Fragment key={index}>
+        {Content &&
+          Content.map((board, index) => {
+            // console.log('board',board)
+            return (
+              <React.Fragment key={index}>
                 <AddBoard
                   id={board._id}
                   user={board.userFrom._id}
@@ -159,10 +175,21 @@ function BoardView({ history, match }) {
                   history={`${history}`}
                   onRemove={onRemove}
                 />
-            </React.Fragment>
-          )})
-        }
-      <Footer/>
+              </React.Fragment>
+            );
+          })}
+        <PaginationBox>
+          <Pagination
+            count={page.totalPage}
+            page={page.currentPage}
+            onChange={handlePageChange}
+            shape="rounded"
+            size="small"
+            hidePrevButton
+            hideNextButton
+          />
+        </PaginationBox>
+        <Footer />
       </StyledBox>
     </>
   );
