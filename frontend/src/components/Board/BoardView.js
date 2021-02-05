@@ -101,6 +101,18 @@ function BoardView({ history, match }) {
   };
 
   const onSubmit = (e) => {
+    if (!boardTitle) {
+      alert(`제목을 작성해주세요`);
+      return;
+    }
+    if (!boardContent) {
+      alert(`내용을 작성해주세요`);
+      return;
+    }
+    if (boardContent.length > 300) {
+      alert(`내용을 300자 이내로 작성해주세요`);
+      return;
+    }
     e.preventDefault();
     let variables = {
       userFrom: userFrom,
@@ -110,9 +122,6 @@ function BoardView({ history, match }) {
     };
     axios.post("/board/upload", variables).then((response) => {
       if (response.status === 200) {
-        // console.log("Upload : ",response);
-        // console.log("variables : ",variables);
-        alert("게시글이 등록되었습니다");
         setInput({
           boardTitle: "",
           boardContent: "",

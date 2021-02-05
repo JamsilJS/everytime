@@ -12,8 +12,7 @@ import { useDispatch } from "react-redux";
 import { registerUser } from "../_actions/user_actions";
 import { withRouter } from "react-router-dom";
 
-
-const schoolArr = [
+const SCHOOL_ARR = [
   "서울대학교",
   "카이스트",
   "포항공과대학교",
@@ -94,7 +93,7 @@ function Register({ history }) {
   const [option, setOption] = useState("2014");
 
   const [schoolInput, setSchoolInput] = useState("");
-  const [searchResult, setSearchResult] = useState(schoolArr);
+  const [searchResult, setSearchResult] = useState(SCHOOL_ARR);
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -130,7 +129,7 @@ function Register({ history }) {
 
   const handleSearch = (e) => {
     setSchoolInput(e.target.value);
-    const result = schoolArr.filter((school) => {
+    const result = SCHOOL_ARR.filter((school) => {
       return school.includes(e.target.value);
     });
     setSearchResult(result);
@@ -151,7 +150,7 @@ function Register({ history }) {
       alert("필수 항목을 작성해주세요");
       return;
     }
-    if (!schoolArr.includes(schoolInput)) {
+    if (!SCHOOL_ARR.includes(schoolInput)) {
       alert("학교를 선택해주세요");
       return;
     }
@@ -182,7 +181,7 @@ function Register({ history }) {
   return (
     <StyledContainer>
       <div>
-        <Header link={"./"} title="회원가입" backbutton={true}/>
+        <Header link={"./"} title="회원가입" backbutton={true} />
         <StyledBox padding="18px 16px" lineHeight="20px">
           <form onSubmit={checkId}>
             <RegisterInput
