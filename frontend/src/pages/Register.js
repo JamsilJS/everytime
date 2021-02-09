@@ -94,6 +94,7 @@ function Register({ history }) {
 
   const [schoolInput, setSchoolInput] = useState("");
   const [searchResult, setSearchResult] = useState(SCHOOL_ARR);
+  const [showSchoolList, setShowSchoolList] = useState(true);
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -128,6 +129,7 @@ function Register({ history }) {
   };
 
   const handleSearch = (e) => {
+    setShowSchoolList(true);
     setSchoolInput(e.target.value);
     const result = SCHOOL_ARR.filter((school) => {
       return school.includes(e.target.value);
@@ -138,6 +140,7 @@ function Register({ history }) {
   const handleSearchClick = (e) => {
     e.preventDefault();
     setSchoolInput(e.target.textContent);
+    setShowSchoolList(false);
   };
 
   const SignUp = (e) => {
@@ -229,7 +232,7 @@ function Register({ history }) {
               value={schoolInput}
             />
 
-            {schoolInput && (
+            {schoolInput && showSchoolList && (
               <SchoolSearchResult
                 datas={searchResult}
                 handleSearchClick={handleSearchClick}

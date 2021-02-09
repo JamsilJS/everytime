@@ -1,16 +1,23 @@
 import React from "react";
+import styled from "styled-components";
 
+const STYLEDUL = styled.ul`
+  padding: 5px;
+`;
+const STYLEDLI = styled.li`
+  font-size: 14px;
+`;
 const SchoolSearchResult = function ({ datas, handleSearchClick }) {
   return (
-    <ul>
+    <STYLEDUL>
       {datas.map((data, index) => {
         return (
-          <li onClick={handleSearchClick} key={index}>
+          <STYLEDLI onClick={handleSearchClick} key={index}>
             {data}
-          </li>
+          </STYLEDLI>
         );
       })}
-    </ul>
+    </STYLEDUL>
   );
 };
 
