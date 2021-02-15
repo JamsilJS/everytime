@@ -5,6 +5,7 @@ import StyledBox from "../components/Style/styledBox";
 import StyledContainer from "../components/Style/styledContainer";
 import CheckIdButton from "../components/Register/ChcekIdButton";
 import RegisterInput from "../components/Register/RegisterInput";
+import LimitOnLength from "../components/Register/LimitOnLength";
 import RegisterButton from "../components/Register/RegisterButton";
 import RegisterSelect from "../components/Register/RegisterSelect";
 import SchoolSearchResult from "../components/Register/SchoolSearchResult";
@@ -96,16 +97,36 @@ function Register({ history }) {
   const [searchResult, setSearchResult] = useState(SCHOOL_ARR);
   const [showSchoolList, setShowSchoolList] = useState(true);
 
+  const [overIdLength, setOverIdLength] = useState(false);
+  const [overPwLength, setOverPwLength] = useState(false);
+
   const onChange = (e) => {
     const { value, name } = e.target;
     setInput({
       ...inputs,
       [name]: value,
+      usableId: false,
     });
+
+    if (inputs.userId.length > 8) {
+      setOverIdLength(true);
+    } else {
+      setOverIdLength(false);
+    }
+
+    if (inputs.userPw.length > 12) {
+      setOverPwLength(true);
+    } else {
+      setOverPwLength(false);
+    }
   };
 
   const checkId = (e) => {
     e.preventDefault();
+
+    if (overIdLength) {
+      return;
+    }
 
     axios
       .post(`/register/checkId/${userId}`, { id: userId })
@@ -145,6 +166,11 @@ function Register({ history }) {
 
   const SignUp = (e) => {
     e.preventDefault();
+
+    if (overIdLength || overPwLength) {
+      return;
+    }
+
     if (usableId === false) {
       alert("아이디 중복확인을 해주세요");
       return;
@@ -153,13 +179,12 @@ function Register({ history }) {
       alert("필수 항목을 작성해주세요");
       return;
     }
+
     if (!SCHOOL_ARR.includes(schoolInput)) {
       alert("학교를 선택해주세요");
       return;
     }
-    alert(
-      `${userId}, ${userPw}, ${userEmail}, ${userNickname}, ${option}, ${schoolInput}`
-    );
+
     let body = {
       id: userId,
       password: userPw,
@@ -194,6 +219,9 @@ function Register({ history }) {
               onChange={onChange}
               value={userId}
             />
+            {overIdLength && (
+              <LimitOnLength>아이디를 8자 이내로 입력해주세요</LimitOnLength>
+            )}
             <CheckIdButton onClick={checkId}>중복체크</CheckIdButton>
           </form>
           <form onSubmit={SignUp}>
@@ -204,6 +232,9 @@ function Register({ history }) {
               onChange={onChange}
               value={userPw}
             />
+            {overPwLength && (
+              <LimitOnLength>비밀번호를 12자 이내로 입력해주세요</LimitOnLength>
+            )}
             <RegisterInput
               labelName="이메일"
               name="userEmail"
