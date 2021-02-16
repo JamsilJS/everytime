@@ -31,6 +31,7 @@ const StyledInput = styled.input`
 const RegisterInput = function ({
   labelName,
   name,
+  type,
   placeholder,
   onChange,
   value,
@@ -40,6 +41,7 @@ const RegisterInput = function ({
       {labelName}
       <StyledInput
         name={name}
+        type={type}
         placeholder={placeholder}
         onChange={onChange}
         value={value}

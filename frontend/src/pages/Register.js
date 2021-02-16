@@ -215,6 +215,7 @@ function Register({ history }) {
             <RegisterInput
               labelName="아이디"
               name="userId"
+              type="text"
               placeholder="아이디"
               onChange={onChange}
               value={userId}
@@ -228,6 +229,7 @@ function Register({ history }) {
             <RegisterInput
               labelName="비밀번호"
               name="userPw"
+              type="password"
               placeholder="비밀번호"
               onChange={onChange}
               value={userPw}
@@ -238,6 +240,7 @@ function Register({ history }) {
             <RegisterInput
               labelName="이메일"
               name="userEmail"
+              type="email"
               placeholder="이메일"
               onChange={onChange}
               value={userEmail}
@@ -245,6 +248,7 @@ function Register({ history }) {
             <RegisterInput
               labelName="닉네임"
               name="userNickname"
+              type="text"
               placeholder="닉네임"
               onChange={onChange}
               value={userNickname}
@@ -258,6 +262,7 @@ function Register({ history }) {
             <RegisterInput
               labelName="학교선택"
               name="userSchool"
+              type="text"
               placeholder="학교를 검색하세요"
               onChange={handleSearch}
               value={schoolInput}
