@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import profile from '../../../assets/profile.png';
 import { withRouter } from 'react-router-dom';
-import UpdateTime from '../../Utils/UpdateTime';
+import UpdateTime from '../../Common/UpdateTime';
 import DeleteComment from './DeleteComment';
 
 const CommentBox = styled.div`

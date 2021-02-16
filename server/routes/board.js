@@ -22,19 +22,45 @@ router.post('/upload', (req, res) => {
     })
 })
 
+// router.post('/getBoard', (req, res) => {
+//     const Page = req.body.page;
+//     console.log('Page',Page);
+//     Board.find()
+//         .sort({createdAt: -1})
+//         .skip(((Page-1)*5))
+//         .limit(5)
+//         .populate("userFrom")
+//         .exec((err, boards) => {
+//             if (err) {
+//               return res.status(400).send(err);
+//             } else {
+//               Board.countDocuments({}, (err, count) => {
+//                 console.log(count);
+//                 return count;
+//               })
+//               res.status(200).json({ success: true, boards});
+//             }
+//         })
+// })
+
 router.post('/getBoard', (req, res) => {
     const Page = req.body.page;
-    Board.find()
+    console.log('Page',Page);
+    Board.countDocuments({}, (err, count) => {
+      if(err) {
+        return res.status(400).send(err);
+      } else {
+        Board.find()
         .sort({createdAt: -1})
-        .skip(((Page-1)*10))
-        .limit(10)
+        .skip(((Page-1)*5))
+        .limit(5)
         .populate("userFrom")
         .exec((err, boards) => {
-            // console.log(err);
-            // console.log(boards);
             if (err) return res.status(400).send(err);
-            res.status(200).json({ success: true, boards })
+            res.status(200).json({ success: true, boards, count});
         })
+      }
+    })
 })
 
 router.post('/deleteBoard', (req, res) => {

@@ -8,7 +8,7 @@ import BoardInput from "./Section/BoardInput";
 import CheckNickname from "./Section/CheckNickname";
 import BoardTextarea from "./Section/BoardTextarea";
 import UserProfile from "./Section/UserProfile";
-import LogoutButton from "../Utils/LogoutButton";
+import LogoutButton from "../Common/LogoutButton";
 import Header from "../Common/Header";
 import Footer from "../Common/Footer";
 import Pagination from "@material-ui/lab/Pagination";
@@ -49,10 +49,8 @@ const PaginationBox = styled.div`
 function BoardView({ history, match }) {
   const userFrom = localStorage.getItem("userId");
   const writerFrom = localStorage.getItem("userNickname");
-  const [page, setPage] = useState({
-    currentPage: 1,
-    totalPage: 5,
-  });
+  const [totalPage, settotalPage] = useState(0);
+  const [currentPage, setcurrentPage] = useState(1);
   const [WriterIcon, setWriterIcon] = useState(true);
   const [BoardWriter, setBoardWriter] = useState("익명");
   const [Content, setContent] = useState([]);
@@ -64,14 +62,16 @@ function BoardView({ history, match }) {
 
   useEffect(() => {
     FetchBoard();
-  }, [page]);
+  }, [currentPage]);
 
   const FetchBoard = () => {
     axios
-      .post("/board/getBoard", { page: page.currentPage })
+      .post("/board/getBoard", { page: currentPage })
       .then((response) => {
+        console.log(response);
         if (response.data.success) {
           setContent(response.data.boards);
+          settotalPage(Math.ceil(response.data.count/5));
         } else {
           alert("게시글을 보여줄 수 없습니다.");
         }
@@ -135,7 +135,7 @@ function BoardView({ history, match }) {
 
   const handlePageChange = (e) => {
     const currentPage = parseInt(e.target.textContent);
-    setPage({ ...page, currentPage: currentPage });
+    setcurrentPage(currentPage);
   };
   return (
     <>
@@ -189,8 +189,8 @@ function BoardView({ history, match }) {
           })}
         <PaginationBox>
           <Pagination
-            count={page.totalPage}
-            page={page.currentPage}
+            count={totalPage}
+            page={currentPage}
             onChange={handlePageChange}
             shape="rounded"
             size="small"

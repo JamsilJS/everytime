@@ -3,7 +3,7 @@ import { withRouter, Link } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../Common/Header";
 import StyledBox from '../Style/styledBox';
-import LogoutButton from '../Utils/LogoutButton';
+import LogoutButton from '../Common/LogoutButton';
 
 const BoxTitle = styled.li`
   font-size: 16px;

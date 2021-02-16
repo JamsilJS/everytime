@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import back from "../../assets/cancel.png";
 
-const StyledHeader = styled.ul`
+const StyledHeader = styled.div`
     display: flex;
     color: #353535;
     background-color: #fff;
@@ -23,7 +23,7 @@ const Logo = styled.img`
 `;
 
 const HeaderTitle = styled.span`
-    color: #454545
+    color: #454545;
     font-size: 16px;
     font-weight: bold;
     text-align: left;
@@ -54,12 +54,12 @@ function Header(props) {
     // console.log(props);
     return (
         <StyledHeader>
-            <li>
+            <div style={{width: '120px'}}>
                 <Link to={props.link}>
                     <Logo src={logo} alt="logo"/>
                 </Link>
                 <HeaderTitle>{props.title}</HeaderTitle>
-            </li>
+            </div>
             { props.backbutton &&
                 <Link to="./">
                     <BackButton style={{lineHeight:'56px'}}>

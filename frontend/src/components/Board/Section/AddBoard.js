@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import LikeButton from './LikeButton';
 import CommentButton from './CommentButton';
-import UpdateTime from '../../Utils/UpdateTime';
+import UpdateTime from '../../Common/UpdateTime';
 import profile from '../../../assets/profile.png';
 import DeleteBoard from './DeleteBoard';
 
