@@ -67,6 +67,7 @@ function Password({history}) {
         } else {
             axios.post('/user/update/password', body)
             .then((response) => {
+              console.log(response);
                 if(!response.data.changeSuccess) {
                     alert(response.data.message);
                 } else {

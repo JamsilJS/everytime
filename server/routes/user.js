@@ -3,6 +3,7 @@ const router = express.Router();
 const { User } = require("../models/User");
 const { Board } = require("../models/Board");
 const { auth } = require("../middleware/auth");
+const bcrypt = require('bcrypt');
 
 //=================================
 //             User
@@ -68,18 +69,18 @@ router.post('/update/email', auth, (req, res) => {
 router.post('/update/password', auth, (req, res) => {
     console.log(req.body);
     User.findOne({ _id: req.body._id }, (err, user) => {
+      console.log(user);
         user.comparePassword(req.body.oldPassword , (err, isMatch ) => {
             if (!isMatch) return res.json({ changeSuccess: false, message: "비밀번호가 틀렸습니다." })
-            // else User.findOneAndUpdate(
-            //     {_id: req.body._id},
-            //     {$set:{password: req.body.newPassword}},
-            //     {new: true},
-            //     (err, user) => {
-            //         console.log(user);
-            //         if(!user) return res.status(404).send();
-            //         else return res.json({ changeSuccess: true });
-            //     }
-            // )
+            else bcrypt.genSalt(10, function (err, salt) {
+              if(err) return res.status(400).send(err)
+              bcrypt.hash(req.body.newPassword, salt, function(err, hash) {
+                if(err) return res.status(400).send(err);
+                User.findOneAndUpdate({ _id: req.body._id }, { password: hash })
+                .then(() => res.status(200).json({changeSuccess : true}))
+                .catch(err => res.status(500).json(err))
+              }) 
+            })
         })
     })
 })

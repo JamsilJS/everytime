@@ -54,7 +54,7 @@ function Header(props) {
     // console.log(props);
     return (
         <StyledHeader>
-            <div style={{width: '120px'}}>
+            <div style={{width: '140px'}}>
                 <Link to={props.link}>
                     <Logo src={logo} alt="logo"/>
                 </Link>
