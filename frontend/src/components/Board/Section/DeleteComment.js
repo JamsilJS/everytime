@@ -16,7 +16,8 @@ function DeleteComment(props) {
             id: props.id,
             userFrom: props.user,
         }
-        axios.post("/comment/deleteComment", variables)
+        let confirmDelete = window.confirm("삭제하시겠습니까?");
+        confirmDelete && axios.post("/comment/deleteComment", variables)
         .then(response => {
             // console.log("Delete : ", response);
             if(response.data.success) {

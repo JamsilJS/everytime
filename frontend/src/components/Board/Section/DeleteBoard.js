@@ -16,7 +16,8 @@ function DeleteBoard(props) {
             boardFrom: props.board,
             userFrom: props.user,
         }
-        axios.post("/board/deleteBoard", variables)
+        let confirmDelete = window.confirm("삭제하시겠습니까?");
+        confirmDelete && axios.post("/board/deleteBoard", variables)
         .then(response => {
             console.log("Delete : ", response);
             if(response.data.success) {
@@ -26,7 +27,7 @@ function DeleteBoard(props) {
             } else {
                 alert("게시글 삭제에 실패했습니다.");
             }
-        })
+        }) 
     }
     return(
             <Button onClick={onDelete}>
