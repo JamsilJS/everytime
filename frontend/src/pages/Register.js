@@ -74,7 +74,6 @@ const SCHOOL_ARR = [
 ].sort();
 
 const entranceYearArray = [];
-
 for (let i = 2000; i < 2022; i++) {
   entranceYearArray.push(i);
 }
@@ -90,13 +89,10 @@ function Register({ history }) {
   });
 
   const { userId, userPw, userEmail, userNickname, usableId } = inputs;
-
-  const [option, setOption] = useState("2014");
-
+  const [option, setOption] = useState("2021");
   const [schoolInput, setSchoolInput] = useState("");
   const [searchResult, setSearchResult] = useState(SCHOOL_ARR);
   const [showSchoolList, setShowSchoolList] = useState(true);
-
   const [overIdLength, setOverIdLength] = useState(false);
   const [overPwLength, setOverPwLength] = useState(false);
 
@@ -105,7 +101,7 @@ function Register({ history }) {
     setInput({
       ...inputs,
       [name]: value,
-      usableId: false,
+      usableId: usableId,
     });
 
     if (inputs.userId.length > 8) {
@@ -123,20 +119,20 @@ function Register({ history }) {
 
   const checkId = (e) => {
     e.preventDefault();
-
     if (overIdLength) {
       return;
     }
-
     axios
       .post(`/register/checkId/${userId}`, { id: userId })
       .then((response) => {
+        console.log(response);
         if (response.status === 200) {
-          alert("사용가능한 아이디입니다.");
           setInput({
             ...inputs,
             usableId: true,
           });
+          alert("사용가능한 아이디입니다.");
+          console.log(inputs);
         }
       })
       .catch((error) => {
@@ -166,25 +162,21 @@ function Register({ history }) {
 
   const SignUp = (e) => {
     e.preventDefault();
-
     if (overIdLength || overPwLength) {
-      return;
-    }
-
-    if (usableId === false) {
-      alert("아이디 중복확인을 해주세요");
       return;
     }
     if (!userId || !userPw || !userEmail || !userNickname) {
       alert("필수 항목을 작성해주세요");
       return;
     }
-
     if (!SCHOOL_ARR.includes(schoolInput)) {
       alert("학교를 선택해주세요");
       return;
     }
-
+    if (usableId === false) {
+      alert("아이디 중복확인을 해주세요");
+      return;
+    }
     let body = {
       id: userId,
       password: userPw,
@@ -205,7 +197,6 @@ function Register({ history }) {
       })
       .catch((error) => console.log(error));
   };
-
   return (
     <StyledContainer>
       <div>
