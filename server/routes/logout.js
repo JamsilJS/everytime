@@ -8,7 +8,6 @@ const { auth } = require("../middleware/auth");
 //=================================
 
 router.get('/', auth, (req, res) => {
-    console.log(req.body);
     User.findOneAndUpdate(
         { _id: req.user._id }, 
         { token: "" },

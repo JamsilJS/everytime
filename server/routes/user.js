@@ -34,7 +34,6 @@ router.get('/profile', auth, (req, res) => {
 })
 
 router.post('/update/nickname', auth, (req, res) => {
-    console.log(req.body);
     User.findOneAndUpdate(
         {_id: req.body._id},
         {$set:{nickname: req.body.nickname}},
@@ -48,7 +47,6 @@ router.post('/update/nickname', auth, (req, res) => {
 })
 
 router.post('/update/email', auth, (req, res) => {
-    console.log(req.body);
     User.findOne({ _id: req.body._id }, (err, user) => {
         user.comparePassword(req.body.password , (err, isMatch ) => {
             if (!isMatch) return res.json({ changeSuccess: false, message: "비밀번호가 틀렸습니다." })
@@ -67,9 +65,7 @@ router.post('/update/email', auth, (req, res) => {
 })
 
 router.post('/update/password', auth, (req, res) => {
-    console.log(req.body);
     User.findOne({ _id: req.body._id }, (err, user) => {
-      console.log(user);
         user.comparePassword(req.body.oldPassword , (err, isMatch ) => {
             if (!isMatch) return res.json({ changeSuccess: false, message: "비밀번호가 틀렸습니다." })
             else bcrypt.genSalt(10, function (err, salt) {
@@ -86,7 +82,6 @@ router.post('/update/password', auth, (req, res) => {
 })
 
 router.post("/myBoard", (req, res) => {
-    console.log(req.body);
     Board.find({ userFrom : req.body.userFrom })
         .sort({createdAt: -1})
         .exec((err, boards) => {
@@ -96,11 +91,11 @@ router.post("/myBoard", (req, res) => {
 })
 
 router.post('/withdrawal', auth, (req, res) => {
-    console.log(req.body);
     User.findOne({ _id: req.body._id }, (err, user) => {
         user.comparePassword(req.body.password , (err, isMatch ) => {
             if (!isMatch) return res.json({ changeSuccess: false, message: "비밀번호가 틀렸습니다." })
             else User.deleteOne({_id: req.body._id}, (err, user) => {
+                console.log(user);
                 if(err) return res.status(404).send();
                 else return res.json({ changeSuccess: true });
             });

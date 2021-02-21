@@ -21,15 +21,12 @@ const boardSchema = mongoose.Schema({
 
 boardSchema.pre('findOneAndDelete', function(next) {
     var Board = this;
-    // console.log(Board);
     Comment.deleteMany({boardFrom: Board._conditions._id})
         .exec((err, result) => {
-            // console.log('result', result)
             return {success : true, result}
         })
     Like.deleteMany({boardFrom: Board._conditions._id})
         .exec((err, result) => {
-            // console.log('result', result)
             return {success : true, result}
         })
     next();

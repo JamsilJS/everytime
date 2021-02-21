@@ -8,7 +8,6 @@ const { User } = require("../models/User");
 
 router.post('/', (req, res) => {
     const user = new User(req.body);
-    console.log(req.body);
     user.save((err, user) => {
         if (err) return res.json({
             success: false,
@@ -21,7 +20,6 @@ router.post('/', (req, res) => {
 })
 
 router.post('/checkId/:id', (req, res) => {
-    console.log(req.body);
     User.findOne({ id: req.body.id }, (err, user) => {
         if(!user) return res.status(200).send();
         else return res.status(404).json({
