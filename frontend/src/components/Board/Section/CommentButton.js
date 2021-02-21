@@ -26,7 +26,6 @@ function CommentButton({boardId}) {
     axios
       .post("/comment/getComment", variables)
       .then((response) => {
-        // console.log(response);
         if(response.data.success) {
           setCommentCounts(response.data.commentCounts);
         } else {
@@ -35,10 +34,10 @@ function CommentButton({boardId}) {
       })
   },[])
   return (
-      <button>
-          <ButtonImage src={comment} alt="comment" />
-          <CommentCounted>{CommentCounts}</CommentCounted>
-      </button>
+    <button>
+        <ButtonImage src={comment} alt="comment" />
+        <CommentCounted>{CommentCounts}</CommentCounted>
+    </button>
   )
 }
 

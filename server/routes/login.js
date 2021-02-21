@@ -17,7 +17,6 @@ router.post('/', (req, res) => {
         user.comparePassword(req.body.password , (err, isMatch ) => {
             if (!isMatch)
             return res.json({ loginSuccess: false, message: "비밀번호가 틀렸습니다."})
-
             user.generateToken((err, user) => {
                 if(err) return res.status(400).send(err);
                 res.cookie("x_authExp", user.tokenExp);

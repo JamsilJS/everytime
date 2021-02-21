@@ -4,11 +4,9 @@ import { useDispatch } from "react-redux";
 import { logoutUser } from "../../_actions/user_actions";
 
 function LogoutButton(props) {
-  // console.log(props);
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logoutUser()).then((response) => {
-      console.log(response);
       if (response.payload.logoutSuccess) {
         window.localStorage.removeItem("userId");
         props.history.push("/");

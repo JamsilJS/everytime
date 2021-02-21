@@ -6,7 +6,6 @@ const { Like } = require("../models/Like");
 //              Like
 //=================================
 
-// 데이터베이스에서 좋아요 숫자 가져오기
 router.post('/likeCounts', (req, res) => {
     Like.find({boardFrom: req.body.boardFrom})
         .exec((err, likes) => {
@@ -15,7 +14,6 @@ router.post('/likeCounts', (req, res) => {
         })
 })
 
-// 데이터베이스에서 내가 이 게시글을 좋아요 했는지 정보 가져오기
 router.post("/liked", (req, res) => {
     Like.find({ userFrom : req.body.userFrom , boardFrom : req.body.boardFrom})
         .exec((err, likes) => {
@@ -28,7 +26,6 @@ router.post("/liked", (req, res) => {
         }) 
 })
 
-//프론트에서 좋아요한 게시글 데이터베이스에 저장하기
 router.post('/', (req, res) => {
     const like = new Like(req.body);
     like.save((err, likes) => {
@@ -37,7 +34,6 @@ router.post('/', (req, res) => {
     })
 })
 
-//프론트에서 좋아요 취소한 게시글 데이터베이스에서 삭제하기
 router.post('/dislike', (req, res) => {
     Like.findOneAndDelete({ userFrom: req.body.userFrom, boardFrom: req.body.boardFrom})
         .exec((err, likes) => {
@@ -46,7 +42,6 @@ router.post('/dislike', (req, res) => {
         })
 })
 
-//마이페이지 좋아요한 게시글 클라이언트에 보내기
 router.post('/likes', (req, res) => {
     Like.find({userFrom: req.body.userFrom})
         .sort({createdAt: -1})
@@ -55,7 +50,5 @@ router.post('/likes', (req, res) => {
             return res.status(200).json({ success: true, likes })
         })
 })
-
-
 
 module.exports = router;

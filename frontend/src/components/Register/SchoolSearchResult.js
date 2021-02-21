@@ -7,6 +7,7 @@ const STYLEDUL = styled.ul`
 const STYLEDLI = styled.li`
   font-size: 14px;
 `;
+
 const SchoolSearchResult = function ({ datas, handleSearchClick }) {
   return (
     <STYLEDUL>

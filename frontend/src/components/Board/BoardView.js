@@ -69,7 +69,6 @@ function BoardView({ history, match }) {
     axios
       .post("/board/getBoard", { page: currentPage })
       .then((response) => {
-        console.log(response);
         if (response.data.success) {
           setContent(response.data.boards);
           settotalPage(Math.ceil(response.data.count/5));

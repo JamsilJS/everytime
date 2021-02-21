@@ -13,13 +13,11 @@ const FlexBox = styled.div`
   justify-content: space-between;
   margin: 50px 0px 12px 0px;
 `
-
 const Logo = styled.img`
     display: inline-block;
     width: 48px;
     height: 52px;
 `;
-
 const LogoTitle = styled.h2`
   color: #757575;
   font-size: 16px;
@@ -27,7 +25,6 @@ const LogoTitle = styled.h2`
   padding: 28px 8px 0px 0px;
   letter-spacing: -0.045rem;
 `;
-
 const StyledDiv = styled.div`
   color: #c62917;
   text-align: center;
@@ -35,7 +32,6 @@ const StyledDiv = styled.div`
   font-weight: 500;
   font-size: 16px;
 `;
-
 const StyledSpan = styled.span`
   color: #909090;
   font-weight: 300;
@@ -71,7 +67,6 @@ function Login({ history }) {
     } else {
       dispatch(loginUser(body))
         .then((response) => {
-          console.log(response);
           if (response.payload.loginSuccess) {
             window.localStorage.setItem('userId', response.payload.userId);
             history.push("/board");

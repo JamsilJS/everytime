@@ -11,13 +11,11 @@ const ProfileImage = styled.img`
   border-radius: 6px;
   pointer: cursor;
 `
-
 const Nickname = styled.div`
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 4px;
 `
-
 const ProfileID = styled.div`
   color: #999;
   font-size: 13px;
@@ -25,7 +23,6 @@ const ProfileID = styled.div`
 `
 
 const UserProfile = function(props) {
-
   const [User, setUser] = useState({
     userId: "",
     userNickname: "",

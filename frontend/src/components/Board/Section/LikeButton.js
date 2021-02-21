@@ -8,7 +8,6 @@ const ButtonImage = styled.img`
   height: 12px;
   margin-left: 10px;
 `;
-
 const LikeCounted = styled.p`
   display: inline-block;
   color: #c62917;
@@ -89,7 +88,6 @@ function LikeButton({boardId, boardTitle, boardContent, boardWriter}) {
   };
 
   useEffect(() => {
-    // console.log(userFrom, boardId);
     getLikeInfo();
     ifUserHasLiked();
   },[likeCounts, userLiked]);

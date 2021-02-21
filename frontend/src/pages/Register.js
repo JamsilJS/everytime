@@ -132,7 +132,6 @@ function Register({ history }) {
             usableId: true,
           });
           alert("사용가능한 아이디입니다.");
-          console.log(inputs);
         }
       })
       .catch((error) => {
@@ -162,21 +161,6 @@ function Register({ history }) {
 
   const SignUp = (e) => {
     e.preventDefault();
-    if (overIdLength || overPwLength) {
-      return;
-    }
-    if (!userId || !userPw || !userEmail || !userNickname) {
-      alert("필수 항목을 작성해주세요");
-      return;
-    }
-    if (!SCHOOL_ARR.includes(schoolInput)) {
-      alert("학교를 선택해주세요");
-      return;
-    }
-    if (usableId === false) {
-      alert("아이디 중복확인을 해주세요");
-      return;
-    }
     let body = {
       id: userId,
       password: userPw,
@@ -185,17 +169,29 @@ function Register({ history }) {
       entranceYear: option,
       school: schoolInput,
     };
-    dispatch(registerUser(body))
+    if (overIdLength || overPwLength) {
+      return;
+    } else if (!userId || !userPw || !userEmail || !userNickname) {
+      alert("필수 항목을 작성해주세요");
+      return;
+    } else if (!SCHOOL_ARR.includes(schoolInput)) {
+      alert("학교를 선택해주세요");
+      return;
+    } else if (usableId === false) {
+      alert("아이디 중복확인을 해주세요");
+      return;
+    } else {
+      dispatch(registerUser(body))
       .then((response) => {
-        console.log(response);
         if (response.payload.success) {
-          alert("회원가입완료!");
+          alert("회원가입을 완료했습니다.");
           history.push("./");
         } else {
-          alert("회원가입실패!");
+          alert("회원가입에 실패했습니다.");
         }
       })
       .catch((error) => console.log(error));
+    }
   };
   return (
     <StyledContainer>
