@@ -62,6 +62,7 @@ function BoardView({ history, match }) {
 
   useEffect(() => {
     FetchBoard();
+    console.log('fetch')
   }, [currentPage]);
 
   const FetchBoard = () => {
@@ -80,6 +81,7 @@ function BoardView({ history, match }) {
 
   const onRemove = (id) => {
     setContent(Content.filter((Content) => Content._id !== id));
+    FetchBoard();
   };
 
   const onChange = (e) => {
@@ -101,19 +103,17 @@ function BoardView({ history, match }) {
   };
 
   const onSubmit = (e) => {
+    e.preventDefault();
     if (!boardTitle) {
       alert(`제목을 작성해주세요`);
       return;
-    }
-    if (!boardContent) {
+    } else if (!boardContent) {
       alert(`내용을 작성해주세요`);
       return;
-    }
-    if (boardContent.length > 300) {
+    } else if (boardContent.length > 300) {
       alert(`내용을 300자 이내로 작성해주세요`);
       return;
     }
-    e.preventDefault();
     let variables = {
       userFrom: userFrom,
       boardTitle: boardTitle,
@@ -171,7 +171,6 @@ function BoardView({ history, match }) {
         </BoardForm>
         {Content &&
           Content.map((board, index) => {
-            // console.log('board',board)
             return (
               <React.Fragment key={index}>
                 <AddBoard
